@@ -15,6 +15,7 @@
 		033DEBBA253FA9AB008104D8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 033DEBB8253FA9AB008104D8 /* LaunchScreen.storyboard */; };
 		033DEBC5253FA9AC008104D8 /* Home_ScoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033DEBC4253FA9AC008104D8 /* Home_ScoreTests.swift */; };
 		033DEBD0253FA9AC008104D8 /* Home_ScoreUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033DEBCF253FA9AC008104D8 /* Home_ScoreUITests.swift */; };
+		033DEBE1253FB235008104D8 /* Homework.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 033DEBE0253FB235008104D8 /* Homework.rtf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		033DEBCB253FA9AC008104D8 /* Home ScoreUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Home ScoreUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		033DEBCF253FA9AC008104D8 /* Home_ScoreUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home_ScoreUITests.swift; sourceTree = "<group>"; };
 		033DEBD1253FA9AC008104D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		033DEBE0253FB235008104D8 /* Homework.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Homework.rtf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				033DEBB6253FA9AB008104D8 /* Assets.xcassets */,
 				033DEBB8253FA9AB008104D8 /* LaunchScreen.storyboard */,
 				033DEBBB253FA9AB008104D8 /* Info.plist */,
+				033DEBE0253FB235008104D8 /* Homework.rtf */,
 			);
 			path = "Home Score";
 			sourceTree = "<group>";
@@ -233,6 +236,7 @@
 			files = (
 				033DEBBA253FA9AB008104D8 /* LaunchScreen.storyboard in Resources */,
 				033DEBB7253FA9AB008104D8 /* Assets.xcassets in Resources */,
+				033DEBE1253FB235008104D8 /* Homework.rtf in Resources */,
 				033DEBB5253FA9A5008104D8 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
