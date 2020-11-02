@@ -16,6 +16,9 @@
 		033DEBC5253FA9AC008104D8 /* Home_ScoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033DEBC4253FA9AC008104D8 /* Home_ScoreTests.swift */; };
 		033DEBD0253FA9AC008104D8 /* Home_ScoreUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033DEBCF253FA9AC008104D8 /* Home_ScoreUITests.swift */; };
 		033DEBE1253FB235008104D8 /* Homework.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 033DEBE0253FB235008104D8 /* Homework.rtf */; };
+		0350E4B82548E1BC003369B6 /* Notes.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 0350E4B72548E1BC003369B6 /* Notes.rtf */; };
+		0350E4C12548E580003369B6 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0350E4BC2548E574003369B6 /* Category.swift */; };
+		0350E4C62548E6E1003369B6 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0350E4C52548E6E1003369B6 /* Home.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +54,9 @@
 		033DEBCF253FA9AC008104D8 /* Home_ScoreUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home_ScoreUITests.swift; sourceTree = "<group>"; };
 		033DEBD1253FA9AC008104D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		033DEBE0253FB235008104D8 /* Homework.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Homework.rtf; sourceTree = "<group>"; };
+		0350E4B72548E1BC003369B6 /* Notes.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Notes.rtf; sourceTree = "<group>"; };
+		0350E4BC2548E574003369B6 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		0350E4C52548E6E1003369B6 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,14 +107,10 @@
 		033DEBAC253FA9A5008104D8 /* Home Score */ = {
 			isa = PBXGroup;
 			children = (
-				033DEBAD253FA9A5008104D8 /* AppDelegate.swift */,
-				033DEBAF253FA9A5008104D8 /* SceneDelegate.swift */,
-				033DEBB1253FA9A5008104D8 /* ViewController.swift */,
-				033DEBB3253FA9A5008104D8 /* Main.storyboard */,
-				033DEBB6253FA9AB008104D8 /* Assets.xcassets */,
-				033DEBB8253FA9AB008104D8 /* LaunchScreen.storyboard */,
-				033DEBBB253FA9AB008104D8 /* Info.plist */,
-				033DEBE0253FB235008104D8 /* Homework.rtf */,
+				0350E4CD2548E947003369B6 /* Model */,
+				0350E4CE2548E94D003369B6 /* View */,
+				0350E4CF2548E95A003369B6 /* Controller */,
+				0350E4D02548E962003369B6 /* Other */,
 			);
 			path = "Home Score";
 			sourceTree = "<group>";
@@ -129,6 +131,45 @@
 				033DEBD1253FA9AC008104D8 /* Info.plist */,
 			);
 			path = "Home ScoreUITests";
+			sourceTree = "<group>";
+		};
+		0350E4CD2548E947003369B6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0350E4BC2548E574003369B6 /* Category.swift */,
+				0350E4C52548E6E1003369B6 /* Home.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0350E4CE2548E94D003369B6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0350E4CF2548E95A003369B6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				033DEBB1253FA9A5008104D8 /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		0350E4D02548E962003369B6 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				033DEBAF253FA9A5008104D8 /* SceneDelegate.swift */,
+				033DEBAD253FA9A5008104D8 /* AppDelegate.swift */,
+				033DEBB3253FA9A5008104D8 /* Main.storyboard */,
+				033DEBB6253FA9AB008104D8 /* Assets.xcassets */,
+				033DEBB8253FA9AB008104D8 /* LaunchScreen.storyboard */,
+				033DEBBB253FA9AB008104D8 /* Info.plist */,
+				033DEBE0253FB235008104D8 /* Homework.rtf */,
+				0350E4B72548E1BC003369B6 /* Notes.rtf */,
+			);
+			path = Other;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -238,6 +279,7 @@
 				033DEBB7253FA9AB008104D8 /* Assets.xcassets in Resources */,
 				033DEBE1253FB235008104D8 /* Homework.rtf in Resources */,
 				033DEBB5253FA9A5008104D8 /* Main.storyboard in Resources */,
+				0350E4B82548E1BC003369B6 /* Notes.rtf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,6 +307,8 @@
 				033DEBB2253FA9A5008104D8 /* ViewController.swift in Sources */,
 				033DEBAE253FA9A5008104D8 /* AppDelegate.swift in Sources */,
 				033DEBB0253FA9A5008104D8 /* SceneDelegate.swift in Sources */,
+				0350E4C62548E6E1003369B6 /* Home.swift in Sources */,
+				0350E4C12548E580003369B6 /* Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -441,7 +485,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = "Home Score/Info.plist";
+				INFOPLIST_FILE = "Home Score/Other/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -459,7 +503,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = "Home Score/Info.plist";
+				INFOPLIST_FILE = "Home Score/Other/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
