@@ -21,12 +21,24 @@ class Home {
     var photos: UIImage?
     var categories: [Category : Int]
     
-    init (title: String, address: String, notes: String, photos: UIImage, categories: [Category : Int]) {
+    static func savedHomes() -> [Home] {
+        return [
+            Home(title: "Home 1", address: "100 Adreess Street, City, DE", notes: "Notes", photos: nil, categories: [Category : Int]()),
+            Home(title: "Home 2", address: "200 Adreess Street, City, DE", notes: "Notes", photos: nil, categories: [Category : Int]()),
+            Home(title: "Home 3", address: "300 Adreess Street, City, DE", notes: "Notes", photos: nil, categories: [Category : Int]()),
+            Home(title: "Home 4", address: "400 Adreess Street, City, DE", notes: "Notes", photos: nil, categories: [Category : Int]()),
+            Home(title: "Home 5", address: "500 Adreess Street, City, DE", notes: "Notes", photos: nil, categories: [Category : Int]()),
+        ]
+    }
+    
+    init (title: String, address: String, notes: String, photos: UIImage?, categories: [Category : Int]) {
         self.title = title
         self.address = address
         self.notes = notes
         self.photos = photos
         self.categories = categories
     }
+    
+    
 }
 
