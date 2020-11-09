@@ -18,10 +18,15 @@ class HomeDataSource: NSObject, UITableViewDataSource {
     
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return homes.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: HouseCell.id, for: indexPath) as! HouseCell
+        let home = homes[indexPath.row]
+        cell.titleLabel.text = home.title
+        cell.homeScoreLabel.text = String(home.score)
+        cell.houseImageView.image = home.photos
+        return cell
     }
 }
