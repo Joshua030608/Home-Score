@@ -12,5 +12,10 @@ class AddEditHouseViewController: UIViewController {
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var tableView: UITableView!
     
+    fileprivate var dataSource = AddEditHouseDataSource()
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        tableView.dataSource = dataSource
+    }
 }

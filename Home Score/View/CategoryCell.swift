@@ -8,5 +8,6 @@
 import UIKit
 
 class CategoryCell: UITableViewCell {
-    
+    @IBOutlet weak var ratingLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
 }
