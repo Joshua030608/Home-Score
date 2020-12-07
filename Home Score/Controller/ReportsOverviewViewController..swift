@@ -19,7 +19,8 @@ class ReportsOverviewViewController: UIViewController {
     }
 
     @IBAction func addHomeButtonPressed(_ sender: Any) {
-        let addEditHouseVC = AddEditHouseViewController()
+        let addEditHouseVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AddEditHouseViewController") as! AddEditHouseViewController
+        addEditHouseVC.home = Home()
         navigationController?.pushViewController(addEditHouseVC, animated: true)
     }
     

@@ -7,21 +7,40 @@
 
 import UIKit
 
-class AddEditHouseDataSource: NSObject, UITableViewDataSource {
+class CategoryScoresHouseDataSource: NSObject, UITableViewDataSource {
     
-     var homes: [Home]
-     
-     override init() {
-         homes = Home.savedHomes()
+    fileprivate var scoresDictionary = [Category : Int]()
+    fileprivate var editing = true
+    fileprivate var keys = [Int]()
+    fileprivate var newDict = [Int:Int]()
+    
+     init(scoresDictionary: [Category : Int]?) {
+        if let scoresDictionary = scoresDictionary {
+            self.scoresDictionary = scoresDictionary
+        } else {
+            editing = false
+        }
          super.init()
      }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        homes.count
+        if editing {
+            let keys2 = scoresDictionary.keys
+            
+            return scoresDictionary.count
+        } else {
+            return 1
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        <#code#>
+        if editing {
+            let cell = tableView.dequeueReusableCell(withIdentifier: CategoryCell.id, for: indexPath) as! CategoryCell
+            cell.nameLabel.text = ""
+            cell.ratingLabel.text = ""
+        } else {
+            return UITableViewCell()
+        }
     }
     
     

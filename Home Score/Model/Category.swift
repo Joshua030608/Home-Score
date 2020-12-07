@@ -16,6 +16,25 @@ struct Category {
     let name: String
     var weight: Int
     var photo: UIImage?
+    
+    
+    static let categoryNames = [
+        "Kitchen",
+        "Master Bedroom",
+        "Master Bathroom",
+        "Other Bedrooms",
+        "Backyard",
+        "Frontyard",
+        "School District",
+        "Neighborhood",
+        "Living Room",
+        "Basement",
+        "Master Bathrooms",
+        "Other Bathrooms",
+        "Driveway",
+        "Laundry Room",
+        "Garage"
+    ]
 }
 
 extension Category: Hashable {

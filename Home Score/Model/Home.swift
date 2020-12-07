@@ -22,13 +22,19 @@ class Home {
     var categories: [Category : Int]
     var score: Int
     
+    static let kitchen = Category(name: "Kitchen", weight: 10, photo: nil)
+    static let masterBedroom = Category(name: "Master Bedroom", weight: 10, photo: nil)
+    static let masterBathroom = Category(name: "Master Bathroom", weight: 10, photo: nil)
+    
+    static let catDictionary = [kitchen:5, masterBedroom:10, masterBathroom:0]
+    
     static func savedHomes() -> [Home] {
         return [
-        Home(title: "Home 1", address: "100 Adreess Street, City, DE", notes: "Notes", photos: UIImage(named: "download"), categories: [Category : Int](), score: 10),
-            Home(title: "Home 2", address: "200 Adreess Street, City, DE", notes: "Notes", photos: nil, categories: [Category : Int](), score: 9),
-            Home(title: "Home 3", address: "300 Adreess Street, City, DE", notes: "Notes", photos: nil, categories: [Category : Int](), score: 8),
-            Home(title: "Home 4", address: "400 Adreess Street, City, DE", notes: "Notes", photos: UIImage(named: "download"), categories: [Category : Int](), score: 7),
-            Home(title: "Home 5", address: "500 Adreess Street, City, DE", notes: "Notes", photos: nil, categories: [Category : Int](), score: 6),
+        Home(title: "Home 1", address: "100 Adreess Street, City, DE", notes: "Notes", photos: UIImage(named: "download"), categories: catDictionary, score: 10),
+            Home(title: "Home 2", address: "200 Adreess Street, City, DE", notes: "Notes", photos: nil, categories: catDictionary, score: 9),
+            Home(title: "Home 3", address: "300 Adreess Street, City, DE", notes: "Notes", photos: nil, categories: catDictionary, score: 8),
+            Home(title: "Home 4", address: "400 Adreess Street, City, DE", notes: "Notes", photos: UIImage(named: "download"), categories: catDictionary, score: 7),
+            Home(title: "Home 5", address: "500 Adreess Street, City, DE", notes: "Notes", photos: nil, categories: catDictionary, score: 6),
         ]
     }
     
