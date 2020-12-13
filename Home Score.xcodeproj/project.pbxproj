@@ -21,7 +21,7 @@
 		0350E4C62548E6E1003369B6 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0350E4C52548E6E1003369B6 /* Home.swift */; };
 		03721950255229A000C507C2 /* HouseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0372194F2552299F00C507C2 /* HouseCell.swift */; };
 		0372195B2552309500C507C2 /* HomeDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0372195A2552309500C507C2 /* HomeDataSource.swift */; };
-		03C58652257448EC00718E8A /* AddEditHouseDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C58651257448EC00718E8A /* AddEditHouseDataSource.swift */; };
+		03C58652257448EC00718E8A /* CategoryScoresHouseDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C58651257448EC00718E8A /* CategoryScoresHouseDataSource.swift */; };
 		03FAF5842564A55C0013B51A /* AddEditHouseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FAF5832564A55C0013B51A /* AddEditHouseViewController.swift */; };
 		03FAF5892564A70F0013B51A /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FAF5882564A70F0013B51A /* CategoryCell.swift */; };
 /* End PBXBuildFile section */
@@ -64,7 +64,7 @@
 		0350E4C52548E6E1003369B6 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		0372194F2552299F00C507C2 /* HouseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HouseCell.swift; path = "Home Score/Other/HouseCell.swift"; sourceTree = SOURCE_ROOT; };
 		0372195A2552309500C507C2 /* HomeDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDataSource.swift; sourceTree = "<group>"; };
-		03C58651257448EC00718E8A /* AddEditHouseDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditHouseDataSource.swift; sourceTree = "<group>"; };
+		03C58651257448EC00718E8A /* CategoryScoresHouseDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryScoresHouseDataSource.swift; sourceTree = "<group>"; };
 		03FAF5832564A55C0013B51A /* AddEditHouseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditHouseViewController.swift; sourceTree = "<group>"; };
 		03FAF5882564A70F0013B51A /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -149,7 +149,7 @@
 				0350E4BC2548E574003369B6 /* Category.swift */,
 				0350E4C52548E6E1003369B6 /* Home.swift */,
 				0372195A2552309500C507C2 /* HomeDataSource.swift */,
-				03C58651257448EC00718E8A /* AddEditHouseDataSource.swift */,
+				03C58651257448EC00718E8A /* CategoryScoresHouseDataSource.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -326,7 +326,7 @@
 				033DEBB0253FA9A5008104D8 /* SceneDelegate.swift in Sources */,
 				03FAF5892564A70F0013B51A /* CategoryCell.swift in Sources */,
 				0350E4C62548E6E1003369B6 /* Home.swift in Sources */,
-				03C58652257448EC00718E8A /* AddEditHouseDataSource.swift in Sources */,
+				03C58652257448EC00718E8A /* CategoryScoresHouseDataSource.swift in Sources */,
 				03721950255229A000C507C2 /* HouseCell.swift in Sources */,
 				0350E4C12548E580003369B6 /* Category.swift in Sources */,
 			);
@@ -434,7 +434,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -489,7 +489,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -505,6 +505,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = KTP2C8ZWM3;
 				INFOPLIST_FILE = "Home Score/Other/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -523,6 +524,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = KTP2C8ZWM3;
 				INFOPLIST_FILE = "Home Score/Other/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -542,7 +544,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "Home ScoreTests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -563,7 +565,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "Home ScoreTests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -17,23 +17,21 @@ struct Category {
     var weight: Int
     var photo: UIImage?
     
-    
-    static let categoryNames = [
-        "Kitchen",
-        "Master Bedroom",
-        "Master Bathroom",
-        "Other Bedrooms",
-        "Backyard",
-        "Frontyard",
-        "School District",
-        "Neighborhood",
-        "Living Room",
-        "Basement",
-        "Master Bathrooms",
-        "Other Bathrooms",
-        "Driveway",
-        "Laundry Room",
-        "Garage"
+    static let defaultCategories = [
+        Category(name: "Kitchen", weight: 9, photo: nil),
+        Category(name: "Master Bedroom", weight: 9, photo: nil),
+        Category(name: "Master Bathroom", weight: 9, photo: nil),
+        Category(name: "Other Bedrooms", weight: 9, photo: nil),
+        Category(name: "Backyard", weight: 9, photo: nil),
+        Category(name: "Frontyard", weight: 9, photo: nil),
+        Category(name: "School District", weight: 9, photo: nil),
+        Category(name: "Neighborhood", weight: 9, photo: nil),
+        Category(name: "Living Room", weight: 9, photo: nil),
+        Category(name: "Basement", weight: 9, photo: nil),
+        Category(name: "Other Bathrooms", weight: 9, photo: nil),
+        Category(name: "Driveway", weight: 9, photo: nil),
+        Category(name: "Laundry Room", weight: 9, photo: nil),
+        Category(name: "Garage", weight: 9, photo: nil)
     ]
 }
 

@@ -13,7 +13,7 @@ class AddEditHouseViewController: UIViewController {
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var tableView: UITableView!
     
-    fileprivate var dataSource: AddEditHouseDataSource?
+    fileprivate var dataSource: CategoryScoresHouseDataSource?
     
     var home: Home? {
         didSet {
@@ -21,12 +21,13 @@ class AddEditHouseViewController: UIViewController {
                 houseImageView.image = home.photos
                 addressTextField.text = home.address
                 titleTextField.text = home.title
-                dataSource = AddEditHouseDataSource(home: home)
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
-            } else {
+                dataSource = CategoryScoresHouseDataSource(scoresDictionary: home.categoryScores)
                 
+            } else {
+                dataSource = CategoryScoresHouseDataSource(scoresDictionary: nil)
+            }
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
             }
         }
     }

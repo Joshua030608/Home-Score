@@ -19,34 +19,38 @@ class Home {
     var address: String
     var notes: String
     var photos: UIImage?
-    var categories: [Category : Int]
+    var categoryScores: [Category : Int?]
     var score: Int
-    
-    static let kitchen = Category(name: "Kitchen", weight: 10, photo: nil)
-    static let masterBedroom = Category(name: "Master Bedroom", weight: 10, photo: nil)
-    static let masterBathroom = Category(name: "Master Bathroom", weight: 10, photo: nil)
-    
-    static let catDictionary = [kitchen:5, masterBedroom:10, masterBathroom:0]
-    
+
     static func savedHomes() -> [Home] {
         return [
-        Home(title: "Home 1", address: "100 Adreess Street, City, DE", notes: "Notes", photos: UIImage(named: "download"), categories: catDictionary, score: 10),
-            Home(title: "Home 2", address: "200 Adreess Street, City, DE", notes: "Notes", photos: nil, categories: catDictionary, score: 9),
-            Home(title: "Home 3", address: "300 Adreess Street, City, DE", notes: "Notes", photos: nil, categories: catDictionary, score: 8),
-            Home(title: "Home 4", address: "400 Adreess Street, City, DE", notes: "Notes", photos: UIImage(named: "download"), categories: catDictionary, score: 7),
-            Home(title: "Home 5", address: "500 Adreess Street, City, DE", notes: "Notes", photos: nil, categories: catDictionary, score: 6),
+        Home(title: "Home 1", address: "100 Adreess Street, City, DE", notes: "Notes", photos: UIImage(named: "download"), score: 10),
+            Home(title: "Home 2", address: "200 Adreess Street, City, DE", notes: "Notes", photos: nil, score: 9),
+            Home(title: "Home 3", address: "300 Adreess Street, City, DE", notes: "Notes", photos: nil, score: 8),
+            Home(title: "Home 4", address: "400 Adreess Street, City, DE", notes: "Notes", photos: UIImage(named: "download"), score: 7),
+            Home(title: "Home 5", address: "500 Adreess Street, City, DE", notes: "Notes", photos: nil, score: 6),
         ]
     }
     
-    init (title: String, address: String, notes: String, photos: UIImage?, categories: [Category : Int], score: Int) {
+    init (title: String, address: String, notes: String, photos: UIImage?, categoryScores: [Category : Int?]? = nil, score: Int) {
         self.title = title
         self.address = address
         self.notes = notes
         self.photos = photos
-        self.categories = categories
+        if let categoryScores = categoryScores {
+            self.categoryScores = categoryScores
+        } else {
+            self.categoryScores = Home.defaultCategoryScores()
+        }
         self.score = score
     }
     
-    
+    static func defaultCategoryScores() -> [Category : Int?]{
+        var newCategoryScores = [Category : Int?]()
+        for category in Category.defaultCategories {
+            newCategoryScores[category] = nil
+        }
+        return newCategoryScores
+    }
 }
 
