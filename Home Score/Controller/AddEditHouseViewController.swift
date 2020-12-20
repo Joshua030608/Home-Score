@@ -53,7 +53,8 @@ extension AddEditHouseViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let category = dataSource?.category(forIndexPath: indexPath)
         let currentScore = dataSource?.score(forCategory: category!)
-        let rowNumber = (currentScore == nil) ? 0 : currentScore!
+        let rowNumber = (currentScore == -1) ? 0 : currentScore! + 1
+        categoryScorePicker.tag = indexPath.row
         categoryScorePicker.selectRow(rowNumber, inComponent: 0, animated: true)
         categoryScorePicker.reloadAllComponents()
         categoryScorePicker.isHidden = false
@@ -66,14 +67,14 @@ func numberOfComponents(in pickerView: UIPickerView) -> Int {
 }
 
 func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-    return 11
+    return 12
     }
 
 func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
     if row == 0 {
         return "N/A"
     } else {
-        let correctNumber = row
+        let correctNumber = row - 1
         return String(correctNumber)
         }
     }
@@ -81,7 +82,11 @@ func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent c
 
 extension AddEditHouseViewController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        // Dissapears automatically because stopping on a row is selecting?
+        //Tried using titleForRowAt but didn't work.
+        let newScore = (row == 0) ? -1 : row - 1
+        dataSource?.updateScore(forCategory: Category.defaultCategories[pickerView.tag], score: newScore)
+        self.tableView.reloadData()
+        pickerView.tag = 0
         pickerView.isHidden = true
     }
 }

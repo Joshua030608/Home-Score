@@ -17,6 +17,7 @@ struct Category {
     var weight: Int
     var photo: UIImage?
     
+    static let NAValue = -1
     static let defaultCategories = [
         Category(name: "Kitchen", weight: 9, photo: nil),
         Category(name: "Master Bedroom", weight: 9, photo: nil),

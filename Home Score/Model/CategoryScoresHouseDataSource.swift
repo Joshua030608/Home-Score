@@ -9,25 +9,25 @@ import UIKit
 
 class CategoryScoresHouseDataSource: NSObject, UITableViewDataSource {
     
-    fileprivate var scoresDictionary = [Category : Int?]()
-    fileprivate var editing = true
+    fileprivate var scoresDictionary = [Category : Int]()
     fileprivate var keys = [Int]()
     fileprivate var newDict = [Int:Int]()
     
-     init(scoresDictionary: [Category : Int?]?) {
+     init(scoresDictionary: [Category : Int]?) {
         if let scoresDictionary = scoresDictionary {
             self.scoresDictionary = scoresDictionary
         } else {
-            editing = false
+            self.scoresDictionary = Home.defaultCategoryScores()
         }
          super.init()
      }
     
-    func updateScore(forCategory category: Category, score: Int?) {
+    func updateScore(forCategory category: Category, score: Int) {
         scoresDictionary[category] = score
+        //Can't update actually home because inside func?
     }
     
-    func score(forCategory category: Category) -> Int? {
+    func score(forCategory category: Category) -> Int {
         return scoresDictionary[category]!
     }
 
@@ -44,7 +44,7 @@ class CategoryScoresHouseDataSource: NSObject, UITableViewDataSource {
         let category = self.category(forIndexPath: indexPath)
         cell.nameLabel.text = category.name
         let score = scoresDictionary[category]
-        let scoreString = (score == nil) ? "N/A" : "\(score!!)"
+        let scoreString = (score == -1) ? "N/A" : "\(score!)"
         cell.ratingLabel.text = scoreString
         return cell
     }

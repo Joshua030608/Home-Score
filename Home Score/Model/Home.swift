@@ -19,7 +19,7 @@ class Home {
     var address: String
     var notes: String
     var photos: UIImage?
-    var categoryScores: [Category : Int?]
+    var categoryScores: [Category : Int]
     var score: Int
 
     static func savedHomes() -> [Home] {
@@ -32,7 +32,7 @@ class Home {
         ]
     }
     
-    init (title: String, address: String, notes: String, photos: UIImage?, categoryScores: [Category : Int?]? = nil, score: Int) {
+    init (title: String, address: String, notes: String, photos: UIImage?, categoryScores: [Category : Int]? = nil, score: Int) {
         self.title = title
         self.address = address
         self.notes = notes
@@ -48,7 +48,7 @@ class Home {
     static func defaultCategoryScores() -> [Category : Int]{
         var newCategoryScores = [Category : Int]()
         for category in Category.defaultCategories {
-            newCategoryScores[category] = -1
+            newCategoryScores[category] = Category.NAValue
         }
         
         
