@@ -45,11 +45,13 @@ class Home {
         self.score = score
     }
     
-    static func defaultCategoryScores() -> [Category : Int?]{
-        var newCategoryScores = [Category : Int?]()
+    static func defaultCategoryScores() -> [Category : Int]{
+        var newCategoryScores = [Category : Int]()
         for category in Category.defaultCategories {
-            newCategoryScores[category] = nil
+            newCategoryScores[category] = -1
         }
+        
+        
         return newCategoryScores
     }
 }

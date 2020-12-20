@@ -45,23 +45,15 @@ class AddEditHouseViewController: UIViewController {
         }
         tableView.dataSource = dataSource
         tableView.delegate = self
-        categoryScorePicker.dataSource = self
-        categoryScorePicker.delegate = self
         categoryScorePicker.isHidden = true
     }
 }
 
 extension AddEditHouseViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath) as! CategoryCell
-        let currentScore = cell.ratingLabel.text
-        let rowNumber: Int
-        if currentScore == "N/A" {
-            rowNumber = 0
-        } else {
-            let currentScoreInt = Int(currentScore!)
-            rowNumber = currentScoreInt!
-        }
+        let category = dataSource?.category(forIndexPath: indexPath)
+        let currentScore = dataSource?.score(forCategory: category!)
+        let rowNumber = (currentScore == nil) ? 0 : currentScore!
         categoryScorePicker.selectRow(rowNumber, inComponent: 0, animated: true)
         categoryScorePicker.reloadAllComponents()
         categoryScorePicker.isHidden = false

@@ -22,7 +22,18 @@ class CategoryScoresHouseDataSource: NSObject, UITableViewDataSource {
         }
          super.init()
      }
+    
+    func updateScore(forCategory category: Category, score: Int?) {
+        scoresDictionary[category] = score
+    }
+    
+    func score(forCategory category: Category) -> Int? {
+        return scoresDictionary[category]!
+    }
 
+    func category(forIndexPath indexPath: IndexPath) -> Category {
+        return Category.defaultCategories[indexPath.row]
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return Category.defaultCategories.count
     }
@@ -30,7 +41,7 @@ class CategoryScoresHouseDataSource: NSObject, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         let cell = tableView.dequeueReusableCell(withIdentifier: CategoryCell.id, for: indexPath) as! CategoryCell
-        let category = Category.defaultCategories[indexPath.row]
+        let category = self.category(forIndexPath: indexPath)
         cell.nameLabel.text = category.name
         let score = scoresDictionary[category]
         let scoreString = (score == nil) ? "N/A" : "\(score!!)"
