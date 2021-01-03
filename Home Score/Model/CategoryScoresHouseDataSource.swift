@@ -44,7 +44,7 @@ class CategoryScoresHouseDataSource: NSObject, UITableViewDataSource {
         let category = self.category(forIndexPath: indexPath)
         cell.nameLabel.text = category.name
         let score = scoresDictionary[category]
-        let scoreString = (score == -1) ? "N/A" : "\(score!)"
+        let scoreString = (score == Category.NAValue) ? "N/A" : "\(score!)"
         cell.ratingLabel.text = scoreString
         return cell
     }

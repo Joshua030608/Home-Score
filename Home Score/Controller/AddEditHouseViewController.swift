@@ -14,6 +14,10 @@ class AddEditHouseViewController: UIViewController {
     @IBOutlet weak var categoryScorePicker: UIPickerView!
     @IBOutlet weak var tableView: UITableView!
     
+    fileprivate static let categoryScorePickerHeight: CGFloat = 45.0
+    fileprivate var categoryScorePickerTopConstraint: NSLayoutConstraint!
+    
+    fileprivate var selectedIndexPath: IndexPath?
     fileprivate var dataSource: CategoryScoresHouseDataSource?
     fileprivate var alreadyHaveData = false
     var home: Home? { // Problem was home wasn't being set when was nil.
@@ -33,6 +37,16 @@ class AddEditHouseViewController: UIViewController {
         }
     }
     
+    fileprivate func setUpCategoryScorePicker() {
+        categoryScorePicker.translatesAutoresizingMaskIntoConstraints = false
+        
+        categoryScorePicker.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        categoryScorePicker.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        categoryScorePicker.heightAnchor.constraint(equalToConstant: AddEditHouseViewController.categoryScorePickerHeight).isActive = true
+        categoryScorePickerTopConstraint = categoryScorePicker.topAnchor.constraint(equalTo: tableView.topAnchor, constant: 0.0)
+        categoryScorePickerTopConstraint.isActive = true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         if alreadyHaveData {
@@ -43,6 +57,7 @@ class AddEditHouseViewController: UIViewController {
         } else {
             dataSource = CategoryScoresHouseDataSource(scoresDictionary: nil)
         }
+        setUpCategoryScorePicker()
         tableView.dataSource = dataSource
         tableView.delegate = self
         categoryScorePicker.isHidden = true
@@ -51,9 +66,12 @@ class AddEditHouseViewController: UIViewController {
 
 extension AddEditHouseViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        selectedIndexPath = indexPath
+        
         let category = dataSource?.category(forIndexPath: indexPath)
         let currentScore = dataSource?.score(forCategory: category!)
-        let rowNumber = (currentScore == -1) ? 0 : currentScore! + 1
+        let rowNumber = (currentScore == Category.NAValue) ? 0 : currentScore! + 1
         categoryScorePicker.tag = indexPath.row
         categoryScorePicker.selectRow(rowNumber, inComponent: 0, animated: true)
         categoryScorePicker.reloadAllComponents()
@@ -83,10 +101,27 @@ func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent c
 extension AddEditHouseViewController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         //Tried using titleForRowAt but didn't work.
-        let newScore = (row == 0) ? -1 : row - 1
+        let newScore = (row == 0) ? Category.NAValue : row - 1
         dataSource?.updateScore(forCategory: Category.defaultCategories[pickerView.tag], score: newScore)
         self.tableView.reloadData()
         pickerView.tag = 0
         pickerView.isHidden = true
+    }
+    
+    
+    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+        return AddEditHouseViewController.categoryScorePickerHeight
+    }
+}
+
+extension AddEditHouseViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        guard  let selectedIndexPath = selectedIndexPath else { return }
+        
+        guard let cell = tableView.cellForRow(at: selectedIndexPath) else { return }
+        
+        print(cell.frame, tableView.contentOffset.y)
+        categoryScorePickerTopConstraint.constant = cell.frame.origin.y
     }
 }
