@@ -14,8 +14,9 @@ class AddEditHouseViewController: UIViewController {
     @IBOutlet weak var categoryScorePicker: UIPickerView!
     @IBOutlet weak var tableView: UITableView!
     
-    fileprivate static let categoryScorePickerHeight: CGFloat = 45.0
+    fileprivate static let categoryScorePickerHeight: CGFloat = 44.0
     fileprivate var categoryScorePickerTopConstraint: NSLayoutConstraint!
+    fileprivate var customFooter: UIView!
     
     fileprivate var selectedIndexPath: IndexPath?
     fileprivate var dataSource: CategoryScoresHouseDataSource?
@@ -47,6 +48,11 @@ class AddEditHouseViewController: UIViewController {
         categoryScorePickerTopConstraint.isActive = true
     }
     
+    fileprivate func setUpCustomFooter() {
+        customFooter = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: CategoryCell.height))
+        tableView.tableFooterView = customFooter
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         if alreadyHaveData {
@@ -58,6 +64,7 @@ class AddEditHouseViewController: UIViewController {
             dataSource = CategoryScoresHouseDataSource(scoresDictionary: nil)
         }
         setUpCategoryScorePicker()
+        setUpCustomFooter()
         tableView.dataSource = dataSource
         tableView.delegate = self
         categoryScorePicker.isHidden = true
@@ -76,6 +83,15 @@ extension AddEditHouseViewController: UITableViewDelegate {
         categoryScorePicker.selectRow(rowNumber, inComponent: 0, animated: true)
         categoryScorePicker.reloadAllComponents()
         categoryScorePicker.isHidden = false
+    
+        let moveDownBy = (CGFloat(selectedIndexPath!.row + 1) * CategoryCell.height) - tableView.contentOffset.y
+        
+        print(tableView.contentOffset.y)
+        categoryScorePickerTopConstraint.constant = moveDownBy
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return CategoryCell.height
     }
 }
 
@@ -117,11 +133,11 @@ extension AddEditHouseViewController: UIPickerViewDelegate {
 extension AddEditHouseViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
-        guard  let selectedIndexPath = selectedIndexPath else { return }
+        guard let selectedIndexPath = selectedIndexPath else { return }
+    
+        let moveDownBy = (CGFloat(selectedIndexPath.row + 1) * CategoryCell.height) - tableView.contentOffset.y
         
-        guard let cell = tableView.cellForRow(at: selectedIndexPath) else { return }
-        
-        print(cell.frame, tableView.contentOffset.y)
-        categoryScorePickerTopConstraint.constant = cell.frame.origin.y
+        print(tableView.contentOffset.y)
+        categoryScorePickerTopConstraint.constant = moveDownBy
     }
 }
