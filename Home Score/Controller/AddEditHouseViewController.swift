@@ -69,6 +69,23 @@ class AddEditHouseViewController: UIViewController {
         tableView.delegate = self
         categoryScorePicker.isHidden = true
     }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        
+        for (index, subview) in view.subviews.enumerated() {
+            // tag of 1 for blocker view
+            if subview.tag == 1 {
+                subview.removeFromSuperview()
+                subview.backgroundColor = .systemPink
+                print(#function, index)
+                view.insertSubview(subview, at: 5)
+                print(#function, subview.frame)
+            }
+        }
+ 
+    }
 }
 
 extension AddEditHouseViewController: UITableViewDelegate {
