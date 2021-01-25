@@ -17,6 +17,12 @@ class AddEditHouseViewController: UIViewController {
     fileprivate static let categoryScorePickerHeight: CGFloat = 44.0
     fileprivate var categoryScorePickerTopConstraint: NSLayoutConstraint!
     fileprivate var customFooter: UIView!
+    fileprivate let blockerView: UIView = {
+        let bv = UIView()
+        bv.translatesAutoresizingMaskIntoConstraints = false
+        bv.backgroundColor = .systemBackground
+        return bv
+    }()
     
     fileprivate var selectedIndexPath: IndexPath?
     fileprivate var dataSource: CategoryScoresHouseDataSource?
@@ -37,6 +43,14 @@ class AddEditHouseViewController: UIViewController {
             }
         }
     }
+    fileprivate func setUpBlockerView() {
+        view.addSubview(blockerView)
+        
+        blockerView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
+        blockerView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
+        blockerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        blockerView.bottomAnchor.constraint(equalTo: tableView.topAnchor).isActive = true
+    }
     
     fileprivate func setUpCategoryScorePicker() {
         categoryScorePicker.translatesAutoresizingMaskIntoConstraints = false
@@ -53,6 +67,15 @@ class AddEditHouseViewController: UIViewController {
         tableView.tableFooterView = customFooter
     }
     
+    fileprivate func setViewLayers() {
+        view.bringSubviewToFront(categoryScorePicker)
+        view.bringSubviewToFront(blockerView)
+        view.bringSubviewToFront(addressTextField)
+        view.bringSubviewToFront(titleTextField)
+        view.bringSubviewToFront(houseImageView)
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         if alreadyHaveData {
@@ -65,12 +88,14 @@ class AddEditHouseViewController: UIViewController {
         }
         setUpCategoryScorePicker()
         setUpCustomFooter()
+        setUpBlockerView()
+        setViewLayers()
         tableView.dataSource = dataSource
         tableView.delegate = self
         categoryScorePicker.isHidden = true
     }
     
-    override func viewDidLayoutSubviews() {
+ /*   override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
         
@@ -86,6 +111,7 @@ class AddEditHouseViewController: UIViewController {
         }
  
     }
+    */
 }
 
 extension AddEditHouseViewController: UITableViewDelegate {
