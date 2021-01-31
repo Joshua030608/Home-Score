@@ -9,7 +9,6 @@ import UIKit
 class CategoryScorePickerViewParent: UIView {
     
     //var xButtonPressedHandler: (() -> Void)?
-    
     fileprivate let categoryScorePicker: UIPickerView = {
         let picker = UIPickerView()
         picker.translatesAutoresizingMaskIntoConstraints = false
@@ -21,6 +20,8 @@ class CategoryScorePickerViewParent: UIView {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .systemBackground
+        let image = UIImage(named: "xmark.circle.fill")
+        button.setImage(image, for: .normal)
         return button
     }()
     
@@ -36,10 +37,18 @@ class CategoryScorePickerViewParent: UIView {
         xButton.widthAnchor.constraint(equalToConstant: 10).isActive = true
     }
     
+    func reloadPickerView() {
+        categoryScorePicker.reloadAllComponents()
+    }
+    
+    func selectPickerViewRow(for row: Int ) {
+        categoryScorePicker.selectRow(row, inComponent: 0, animated: true)
+    }
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(categoryScorePicker)
         addSubview(xButton)
+        categoryScorePicker.dataSource = self
         setUpLayout()
     }
     
@@ -47,3 +56,39 @@ class CategoryScorePickerViewParent: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 }
+
+extension CategoryScorePickerViewParent: UIPickerViewDataSource {
+func numberOfComponents(in pickerView: UIPickerView) -> Int {
+    return 1
+}
+
+func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    return 12
+    }
+
+func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    if row == 0 {
+        return "N/A"
+    } else {
+        let correctNumber = row - 1
+        return String(correctNumber)
+        }
+    }
+}
+
+/*extension CategoryScorePickerViewParent: UIPickerViewDelegate {
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        //Tried using titleForRowAt but didn't work.
+        let newScore = (row == 0) ? Category.NAValue : row - 1
+        dataSource?.updateScore(forCategory: Category.defaultCategories[pickerView.tag], score: newScore)
+        self.tableView.reloadData()
+        pickerView.tag = 0
+        pickerViewParent.isHidden = true
+    }
+    
+    
+    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+        return AddEditHouseViewController.categoryScorePickerHeight
+    }
+}
+*/
