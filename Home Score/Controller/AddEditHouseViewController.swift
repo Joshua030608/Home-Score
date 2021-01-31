@@ -13,6 +13,7 @@ class AddEditHouseViewController: UIViewController {
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var categoryScorePicker: UIPickerView!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var pickerParentView: UIView!
     
     fileprivate static let categoryScorePickerHeight: CGFloat = 44.0
     fileprivate var categoryScorePickerTopConstraint: NSLayoutConstraint!
@@ -22,6 +23,12 @@ class AddEditHouseViewController: UIViewController {
         bv.translatesAutoresizingMaskIntoConstraints = false
         bv.backgroundColor = .systemBackground
         return bv
+    }()
+    fileprivate let pickerViewParent: CategoryScorePickerViewParent = {
+        let view = CategoryScorePickerViewParent()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .systemBackground
+        return view
     }()
     
     fileprivate var selectedIndexPath: IndexPath?
@@ -54,11 +61,23 @@ class AddEditHouseViewController: UIViewController {
     
     fileprivate func setUpCategoryScorePicker() {
         categoryScorePicker.translatesAutoresizingMaskIntoConstraints = false
-        
+        categoryScorePicker.backgroundColor = .systemPink
         categoryScorePicker.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         categoryScorePicker.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         categoryScorePicker.heightAnchor.constraint(equalToConstant: AddEditHouseViewController.categoryScorePickerHeight).isActive = true
         categoryScorePickerTopConstraint = categoryScorePicker.topAnchor.constraint(equalTo: tableView.topAnchor, constant: 0.0)
+        categoryScorePickerTopConstraint.isActive = true
+
+    }
+    
+    fileprivate func setUpPickerParentView() {
+        pickerParentView.translatesAutoresizingMaskIntoConstraints = false
+        pickerParentView.backgroundColor = .systemPink
+        pickerParentView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        pickerParentView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        pickerParentView.heightAnchor.constraint(equalToConstant: AddEditHouseViewController.categoryScorePickerHeight).isActive = true
+        categoryScorePickerTopConstraint = categoryScorePicker.topAnchor.constraint(equalTo: tableView.topAnchor, constant: 0.0)
+        categoryScorePickerTopConstraint = pickerParentView.topAnchor.constraint(equalTo: tableView.topAnchor, constant: 0.0)
         categoryScorePickerTopConstraint.isActive = true
     }
     
@@ -68,6 +87,7 @@ class AddEditHouseViewController: UIViewController {
     }
     
     fileprivate func setViewLayers() {
+        view.bringSubviewToFront(pickerParentView)
         view.bringSubviewToFront(categoryScorePicker)
         view.bringSubviewToFront(blockerView)
         view.bringSubviewToFront(addressTextField)
@@ -89,29 +109,12 @@ class AddEditHouseViewController: UIViewController {
         setUpCategoryScorePicker()
         setUpCustomFooter()
         setUpBlockerView()
+        setUpPickerParentView()
         setViewLayers()
         tableView.dataSource = dataSource
         tableView.delegate = self
-        categoryScorePicker.isHidden = true
+        pickerParentView.isHidden = true
     }
-    
- /*   override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        
-        for (index, subview) in view.subviews.enumerated() {
-            // tag of 1 for blocker view
-            if subview.tag == 1 {
-                subview.removeFromSuperview()
-                subview.backgroundColor = .systemPink
-                print(#function, index)
-                view.insertSubview(subview, at: 5)
-                print(#function, subview.frame)
-            }
-        }
- 
-    }
-    */
 }
 
 extension AddEditHouseViewController: UITableViewDelegate {
@@ -125,7 +128,7 @@ extension AddEditHouseViewController: UITableViewDelegate {
         categoryScorePicker.tag = indexPath.row
         categoryScorePicker.selectRow(rowNumber, inComponent: 0, animated: true)
         categoryScorePicker.reloadAllComponents()
-        categoryScorePicker.isHidden = false
+        pickerParentView.isHidden = false
     
         let moveDownBy = (CGFloat(selectedIndexPath!.row + 1) * CategoryCell.height) - tableView.contentOffset.y
         
@@ -164,7 +167,7 @@ extension AddEditHouseViewController: UIPickerViewDelegate {
         dataSource?.updateScore(forCategory: Category.defaultCategories[pickerView.tag], score: newScore)
         self.tableView.reloadData()
         pickerView.tag = 0
-        pickerView.isHidden = true
+        pickerParentView.isHidden = true
     }
     
     
