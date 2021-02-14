@@ -8,11 +8,12 @@ import UIKit
 
 protocol CategoryScorePickerViewParentDelegate: class {
     func updateScore(_ score: Int)
+    func xButtonPressed()
 }
 
 class CategoryScorePickerViewParent: UIView {
     
-    var xButtonPressedHandler: (() -> Void)?
+    //var xButtonPressedHandler: (() -> Void)?
     fileprivate let categoryScorePicker: UIPickerView = {
         let picker = UIPickerView()
         picker.translatesAutoresizingMaskIntoConstraints = false
@@ -25,13 +26,14 @@ class CategoryScorePickerViewParent: UIView {
         let config = UIImage.SymbolConfiguration(pointSize: 20, weight: .regular)
         let image = UIImage(systemName: "xmark.circle.fill", withConfiguration: config)
         button.setImage(image, for: .normal)
+        button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         return button
     }()
     
     weak var delegate: CategoryScorePickerViewParentDelegate?
     
     fileprivate func setUpLayout() {
-        categoryScorePicker.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        categoryScorePicker.widthAnchor.constraint(equalToConstant: 70).isActive = true
         categoryScorePicker.topAnchor.constraint(equalTo: topAnchor).isActive = true
         categoryScorePicker.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         categoryScorePicker.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
@@ -48,6 +50,10 @@ class CategoryScorePickerViewParent: UIView {
     
     func selectPickerViewRow(for row: Int ) {
         categoryScorePicker.selectRow(row, inComponent: 0, animated: true)
+    }
+    
+    @objc func buttonPressed() {
+        delegate?.xButtonPressed()
     }
     override init(frame: CGRect) {
         super.init(frame: frame)

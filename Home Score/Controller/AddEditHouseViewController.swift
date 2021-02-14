@@ -186,4 +186,7 @@ extension AddEditHouseViewController: CategoryScorePickerViewParentDelegate {
         pickerViewParent.tag = 0
         pickerViewParent.isHidden = true
     }
+    func xButtonPressed() {
+        pickerViewParent.isHidden = true
+    }
 }
