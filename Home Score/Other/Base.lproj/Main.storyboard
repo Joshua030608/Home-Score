@@ -189,21 +189,6 @@
                                     <constraint firstAttribute="height" constant="194" id="R1i-Hw-1qm"/>
                                 </constraints>
                             </imageView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aqA-8p-W9w">
-                                <rect key="frame" x="67" y="269" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <pickerView contentMode="scaleToFill" id="k34-RW-kSl">
-                                        <rect key="frame" x="-68" y="42" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                        <connections>
-                                            <outlet property="dataSource" destination="aWn-Je-2Fk" id="fH1-aD-mmO"/>
-                                            <outlet property="delegate" destination="aWn-Je-2Fk" id="t93-ZY-TEH"/>
-                                        </connections>
-                                    </pickerView>
-                                </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="g61-Bz-mJO"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -227,9 +212,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="addressTextField" destination="jmK-mB-QrS" id="GM6-f5-vjK"/>
-                        <outlet property="categoryScorePicker" destination="k34-RW-kSl" id="ysV-hn-bv9"/>
                         <outlet property="houseImageView" destination="akc-HL-vHY" id="XBp-Ki-gWE"/>
-                        <outlet property="pickerParentView" destination="aqA-8p-W9w" id="0SO-aB-d9j"/>
                         <outlet property="tableView" destination="utw-fO-Tyb" id="LvZ-hb-nuY"/>
                         <outlet property="titleTextField" destination="3yt-Vv-WsS" id="os8-Zh-h7k"/>
                     </connections>

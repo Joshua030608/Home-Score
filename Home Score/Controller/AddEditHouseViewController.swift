@@ -11,9 +11,7 @@ class AddEditHouseViewController: UIViewController {
     @IBOutlet weak var houseImageView: UIImageView!
     @IBOutlet weak var addressTextField: UITextField!
     @IBOutlet weak var titleTextField: UITextField!
-    //@IBOutlet weak var categoryScorePicker: UIPickerView!
     @IBOutlet weak var tableView: UITableView!
-    //@IBOutlet weak var pickerParentView: UIView!
     
     fileprivate static let categoryScorePickerHeight: CGFloat = 44.0
     fileprivate var categoryScorePickerTopConstraint: NSLayoutConstraint!
@@ -97,6 +95,8 @@ class AddEditHouseViewController: UIViewController {
         
     }
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         if alreadyHaveData {
@@ -115,6 +115,7 @@ class AddEditHouseViewController: UIViewController {
         tableView.dataSource = dataSource
         tableView.delegate = self
         pickerViewParent.isHidden = true
+        pickerViewParent.delegate = self
     }
 }
 
@@ -160,22 +161,11 @@ func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent c
         }
     }
 }
-
-extension AddEditHouseViewController: UIPickerViewDelegate {
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        //Tried using titleForRowAt but didn't work.
-        let newScore = (row == 0) ? Category.NAValue : row - 1
-        dataSource?.updateScore(forCategory: Category.defaultCategories[pickerView.tag], score: newScore)
-        self.tableView.reloadData()
-        pickerView.tag = 0
-        pickerViewParent.isHidden = true
-    }
     
     
     func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
         return AddEditHouseViewController.categoryScorePickerHeight
     }
-}
 
 extension AddEditHouseViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -186,5 +176,14 @@ extension AddEditHouseViewController: UIScrollViewDelegate {
         
         print(tableView.contentOffset.y)
         categoryScorePickerTopConstraint.constant = moveDownBy
+    }
+}
+
+extension AddEditHouseViewController: CategoryScorePickerViewParentDelegate {
+    func updateScore(_ score: Int) {
+        dataSource?.updateScore(forCategory: Category.defaultCategories[pickerViewParent.tag], score: score)
+        self.tableView.reloadData()
+        pickerViewParent.tag = 0
+        pickerViewParent.isHidden = true
     }
 }

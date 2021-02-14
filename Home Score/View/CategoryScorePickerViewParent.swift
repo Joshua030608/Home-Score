@@ -6,35 +6,40 @@
 //
 import UIKit
 
+protocol CategoryScorePickerViewParentDelegate: class {
+    func updateScore(_ score: Int)
+}
+
 class CategoryScorePickerViewParent: UIView {
     
-    //var xButtonPressedHandler: (() -> Void)?
+    var xButtonPressedHandler: (() -> Void)?
     fileprivate let categoryScorePicker: UIPickerView = {
         let picker = UIPickerView()
         picker.translatesAutoresizingMaskIntoConstraints = false
-        picker.backgroundColor = .systemBackground
         return picker
     }()
     
     fileprivate let xButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = .systemBackground
-        let image = UIImage(named: "xmark.circle.fill")
+        let config = UIImage.SymbolConfiguration(pointSize: 20, weight: .regular)
+        let image = UIImage(systemName: "xmark.circle.fill", withConfiguration: config)
         button.setImage(image, for: .normal)
         return button
     }()
     
+    weak var delegate: CategoryScorePickerViewParentDelegate?
+    
     fileprivate func setUpLayout() {
-        categoryScorePicker.widthAnchor.constraint(equalToConstant: 10).isActive = true
+        categoryScorePicker.widthAnchor.constraint(equalToConstant: 50).isActive = true
         categoryScorePicker.topAnchor.constraint(equalTo: topAnchor).isActive = true
         categoryScorePicker.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         categoryScorePicker.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         
         xButton.topAnchor.constraint(equalTo: topAnchor).isActive = true
         xButton.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-        xButton.leadingAnchor.constraint(equalTo: categoryScorePicker.trailingAnchor, constant: 8).isActive = true
-        xButton.widthAnchor.constraint(equalToConstant: 10).isActive = true
+        xButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8).isActive = true
+        xButton.widthAnchor.constraint(equalToConstant: 30).isActive = true
     }
     
     func reloadPickerView() {
@@ -49,6 +54,7 @@ class CategoryScorePickerViewParent: UIView {
         addSubview(categoryScorePicker)
         addSubview(xButton)
         categoryScorePicker.dataSource = self
+        categoryScorePicker.delegate = self
         setUpLayout()
     }
     
@@ -65,30 +71,21 @@ func numberOfComponents(in pickerView: UIPickerView) -> Int {
 func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
     return 12
     }
-
-func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-    if row == 0 {
-        return "N/A"
-    } else {
-        let correctNumber = row - 1
-        return String(correctNumber)
-        }
-    }
 }
 
-/*extension CategoryScorePickerViewParent: UIPickerViewDelegate {
+extension CategoryScorePickerViewParent: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         //Tried using titleForRowAt but didn't work.
         let newScore = (row == 0) ? Category.NAValue : row - 1
-        dataSource?.updateScore(forCategory: Category.defaultCategories[pickerView.tag], score: newScore)
-        self.tableView.reloadData()
-        pickerView.tag = 0
-        pickerViewParent.isHidden = true
+        delegate!.updateScore(newScore)
     }
     
-    
-    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
-        return AddEditHouseViewController.categoryScorePickerHeight
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        if row == 0 {
+            return "N/A"
+        } else {
+            let correctNumber = row - 1
+            return String(correctNumber)
+        }
     }
 }
-*/
