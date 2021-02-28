@@ -95,7 +95,12 @@ class AddEditHouseViewController: UIViewController {
         
     }
     
-    
+    @objc fileprivate func houseImageViewPressed() {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        imagePickerController.allowsEditing = true
+        present(imagePickerController, animated: true, completion: nil)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -107,6 +112,9 @@ class AddEditHouseViewController: UIViewController {
         } else {
             dataSource = CategoryScoresHouseDataSource(scoresDictionary: nil)
         }
+        houseImageView.isUserInteractionEnabled = true
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(houseImageViewPressed))
+        houseImageView.addGestureRecognizer(tapGestureRecognizer)
         //setUpCategoryScorePicker()
         setUpCustomFooter()
         setUpBlockerView()
@@ -188,5 +196,19 @@ extension AddEditHouseViewController: CategoryScorePickerViewParentDelegate {
     }
     func xButtonPressed() {
         pickerViewParent.isHidden = true
+    }
+}
+
+extension AddEditHouseViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let editedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+            houseImageView.image = editedImage
+        } else if let originalImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            houseImageView.image = originalImage
+        }
+        dismiss(animated: true, completion: nil)
     }
 }
