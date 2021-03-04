@@ -10,9 +10,8 @@ import UIKit
 class HouseCell: UITableViewCell {
     static let id = "HouseCell"
     @IBOutlet weak var houseImageView: UIImageView!
-    @IBOutlet weak var homeScoreLabel: UILabel!
-    @IBOutlet weak var titleLabel: UILabel!
-    
+    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var label: UILabel!
 }
 
 
