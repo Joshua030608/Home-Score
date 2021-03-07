@@ -22,6 +22,7 @@
 		036588BD25C0EC06008CC8E1 /* CategoryScorePickerViewParent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036588BC25C0EC06008CC8E1 /* CategoryScorePickerViewParent.swift */; };
 		03721950255229A000C507C2 /* HouseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0372194F2552299F00C507C2 /* HouseCell.swift */; };
 		0372195B2552309500C507C2 /* HomeDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0372195A2552309500C507C2 /* HomeDataSource.swift */; };
+		03B16D2825F5381A007A8684 /* CompareCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B16D2725F5381A007A8684 /* CompareCell.swift */; };
 		03C58652257448EC00718E8A /* CategoryScoresHouseDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C58651257448EC00718E8A /* CategoryScoresHouseDataSource.swift */; };
 		03FAF5842564A55C0013B51A /* AddEditHouseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FAF5832564A55C0013B51A /* AddEditHouseViewController.swift */; };
 		03FAF5892564A70F0013B51A /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FAF5882564A70F0013B51A /* CategoryCell.swift */; };
@@ -66,6 +67,7 @@
 		036588BC25C0EC06008CC8E1 /* CategoryScorePickerViewParent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryScorePickerViewParent.swift; sourceTree = "<group>"; };
 		0372194F2552299F00C507C2 /* HouseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HouseCell.swift; path = "Home Score/Other/HouseCell.swift"; sourceTree = SOURCE_ROOT; };
 		0372195A2552309500C507C2 /* HomeDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDataSource.swift; sourceTree = "<group>"; };
+		03B16D2725F5381A007A8684 /* CompareCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompareCell.swift; sourceTree = "<group>"; };
 		03C58651257448EC00718E8A /* CategoryScoresHouseDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryScoresHouseDataSource.swift; sourceTree = "<group>"; };
 		03FAF5832564A55C0013B51A /* AddEditHouseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditHouseViewController.swift; sourceTree = "<group>"; };
 		03FAF5882564A70F0013B51A /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 				036588BC25C0EC06008CC8E1 /* CategoryScorePickerViewParent.swift */,
 				0372194F2552299F00C507C2 /* HouseCell.swift */,
 				03FAF5882564A70F0013B51A /* CategoryCell.swift */,
+				03B16D2725F5381A007A8684 /* CompareCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -329,6 +332,7 @@
 				033DEBB0253FA9A5008104D8 /* SceneDelegate.swift in Sources */,
 				03FAF5892564A70F0013B51A /* CategoryCell.swift in Sources */,
 				0350E4C62548E6E1003369B6 /* Home.swift in Sources */,
+				03B16D2825F5381A007A8684 /* CompareCell.swift in Sources */,
 				03C58652257448EC00718E8A /* CategoryScoresHouseDataSource.swift in Sources */,
 				03721950255229A000C507C2 /* HouseCell.swift in Sources */,
 				0350E4C12548E580003369B6 /* Category.swift in Sources */,
