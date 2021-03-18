@@ -129,6 +129,9 @@
                                                             </connections>
                                                         </collectionViewCell>
                                                     </cells>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="UCD-YG-CYM" id="5Qs-4g-5eP"/>
+                                                    </connections>
                                                 </collectionView>
                                             </subviews>
                                             <constraints>

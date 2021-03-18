@@ -18,22 +18,29 @@ struct Category {
     var photo: UIImage?
     
     static let NAValue = -1
+    static let maxWeight = 10
+    static let defaultWeight = 1
     static let defaultCategories = [
-        Category(name: "Kitchen", weight: 9, photo: nil),
-        Category(name: "Master Bedroom", weight: 9, photo: nil),
-        Category(name: "Master Bathroom", weight: 9, photo: nil),
-        Category(name: "Other Bedrooms", weight: 9, photo: nil),
-        Category(name: "Backyard", weight: 9, photo: nil),
-        Category(name: "Frontyard", weight: 9, photo: nil),
-        Category(name: "School District", weight: 9, photo: nil),
-        Category(name: "Neighborhood", weight: 9, photo: nil),
-        Category(name: "Living Room", weight: 9, photo: nil),
-        Category(name: "Basement", weight: 9, photo: nil),
-        Category(name: "Other Bathrooms", weight: 9, photo: nil),
-        Category(name: "Driveway", weight: 9, photo: nil),
-        Category(name: "Laundry Room", weight: 9, photo: nil),
-        Category(name: "Garage", weight: 9, photo: nil)
+        Category(name: "Kitchen", photo: nil),
+        Category(name: "Master Bedroom", photo: nil),
+        Category(name: "Master Bathroom", photo: nil),
+        Category(name: "Other Bedrooms", photo: nil),
+        Category(name: "Backyard", photo: nil),
+        Category(name: "Frontyard", photo: nil),
+        Category(name: "School District", photo: nil),
+        Category(name: "Neighborhood", photo: nil),
+        Category(name: "Living Room", photo: nil),
+        Category(name: "Basement", photo: nil),
+        Category(name: "Other Bathrooms", photo: nil),
+        Category(name: "Driveway", photo: nil),
+        Category(name: "Laundry Room", photo: nil),
+        Category(name: "Garage", photo: nil)
     ]
+    init(name: String, weight: Int = Category.defaultWeight, photo: UIImage?) {
+        self.name = name
+        self.weight = weight
+        self.photo = photo
+    }
 }
 
 extension Category: Hashable {

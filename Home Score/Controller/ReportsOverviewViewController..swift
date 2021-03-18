@@ -16,8 +16,27 @@ class ReportsOverviewViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = dataSource
+        
+        dataSource.didScrollHandler = { [weak self] (index, offset) in
+            self?.handleCategoryScoresScroll(index: index, offset: offset)
+            
+        }
     }
-
+    
+    func handleCategoryScoresScroll(index: Int, offset: CGFloat) {
+        for (cellIndex, visibleCell) in tableView.visibleCells.enumerated() {
+            if index != cellIndex {
+                let cell = visibleCell as! HouseCell
+                //cell.collectionView.setContentOffset(CGPoint(x: offset, y: 0), animated: false)
+                // simultaneous gestures
+                print("Something else")
+            } else {
+                print("HERE")
+            }
+        }
+    }
+    
+    
     @IBAction func addHomeButtonPressed(_ sender: Any) {
         let addEditHouseVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AddEditHouseViewController") as! AddEditHouseViewController
                 navigationController?.pushViewController(addEditHouseVC, animated: true)

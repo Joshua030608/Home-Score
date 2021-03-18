@@ -20,19 +20,40 @@ class Home {
     var notes: String
     var photos: UIImage?
     var categoryScores: [Category : Int]
-    var score: Int
+    var score: Double? {
+        
+        var scoreTotal = 0
+        var scoreCount = 0
+        for (category, score) in self.categoryScores {
+            if score != Category.NAValue {
+                scoreTotal += score * category.weight
+                scoreCount += 1
+            }
+        }
+        
+        if scoreCount == 0 {
+            return nil
+        }
+        
+        let average = Double(scoreTotal / scoreCount)
+        let factor = 1.0 / Double(Category.maxWeight)
+        let finalScore = factor * average
+        return finalScore
+        
+        // |    |    |    |    |    |    |    |    |    |    |
+    }
 
     static func savedHomes() -> [Home] {
         return [
-        Home(title: "Home 1", address: "100 Adreess Street, City, DE", notes: "Notes", photos: UIImage(named: "download"), score: 10),
-            Home(title: "Home 2", address: "200 Adreess Street, City, DE", notes: "Notes", photos: nil, score: 9),
-            Home(title: "Home 3", address: "300 Adreess Street, City, DE", notes: "Notes", photos: nil, score: 8),
-            Home(title: "Home 4", address: "400 Adreess Street, City, DE", notes: "Notes", photos: UIImage(named: "download"), score: 7),
-            Home(title: "Home 5", address: "500 Adreess Street, City, DE", notes: "Notes", photos: nil, score: 6),
+        Home(title: "Home 1", address: "100 Adreess Street, City, DE", notes: "Notes", photos: UIImage(named: "download")),
+            Home(title: "Home 2", address: "200 Adreess Street, City, DE", notes: "Notes", photos: nil),
+            Home(title: "Home 3", address: "300 Adreess Street, City, DE", notes: "Notes", photos: nil),
+            Home(title: "Home 4", address: "400 Adreess Street, City, DE", notes: "Notes", photos: UIImage(named: "download")),
+            Home(title: "Home 5", address: "500 Adreess Street, City, DE", notes: "Notes", photos: nil),
         ]
     }
     
-    init (title: String, address: String, notes: String, photos: UIImage?, categoryScores: [Category : Int]? = nil, score: Int) {
+    init (title: String, address: String, notes: String, photos: UIImage?, categoryScores: [Category : Int]? = nil) {
         self.title = title
         self.address = address
         self.notes = notes
@@ -42,16 +63,18 @@ class Home {
         } else {
             self.categoryScores = Home.defaultCategoryScores()
         }
-        self.score = score
+
     }
     
     static func defaultCategoryScores() -> [Category : Int]{
         var newCategoryScores = [Category : Int]()
         for category in Category.defaultCategories {
-            newCategoryScores[category] = Category.NAValue
+            if category.name == "Kitchen" {
+                newCategoryScores[category] = 8
+            } else {
+                newCategoryScores[category] = Category.NAValue
+            }
         }
-        
-        
         return newCategoryScores
     }
 }

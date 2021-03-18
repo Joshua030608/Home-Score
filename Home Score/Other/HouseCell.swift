@@ -12,6 +12,14 @@ class HouseCell: UITableViewCell {
     @IBOutlet weak var houseImageView: UIImageView!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var label: UILabel!
+    
+    var didScrollHandler: ((Int, CGFloat) -> Void)?
+}
+
+extension HouseCell: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        didScrollHandler?(collectionView.tag, collectionView.contentOffset.x)
+    }
 }
 
 

@@ -10,7 +10,7 @@ import UIKit
 class HomeDataSource: NSObject, UITableViewDataSource {
     
     var homes: [Home]
-    var dataSource: UICollectionViewDataSource?
+    var didScrollHandler: ((Int, CGFloat) -> Void)?
     
     override init() {
         homes = Home.savedHomes()
@@ -27,12 +27,19 @@ class HomeDataSource: NSObject, UITableViewDataSource {
         let home = homes[indexPath.row]
 //        cell.titleLabel.text = home.title
 //        cell.homeScoreLabel.text = String(home.score)
-        let attributedText = NSMutableAttributedString(string: home.title + "\n", attributes: [.font : UIFont.systemFont(ofSize: 18)])
+        let attributedText = NSMutableAttributedString(string: "\(home.title) \(home.score)" + "\n", attributes: [.font : UIFont.systemFont(ofSize: 18)])
         attributedText.append(NSAttributedString(string: "$1,000,000", attributes: [.font: UIFont.systemFont(ofSize: 10)]))
         cell.label.attributedText = attributedText
         cell.houseImageView.image = home.photos
-        dataSource = self
-        cell.collectionView.dataSource = dataSource
+        cell.collectionView.dataSource = self
+        cell.collectionView.tag = indexPath.row
+        cell.didScrollHandler = { [weak self] (index, offset) in
+            self?.didScrollHandler?(index, offset)
+        }
+        
+        // ARC - Automatic Reference Counting
+        
+        
         return cell
     }
 }
@@ -44,7 +51,8 @@ extension HomeDataSource: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CompareCell.id, for: indexPath) as! CompareCell
-        let CategoryDataSource = CategoryScoresHouseDataSource(scoresDictionary: nil)
+        let home = homes[collectionView.tag]
+        let CategoryDataSource = CategoryScoresHouseDataSource(scoresDictionary: home.categoryScores)
         let category = CategoryDataSource.category(forIndexPath: indexPath)
         let score = CategoryDataSource.score(forCategory: category)
         cell.titleLabel.text = category.name
