@@ -35,10 +35,10 @@ class Home {
             return nil
         }
         
-        let average = Double(scoreTotal / scoreCount)
+        let average = (scoreTotal / scoreCount)
         let factor = 1.0 / Double(Category.maxWeight)
-        let finalScore = factor * average
-        return finalScore
+        let finalScore = factor * Double(average)
+        return finalScore * 10
         
         // |    |    |    |    |    |    |    |    |    |    |
     }
