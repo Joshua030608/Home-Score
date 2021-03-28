@@ -361,6 +361,11 @@
                     <navigationItem key="navigationItem" id="9WV-XB-P9T"/>
                     <connections>
                         <outlet property="tableView" destination="AZt-cp-ga5" id="PLy-Th-P2s"/>
+                        <segue destination="Qwz-Z7-Qtg" kind="show" identifier="CustomCategorySegue" id="UKa-Dt-b9B"/>
+                        <segue destination="2EP-9P-BjH" kind="show" identifier="WeightingSegue" id="8ak-XF-eOS"/>
+                        <segue destination="3XS-y5-fFn" kind="show" identifier="TermsOfUseSegue" id="zbM-Pk-BsI"/>
+                        <segue destination="tcS-p2-1zb" kind="show" identifier="LegalSegue" id="RLi-1J-RbH"/>
+                        <segue destination="7Wo-gY-u7d" kind="show" identifier="PrivacyPolicySegue" id="cXJ-Z2-qKb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vs1-Xg-KtP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -377,10 +382,117 @@
                         <viewLayoutGuide key="safeArea" id="Rkp-e5-s3x"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <navigationItem key="navigationItem" id="5zp-1V-NB8"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3vC-hq-rx6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2438" y="856"/>
+        </scene>
+        <!--Weighting View Controller-->
+        <scene sceneID="p64-D2-5Z5">
+            <objects>
+                <viewController id="2EP-9P-BjH" customClass="WeightingViewController" customModule="Home_Score" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ULK-nK-Kp6">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="TQN-If-Ne2"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="uiw-RH-YlH"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AoT-UG-3qk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2438" y="1534"/>
+        </scene>
+        <!--Terms Of Use View Controller-->
+        <scene sceneID="wgQ-qF-bju">
+            <objects>
+                <viewController id="3XS-y5-fFn" customClass="TermsOfUseViewController" customModule="Home_Score" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="PbA-rc-EzV">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="*insert terms of service here*" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MYc-uF-K0A">
+                                <rect key="frame" x="0.0" y="44" width="375" height="574"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="f7c-Ts-dEL"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="f7c-Ts-dEL" firstAttribute="bottom" secondItem="MYc-uF-K0A" secondAttribute="bottom" id="9AV-vA-Vye"/>
+                            <constraint firstItem="f7c-Ts-dEL" firstAttribute="trailing" secondItem="MYc-uF-K0A" secondAttribute="trailing" id="EGR-Vg-Q04"/>
+                            <constraint firstItem="MYc-uF-K0A" firstAttribute="leading" secondItem="f7c-Ts-dEL" secondAttribute="leading" id="Mzb-hK-Baj"/>
+                            <constraint firstItem="MYc-uF-K0A" firstAttribute="top" secondItem="f7c-Ts-dEL" secondAttribute="top" id="n8Q-Bh-PuO"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="1DT-bK-Ji7"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dBU-oq-Vqi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2438" y="2226"/>
+        </scene>
+        <!--Legal View Controller-->
+        <scene sceneID="M9W-Op-Nou">
+            <objects>
+                <viewController id="tcS-p2-1zb" customClass="LegalViewController" customModule="Home_Score" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Z9m-FJ-bOX">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="*insert legal here*" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xK6-ad-cZY">
+                                <rect key="frame" x="0.0" y="44" width="375" height="574"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="1Uq-Zf-d2K"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="xK6-ad-cZY" secondAttribute="trailing" id="CnX-7V-kho"/>
+                            <constraint firstItem="xK6-ad-cZY" firstAttribute="top" secondItem="1Uq-Zf-d2K" secondAttribute="top" id="MVo-5V-i0W"/>
+                            <constraint firstItem="xK6-ad-cZY" firstAttribute="leading" secondItem="1Uq-Zf-d2K" secondAttribute="leading" id="hGx-4W-S8j"/>
+                            <constraint firstItem="1Uq-Zf-d2K" firstAttribute="bottom" secondItem="xK6-ad-cZY" secondAttribute="bottom" id="hVd-WU-Z27"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="g3x-7N-n9z"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="M3G-cZ-Bxa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2438" y="2935"/>
+        </scene>
+        <!--Privacy Policy View Controller-->
+        <scene sceneID="IPq-1c-Vrx">
+            <objects>
+                <viewController id="7Wo-gY-u7d" customClass="PrivacyPolicyViewController" customModule="Home_Score" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="57w-zf-JZK">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="*insert privacy policy here*" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SWs-ek-NNh">
+                                <rect key="frame" x="0.0" y="44" width="375" height="574"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="BEh-uA-j3b"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="SWs-ek-NNh" firstAttribute="top" secondItem="BEh-uA-j3b" secondAttribute="top" id="5DP-ld-lY7"/>
+                            <constraint firstItem="BEh-uA-j3b" firstAttribute="trailing" secondItem="SWs-ek-NNh" secondAttribute="trailing" id="MXB-48-tuj"/>
+                            <constraint firstItem="SWs-ek-NNh" firstAttribute="leading" secondItem="BEh-uA-j3b" secondAttribute="leading" id="h9q-ao-sig"/>
+                            <constraint firstItem="BEh-uA-j3b" firstAttribute="bottom" secondItem="SWs-ek-NNh" secondAttribute="bottom" id="rAd-2M-if8"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="WMW-ws-9Ck"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="t9R-ic-1yG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2438" y="3610"/>
         </scene>
     </scenes>
     <resources>

@@ -31,16 +31,20 @@ class SettingsViewController: UIViewController {
     }
     
 
-   /* override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if let categoriesVC = segue.destination as? CCVC {
-            categoriesVC.data = interestinData
-        } else if let weightingVC = segue.detination as? WVC {
-            
+        if let categoriesVC = segue.destination as? CustomCategoryViewController {
+            navigationController?.pushViewController(categoriesVC, animated: false) // Should I do this?
+        } else if let weightingVC = segue.destination as? WeightingViewController {
+            performSegue(withIdentifier: "WeightingSegue", sender: self)// Or this? Or something different?
+        } else if let tosVC = segue.destination as? TermsOfUseViewController {
+            performSegue(withIdentifier: "", sender: self)
+        } else if let legalVC = segue.destination as? LegalViewController {
+            performSegue(withIdentifier: "", sender: self)
+        } else if let privacyPolicyVC = segue.destination as? PrivacyPolicyViewController {
+            performSegue(withIdentifier: "", sender: self)
         }
     }
-     */
-    
 }
 extension SettingsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
