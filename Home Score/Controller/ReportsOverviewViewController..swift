@@ -21,6 +21,7 @@ class ReportsOverviewViewController: UIViewController {
             self?.handleCategoryScoresScroll(index: index, offset: offset)
             
         }
+        
     }
     
     func handleCategoryScoresScroll(index: Int, offset: CGFloat) {
