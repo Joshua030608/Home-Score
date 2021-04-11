@@ -21,9 +21,21 @@ class SettingsViewController: UIViewController {
             case .privacyPolicy: return "Privacy Policy"
             }
         }
+        
+        var segueIdentifier: String {
+            let baseSegueID: String
+            switch self {
+            case .categories: baseSegueID = "CustomCategory"
+            case .weighting: baseSegueID =  "Weighting"
+            case .termsOfUse, .legal, .privacyPolicy: baseSegueID =  "TextView"
+            }
+            return baseSegueID + "Segue"
+        }
     }
     
     @IBOutlet weak var tableView: UITableView!
+    
+    fileprivate var settingsOption: SettingsOption?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,15 +46,18 @@ class SettingsViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if let categoriesVC = segue.destination as? CustomCategoryViewController {
-            navigationController?.pushViewController(categoriesVC, animated: false) // Should I do this?
+            
         } else if let weightingVC = segue.destination as? WeightingViewController {
-            performSegue(withIdentifier: "WeightingSegue", sender: self)// Or this? Or something different?
-        } else if let tosVC = segue.destination as? TermsOfUseViewController {
-            performSegue(withIdentifier: "", sender: self)
-        } else if let legalVC = segue.destination as? LegalViewController {
-            performSegue(withIdentifier: "", sender: self)
-        } else if let privacyPolicyVC = segue.destination as? PrivacyPolicyViewController {
-            performSegue(withIdentifier: "", sender: self)
+            
+        } else if let tvVC = segue.destination as? TextViewViewController {
+            let textToReturn: String
+            switch settingsOption! {
+            case .termsOfUse: textToReturn =  LegalSettingsOption.termsOfUse.text
+            case .legal: textToReturn =  LegalSettingsOption.legal.text
+            case .privacyPolicy:  textToReturn = LegalSettingsOption.privacyPolicy.text
+            default: textToReturn = ""
+            }
+            tvVC.text = textToReturn
         }
     }
 }
@@ -64,5 +79,9 @@ extension SettingsViewController: UITableViewDelegate {
         return tableView.frame.size.height / CGFloat(SettingsOption.allCases.count)
     }
     
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let settingsOption = SettingsOption(rawValue: indexPath.row)!
+        self.settingsOption = settingsOption
+        performSegue(withIdentifier: settingsOption.segueIdentifier, sender: nil)
+    }
 }

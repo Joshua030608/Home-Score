@@ -25,11 +25,10 @@
 		03721950255229A000C507C2 /* HouseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0372194F2552299F00C507C2 /* HouseCell.swift */; };
 		0372195B2552309500C507C2 /* HomeDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0372195A2552309500C507C2 /* HomeDataSource.swift */; };
 		038366742610EE5D00B7B354 /* WeightingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038366732610EE5D00B7B354 /* WeightingViewController.swift */; };
-		038366792610EED300B7B354 /* TermsOfUseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038366782610EED300B7B354 /* TermsOfUseViewController.swift */; };
-		038366812610EF4200B7B354 /* LegalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038366802610EF4200B7B354 /* LegalViewController.swift */; };
-		038366862610EF9100B7B354 /* PrivacyPolicyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038366852610EF9100B7B354 /* PrivacyPolicyViewController.swift */; };
+		038366792610EED300B7B354 /* TextViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038366782610EED300B7B354 /* TextViewViewController.swift */; };
 		03B16D2825F5381A007A8684 /* CompareCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B16D2725F5381A007A8684 /* CompareCell.swift */; };
 		03C58652257448EC00718E8A /* CategoryScoresHouseDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C58651257448EC00718E8A /* CategoryScoresHouseDataSource.swift */; };
+		03E414ED2613EC7F001F549F /* LegalSettingsOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E414EC2613EC7F001F549F /* LegalSettingsOption.swift */; };
 		03FAF5842564A55C0013B51A /* AddEditHouseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FAF5832564A55C0013B51A /* AddEditHouseViewController.swift */; };
 		03FAF5892564A70F0013B51A /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FAF5882564A70F0013B51A /* CategoryCell.swift */; };
 /* End PBXBuildFile section */
@@ -76,11 +75,10 @@
 		0372194F2552299F00C507C2 /* HouseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HouseCell.swift; path = "Home Score/Other/HouseCell.swift"; sourceTree = SOURCE_ROOT; };
 		0372195A2552309500C507C2 /* HomeDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDataSource.swift; sourceTree = "<group>"; };
 		038366732610EE5D00B7B354 /* WeightingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightingViewController.swift; sourceTree = "<group>"; };
-		038366782610EED300B7B354 /* TermsOfUseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsOfUseViewController.swift; sourceTree = "<group>"; };
-		038366802610EF4200B7B354 /* LegalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalViewController.swift; sourceTree = "<group>"; };
-		038366852610EF9100B7B354 /* PrivacyPolicyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyViewController.swift; sourceTree = "<group>"; };
+		038366782610EED300B7B354 /* TextViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewViewController.swift; sourceTree = "<group>"; };
 		03B16D2725F5381A007A8684 /* CompareCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompareCell.swift; sourceTree = "<group>"; };
 		03C58651257448EC00718E8A /* CategoryScoresHouseDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryScoresHouseDataSource.swift; sourceTree = "<group>"; };
+		03E414EC2613EC7F001F549F /* LegalSettingsOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalSettingsOption.swift; sourceTree = "<group>"; };
 		03FAF5832564A55C0013B51A /* AddEditHouseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditHouseViewController.swift; sourceTree = "<group>"; };
 		03FAF5882564A70F0013B51A /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -166,6 +164,7 @@
 				0350E4C52548E6E1003369B6 /* Home.swift */,
 				0372195A2552309500C507C2 /* HomeDataSource.swift */,
 				03C58651257448EC00718E8A /* CategoryScoresHouseDataSource.swift */,
+				03E414EC2613EC7F001F549F /* LegalSettingsOption.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -188,9 +187,7 @@
 				031ABD6B260BFB8200987A51 /* SettingsViewController.swift */,
 				031ABD70260C050E00987A51 /* CustomCategoryViewController.swift */,
 				038366732610EE5D00B7B354 /* WeightingViewController.swift */,
-				038366782610EED300B7B354 /* TermsOfUseViewController.swift */,
-				038366802610EF4200B7B354 /* LegalViewController.swift */,
-				038366852610EF9100B7B354 /* PrivacyPolicyViewController.swift */,
+				038366782610EED300B7B354 /* TextViewViewController.swift */,
 				03FAF5832564A55C0013B51A /* AddEditHouseViewController.swift */,
 			);
 			path = Controller;
@@ -344,12 +341,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				033DEBB2253FA9A5008104D8 /* ReportsOverviewViewController..swift in Sources */,
+				03E414ED2613EC7F001F549F /* LegalSettingsOption.swift in Sources */,
 				031ABD71260C050E00987A51 /* CustomCategoryViewController.swift in Sources */,
-				038366812610EF4200B7B354 /* LegalViewController.swift in Sources */,
 				033DEBAE253FA9A5008104D8 /* AppDelegate.swift in Sources */,
 				03FAF5842564A55C0013B51A /* AddEditHouseViewController.swift in Sources */,
 				0372195B2552309500C507C2 /* HomeDataSource.swift in Sources */,
-				038366792610EED300B7B354 /* TermsOfUseViewController.swift in Sources */,
+				038366792610EED300B7B354 /* TextViewViewController.swift in Sources */,
 				033DEBB0253FA9A5008104D8 /* SceneDelegate.swift in Sources */,
 				03FAF5892564A70F0013B51A /* CategoryCell.swift in Sources */,
 				0350E4C62548E6E1003369B6 /* Home.swift in Sources */,
@@ -358,7 +355,6 @@
 				03721950255229A000C507C2 /* HouseCell.swift in Sources */,
 				031ABD6C260BFB8200987A51 /* SettingsViewController.swift in Sources */,
 				0350E4C12548E580003369B6 /* Category.swift in Sources */,
-				038366862610EF9100B7B354 /* PrivacyPolicyViewController.swift in Sources */,
 				038366742610EE5D00B7B354 /* WeightingViewController.swift in Sources */,
 				036588BD25C0EC06008CC8E1 /* CategoryScorePickerViewParent.swift in Sources */,
 			);
