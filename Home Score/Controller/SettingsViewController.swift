@@ -45,9 +45,7 @@ class SettingsViewController: UIViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if let categoriesVC = segue.destination as? CustomCategoryViewController {
-            
-        } else if let weightingVC = segue.destination as? WeightingViewController {
+        if let categoriesVC = segue.destination as? CategoryViewController {
             
         } else if let tvVC = segue.destination as? TextViewViewController {
             let textToReturn: String

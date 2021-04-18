@@ -362,7 +362,6 @@
                     <connections>
                         <outlet property="tableView" destination="AZt-cp-ga5" id="PLy-Th-P2s"/>
                         <segue destination="Qwz-Z7-Qtg" kind="show" identifier="CustomCategorySegue" id="UKa-Dt-b9B"/>
-                        <segue destination="2EP-9P-BjH" kind="show" identifier="WeightingSegue" id="8ak-XF-eOS"/>
                         <segue destination="3XS-y5-fFn" kind="show" identifier="TextViewSegue" id="zbM-Pk-BsI"/>
                     </connections>
                 </viewController>
@@ -370,37 +369,88 @@
             </objects>
             <point key="canvasLocation" x="1566" y="856"/>
         </scene>
-        <!--Custom Category View Controller-->
+        <!--Category View Controller-->
         <scene sceneID="ZxY-sm-fpB">
             <objects>
-                <viewController id="Qwz-Z7-Qtg" customClass="CustomCategoryViewController" customModule="Home_Score" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Qwz-Z7-Qtg" customClass="CategoryViewController" customModule="Home_Score" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5y0-Rg-jBa">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WCB-kK-LxX">
+                                <rect key="frame" x="0.0" y="44" width="375" height="574"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SettingsCategoryCell" rowHeight="70" id="NNB-yn-XNS" customClass="SettingsCategoryCell" customModule="Home_Score" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="70"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NNB-yn-XNS" id="1df-7f-aJ1">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="cnA-BT-RXy">
+                                                    <rect key="frame" x="8" y="40" width="359" height="31"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="gDu-bC-0y7"/>
+                                                    </constraints>
+                                                    <segments>
+                                                        <segment title="Very Low"/>
+                                                        <segment title="Low"/>
+                                                        <segment title="Medium"/>
+                                                        <segment title="High"/>
+                                                        <segment title="Very High"/>
+                                                    </segments>
+                                                    <connections>
+                                                        <action selector="weightChanged:" destination="NNB-yn-XNS" eventType="valueChanged" id="Pbi-d9-Y3d"/>
+                                                        <action selector="weightChanged:" destination="hFk-wM-IO4" eventType="valueChanged" id="Z63-i9-A8K"/>
+                                                    </connections>
+                                                </segmentedControl>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="jkljkhjghfhj" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vyp-3D-TTX">
+                                                    <rect key="frame" x="8" y="5" width="359" height="30"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Vyp-3D-TTX" firstAttribute="top" secondItem="1df-7f-aJ1" secondAttribute="top" constant="5" id="4y5-We-7AK"/>
+                                                <constraint firstAttribute="bottom" secondItem="cnA-BT-RXy" secondAttribute="bottom" id="7PM-66-baU"/>
+                                                <constraint firstItem="Vyp-3D-TTX" firstAttribute="leading" secondItem="1df-7f-aJ1" secondAttribute="leading" constant="8" id="CBB-Q8-d87"/>
+                                                <constraint firstItem="cnA-BT-RXy" firstAttribute="leading" secondItem="1df-7f-aJ1" secondAttribute="leading" constant="8" id="NKC-RA-mBN"/>
+                                                <constraint firstAttribute="trailing" secondItem="Vyp-3D-TTX" secondAttribute="trailing" constant="8" id="bj1-xa-T0P"/>
+                                                <constraint firstAttribute="trailing" secondItem="cnA-BT-RXy" secondAttribute="trailing" constant="8" id="oV4-Ij-rb8"/>
+                                                <constraint firstItem="cnA-BT-RXy" firstAttribute="top" secondItem="Vyp-3D-TTX" secondAttribute="bottom" constant="5" id="stE-qt-5t1"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="categoryLabel" destination="Vyp-3D-TTX" id="2nl-BU-rnX"/>
+                                            <outlet property="weightSegmentedControl" destination="cnA-BT-RXy" id="lv3-8H-DDb"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="Qwz-Z7-Qtg" id="sdj-p9-RtR"/>
+                                    <outlet property="delegate" destination="Qwz-Z7-Qtg" id="CvT-3c-QSM"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="Rkp-e5-s3x"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Rkp-e5-s3x" firstAttribute="trailing" secondItem="WCB-kK-LxX" secondAttribute="trailing" id="aDO-3v-bTd"/>
+                            <constraint firstItem="WCB-kK-LxX" firstAttribute="top" secondItem="Rkp-e5-s3x" secondAttribute="top" id="faN-zI-ExN"/>
+                            <constraint firstItem="Rkp-e5-s3x" firstAttribute="bottom" secondItem="WCB-kK-LxX" secondAttribute="bottom" id="rYh-7W-b6O"/>
+                            <constraint firstItem="WCB-kK-LxX" firstAttribute="leading" secondItem="Rkp-e5-s3x" secondAttribute="leading" id="uhH-pi-mqT"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="5zp-1V-NB8"/>
+                    <connections>
+                        <outlet property="tableView" destination="WCB-kK-LxX" id="EMr-kE-eWz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3vC-hq-rx6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="hFk-wM-IO4" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2438" y="856"/>
-        </scene>
-        <!--Weighting View Controller-->
-        <scene sceneID="p64-D2-5Z5">
-            <objects>
-                <viewController id="2EP-9P-BjH" customClass="WeightingViewController" customModule="Home_Score" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="ULK-nK-Kp6">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="TQN-If-Ne2"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="uiw-RH-YlH"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="AoT-UG-3qk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2438" y="1534"/>
+            <point key="canvasLocation" x="2437.5999999999999" y="855.9220389805098"/>
         </scene>
         <!--Text View View Controller-->
         <scene sceneID="wgQ-qF-bju">
@@ -435,7 +485,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dBU-oq-Vqi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2438" y="2226"/>
+            <point key="canvasLocation" x="2438" y="1587"/>
         </scene>
     </scenes>
     <resources>

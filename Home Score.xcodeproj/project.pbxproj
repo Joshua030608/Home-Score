@@ -8,7 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		031ABD6C260BFB8200987A51 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031ABD6B260BFB8200987A51 /* SettingsViewController.swift */; };
-		031ABD71260C050E00987A51 /* CustomCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031ABD70260C050E00987A51 /* CustomCategoryViewController.swift */; };
+		031ABD71260C050E00987A51 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031ABD70260C050E00987A51 /* CategoryViewController.swift */; };
+		0333B36A2626605E0037B50C /* SettingsCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0333B3692626605E0037B50C /* SettingsCategoryCell.swift */; };
 		033DEBAE253FA9A5008104D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033DEBAD253FA9A5008104D8 /* AppDelegate.swift */; };
 		033DEBB0253FA9A5008104D8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033DEBAF253FA9A5008104D8 /* SceneDelegate.swift */; };
 		033DEBB2253FA9A5008104D8 /* ReportsOverviewViewController..swift in Sources */ = {isa = PBXBuildFile; fileRef = 033DEBB1253FA9A5008104D8 /* ReportsOverviewViewController..swift */; };
@@ -24,7 +25,6 @@
 		036588BD25C0EC06008CC8E1 /* CategoryScorePickerViewParent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036588BC25C0EC06008CC8E1 /* CategoryScorePickerViewParent.swift */; };
 		03721950255229A000C507C2 /* HouseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0372194F2552299F00C507C2 /* HouseCell.swift */; };
 		0372195B2552309500C507C2 /* HomeDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0372195A2552309500C507C2 /* HomeDataSource.swift */; };
-		038366742610EE5D00B7B354 /* WeightingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038366732610EE5D00B7B354 /* WeightingViewController.swift */; };
 		038366792610EED300B7B354 /* TextViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038366782610EED300B7B354 /* TextViewViewController.swift */; };
 		03B16D2825F5381A007A8684 /* CompareCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B16D2725F5381A007A8684 /* CompareCell.swift */; };
 		03C58652257448EC00718E8A /* CategoryScoresHouseDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C58651257448EC00718E8A /* CategoryScoresHouseDataSource.swift */; };
@@ -52,7 +52,8 @@
 
 /* Begin PBXFileReference section */
 		031ABD6B260BFB8200987A51 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		031ABD70260C050E00987A51 /* CustomCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCategoryViewController.swift; sourceTree = "<group>"; };
+		031ABD70260C050E00987A51 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
+		0333B3692626605E0037B50C /* SettingsCategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCategoryCell.swift; sourceTree = "<group>"; };
 		033DEBAA253FA9A5008104D8 /* Home Score.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Home Score.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		033DEBAD253FA9A5008104D8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		033DEBAF253FA9A5008104D8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -74,7 +75,6 @@
 		036588BC25C0EC06008CC8E1 /* CategoryScorePickerViewParent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryScorePickerViewParent.swift; sourceTree = "<group>"; };
 		0372194F2552299F00C507C2 /* HouseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HouseCell.swift; path = "Home Score/Other/HouseCell.swift"; sourceTree = SOURCE_ROOT; };
 		0372195A2552309500C507C2 /* HomeDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDataSource.swift; sourceTree = "<group>"; };
-		038366732610EE5D00B7B354 /* WeightingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightingViewController.swift; sourceTree = "<group>"; };
 		038366782610EED300B7B354 /* TextViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewViewController.swift; sourceTree = "<group>"; };
 		03B16D2725F5381A007A8684 /* CompareCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompareCell.swift; sourceTree = "<group>"; };
 		03C58651257448EC00718E8A /* CategoryScoresHouseDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryScoresHouseDataSource.swift; sourceTree = "<group>"; };
@@ -176,6 +176,7 @@
 				0372194F2552299F00C507C2 /* HouseCell.swift */,
 				03FAF5882564A70F0013B51A /* CategoryCell.swift */,
 				03B16D2725F5381A007A8684 /* CompareCell.swift */,
+				0333B3692626605E0037B50C /* SettingsCategoryCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -185,8 +186,7 @@
 			children = (
 				033DEBB1253FA9A5008104D8 /* ReportsOverviewViewController..swift */,
 				031ABD6B260BFB8200987A51 /* SettingsViewController.swift */,
-				031ABD70260C050E00987A51 /* CustomCategoryViewController.swift */,
-				038366732610EE5D00B7B354 /* WeightingViewController.swift */,
+				031ABD70260C050E00987A51 /* CategoryViewController.swift */,
 				038366782610EED300B7B354 /* TextViewViewController.swift */,
 				03FAF5832564A55C0013B51A /* AddEditHouseViewController.swift */,
 			);
@@ -342,10 +342,11 @@
 			files = (
 				033DEBB2253FA9A5008104D8 /* ReportsOverviewViewController..swift in Sources */,
 				03E414ED2613EC7F001F549F /* LegalSettingsOption.swift in Sources */,
-				031ABD71260C050E00987A51 /* CustomCategoryViewController.swift in Sources */,
+				031ABD71260C050E00987A51 /* CategoryViewController.swift in Sources */,
 				033DEBAE253FA9A5008104D8 /* AppDelegate.swift in Sources */,
 				03FAF5842564A55C0013B51A /* AddEditHouseViewController.swift in Sources */,
 				0372195B2552309500C507C2 /* HomeDataSource.swift in Sources */,
+				0333B36A2626605E0037B50C /* SettingsCategoryCell.swift in Sources */,
 				038366792610EED300B7B354 /* TextViewViewController.swift in Sources */,
 				033DEBB0253FA9A5008104D8 /* SceneDelegate.swift in Sources */,
 				03FAF5892564A70F0013B51A /* CategoryCell.swift in Sources */,
@@ -355,7 +356,6 @@
 				03721950255229A000C507C2 /* HouseCell.swift in Sources */,
 				031ABD6C260BFB8200987A51 /* SettingsViewController.swift in Sources */,
 				0350E4C12548E580003369B6 /* Category.swift in Sources */,
-				038366742610EE5D00B7B354 /* WeightingViewController.swift in Sources */,
 				036588BD25C0EC06008CC8E1 /* CategoryScorePickerViewParent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

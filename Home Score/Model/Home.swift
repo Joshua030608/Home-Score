@@ -26,7 +26,7 @@ class Home {
         var scoreCount = 0
         for (category, score) in self.categoryScores {
             if score != Category.NAValue {
-                scoreTotal += score * category.weight
+                scoreTotal += score * category.weight.rawValue
                 scoreCount += 1
             }
         }
@@ -36,9 +36,9 @@ class Home {
         }
         
         let average = (scoreTotal / scoreCount)
-        let factor = 1.0 / Double(Category.maxWeight)
+        let factor = 1.0 / Double(Category.WeightOption.maxWeight.rawValue)
         let finalScore = factor * Double(average)
-        return finalScore * 10
+        return finalScore
         
         // |    |    |    |    |    |    |    |    |    |    |
     }

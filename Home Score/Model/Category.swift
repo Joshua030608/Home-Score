@@ -14,12 +14,17 @@ photo UIImage
 */
 struct Category {
     let name: String
-    var weight: Int
+    var weight: WeightOption
     var photo: UIImage?
     
+    enum WeightOption: Int {
+        case veryLow = 1, low, medium, high, veryHigh
+        
+        static let maxWeight: WeightOption = .veryHigh
+        static let defaultWeight: WeightOption = .medium
+    }
+    
     static let NAValue = -1
-    static let maxWeight = 10
-    static let defaultWeight = 1
     static let defaultCategories = [
         Category(name: "Kitchen", photo: nil),
         Category(name: "Master Bedroom", photo: nil),
@@ -36,7 +41,13 @@ struct Category {
         Category(name: "Laundry Room", photo: nil),
         Category(name: "Garage", photo: nil)
     ]
-    init(name: String, weight: Int = Category.defaultWeight, photo: UIImage?) {
+    
+    static var allCategories: [Category] {
+        return Category.defaultCategories + []
+    }
+    
+    
+    init(name: String, weight: WeightOption = WeightOption.defaultWeight, photo: UIImage?) {
         self.name = name
         self.weight = weight
         self.photo = photo
