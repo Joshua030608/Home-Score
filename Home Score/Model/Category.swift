@@ -42,10 +42,11 @@ struct Category {
         Category(name: "Garage", photo: nil)
     ]
     
+    
     static var allCategories: [Category] {
         return Category.defaultCategories + []
     }
-    
+
     
     init(name: String, weight: WeightOption = WeightOption.defaultWeight, photo: UIImage?) {
         self.name = name

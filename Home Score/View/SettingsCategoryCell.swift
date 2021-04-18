@@ -8,7 +8,7 @@
 import UIKit
 
 class SettingsCategoryCell: UITableViewCell {
-    static let id = NSStringFromClass(SettingsCategoryCell.self)
+    static let id = "SettingsCategoryCell"
  
     @IBOutlet weak var categoryLabel: UITextField!
     @IBOutlet weak var weightSegmentedControl: UISegmentedControl!
