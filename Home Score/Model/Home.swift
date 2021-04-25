@@ -68,7 +68,7 @@ class Home {
     
     static func defaultCategoryScores() -> [Category : Int]{
         var newCategoryScores = [Category : Int]()
-        for category in Category.defaultCategories {
+        for category in CategoryStore.shared.categories {
             if category.name == "Kitchen" {
                 newCategoryScores[category] = 8
             } else {

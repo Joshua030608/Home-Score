@@ -32,10 +32,10 @@ class CategoryScoresHouseDataSource: NSObject, UITableViewDataSource {
     }
 
     func category(forIndexPath indexPath: IndexPath) -> Category {
-        return Category.defaultCategories[indexPath.row]
+        return CategoryStore.shared.categories[indexPath.row]
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Category.defaultCategories.count
+        return CategoryStore.shared.categories.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

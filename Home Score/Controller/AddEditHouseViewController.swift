@@ -189,7 +189,7 @@ extension AddEditHouseViewController: UIScrollViewDelegate {
 
 extension AddEditHouseViewController: CategoryScorePickerViewParentDelegate {
     func updateScore(_ score: Int) {
-        dataSource?.updateScore(forCategory: Category.defaultCategories[pickerViewParent.tag], score: score)
+        dataSource?.updateScore(forCategory: CategoryStore.shared.categories[pickerViewParent.tag], score: score)
         self.tableView.reloadData()
         pickerViewParent.tag = 0
         pickerViewParent.isHidden = true

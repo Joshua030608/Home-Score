@@ -46,7 +46,7 @@ class HomeDataSource: NSObject, UITableViewDataSource {
 
 extension HomeDataSource: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return Category.defaultCategories.count
+        return CategoryStore.shared.categories.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
