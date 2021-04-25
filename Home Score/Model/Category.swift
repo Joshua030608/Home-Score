@@ -72,7 +72,7 @@ struct Category {
     }
     
     static let NAValue = -1
-    fileprivate static let defaultCategories = [
+    static let defaultCategories = [
         Category(name: "Kitchen", photo: nil),
         Category(name: "Master Bedroom", photo: nil),
         Category(name: "Master Bathroom", photo: nil),
