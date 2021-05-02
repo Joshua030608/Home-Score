@@ -60,7 +60,7 @@ class CategoryStore {
 
 struct Category {
     //struct Category: Codable {
-    let name: String
+    var name: String
     var weight: WeightOption
     var photo: UIImage?
     

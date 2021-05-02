@@ -10,6 +10,14 @@ import UIKit
 class CategoryViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
+ 
+    func weightChanged(forIndex index: Int, weight: Category.WeightOption) {
+        if index < CategoryStore.shared.categories.count {
+            CategoryStore.shared.categories[index].weight = weight
+        }
+        
+        
+    }
 }
 
 extension CategoryViewController: UITableViewDataSource {
@@ -21,7 +29,9 @@ extension CategoryViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: SettingsCategoryCell.id, for: indexPath) as! SettingsCategoryCell
         cell.selectionStyle = .none
         cell.categoryLabel.tag = indexPath.row
-        
+        cell.weightChangedHandler = { [weak self] (newWeight) in
+            self?.weightChanged(forIndex: indexPath.row, weight: newWeight)
+        }
         if indexPath.row < CategoryStore.shared.categories.count {
             
             cell.categoryLabel.text = CategoryStore.shared.categories[indexPath.row].name
@@ -48,10 +58,16 @@ extension CategoryViewController: UITableViewDataSource {
 
 extension CategoryViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
-        CategoryStore.shared.categories.append(Category(name: textField.text ?? "How Did We Get Here?", photo: nil))
+            
+        guard textField.hasText else { return }
+
         let row = textField.tag
-        if row < CategoryStore.shared.categories.count && row >= Category.defaultCategories.count {
-            CategoryStore.shared.categories.remove(at: row)
+        if row == CategoryStore.shared.categories.count {
+            let newCategory = Category(name: textField.text!, photo: nil)
+            CategoryStore.shared.categories.append(newCategory)
+        } else {
+            CategoryStore.shared.categories[row].name = textField.text!
         }
+        tableView.reloadData()
     }
 }
