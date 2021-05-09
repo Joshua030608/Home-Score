@@ -16,8 +16,10 @@ class AddEditHouseViewController: UIViewController {
     @IBAction func saveButtonPressed(_ sender: Any) {
         
         
-        if addressTextField.hasText && titleTextField.hasText {
-            let newHome = 
+        if addressTextField.hasText && titleTextField.hasText && alreadyHaveData == false {
+            HomeStore.shared.homes.append(home!)
+            let reportsOverviewVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(identifier: "ReportsOverviewViewController") as! ReportsOverviewViewController
+            navigationController?.pushViewController(reportsOverviewVC, animated: true)
         }
     }
     fileprivate static let categoryScorePickerHeight: CGFloat = 44.0

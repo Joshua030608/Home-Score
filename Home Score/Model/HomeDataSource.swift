@@ -13,7 +13,7 @@ class HomeDataSource: NSObject, UITableViewDataSource {
     var didScrollHandler: ((Int, CGFloat) -> Void)?
     
     override init() {
-        homes = Home.savedHomes()
+        homes = HomeStore.shared.homes
         super.init()
     }
     

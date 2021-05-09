@@ -14,6 +14,25 @@ import UIKit
      photos UIImage
      categories: [category : Int]
  */
+
+class HomeStore {
+    static let shared: HomeStore = HomeStore()
+    
+    fileprivate static let documentsDirectoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+    fileprivate static let fileName = "Homes.json"
+    fileprivate static let url = HomeStore.documentsDirectoryURL.appendingPathComponent(HomeStore.fileName, isDirectory: false)
+    
+    var homes: [Home] = Home.savedHomes()
+    
+    fileprivate static func getHomes() -> [Home] {
+        guard FileManager.default.fileExists(atPath: HomeStore.url.path) else {
+            return []
+        }
+        return []
+    }
+    
+}
+
 class Home {
     var title: String
     var address: String
