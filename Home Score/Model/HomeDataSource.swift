@@ -27,7 +27,25 @@ class HomeDataSource: NSObject, UITableViewDataSource {
         let home = homes[indexPath.row]
 //        cell.titleLabel.text = home.title
 //        cell.homeScoreLabel.text = String(home.score)
-        let attributedText = NSMutableAttributedString(string: "\(home.title) \(home.score)" + "\n", attributes: [.font : UIFont.systemFont(ofSize: 18)])
+        var scoreString = "N/A"
+        if let homeScore = home.score {
+            let formatter = NumberFormatter()
+            formatter.numberStyle = .decimal
+            formatter.roundingMode = .halfUp
+            formatter.maximumFractionDigits = 1
+            if let formattedString = formatter.string(from: NSNumber(value: homeScore)) {
+                scoreString = formattedString
+            }
+        }
+        
+//        // 4.8500000001 -> 4.8
+//        let multipliedScoreDouble = 4.8 * 10.0 // 48.500001
+//        let multipliedScoreInt = Int(multipliedScoreDouble) // 48
+        
+        let attributedText = NSMutableAttributedString(string: "\(home.title) Score: \(scoreString)" + "\n", attributes: [.font : UIFont.systemFont(ofSize: 18)])
+        // 4.8000000000001 -> 4.8
+        
+        
         attributedText.append(NSAttributedString(string: "$1,000,000", attributes: [.font: UIFont.systemFont(ofSize: 10)]))
         cell.label.attributedText = attributedText
         cell.houseImageView.image = home.photos

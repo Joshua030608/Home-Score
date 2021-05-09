@@ -10,12 +10,11 @@ import UIKit
 class SettingsViewController: UIViewController {
     
     fileprivate enum SettingsOption: Int, CaseIterable {
-        case categories = 0, weighting, termsOfUse, legal, privacyPolicy
+        case categories = 0, termsOfUse, legal, privacyPolicy
         
         var name: String {
             switch self {
             case .categories: return "Categories"
-            case .weighting: return "Weighting"
             case .termsOfUse: return "Terms Of Use"
             case .legal: return "Legal"
             case .privacyPolicy: return "Privacy Policy"
@@ -26,7 +25,6 @@ class SettingsViewController: UIViewController {
             let baseSegueID: String
             switch self {
             case .categories: baseSegueID = "CustomCategory"
-            case .weighting: baseSegueID =  "Weighting"
             case .termsOfUse, .legal, .privacyPolicy: baseSegueID =  "TextView"
             }
             return baseSegueID + "Segue"

@@ -13,6 +13,13 @@ class AddEditHouseViewController: UIViewController {
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var tableView: UITableView!
     
+    @IBAction func saveButtonPressed(_ sender: Any) {
+        
+        
+        if addressTextField.hasText && titleTextField.hasText {
+            let newHome = 
+        }
+    }
     fileprivate static let categoryScorePickerHeight: CGFloat = 44.0
     fileprivate var categoryScorePickerTopConstraint: NSLayoutConstraint!
     fileprivate var customFooter: UIView!
