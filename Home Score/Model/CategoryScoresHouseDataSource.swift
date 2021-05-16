@@ -22,9 +22,12 @@ class CategoryScoresHouseDataSource: NSObject, UITableViewDataSource {
          super.init()
      }
     
+    func getAllScores() -> [Category: Int] {
+        return scoresDictionary
+    }
+    
     func updateScore(forCategory category: Category, score: Int) {
         scoresDictionary[category] = score
-        //Can't update actually home because inside func?
     }
     
     func score(forCategory category: Category) -> Int {

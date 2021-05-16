@@ -24,6 +24,36 @@ class HomeStore {
     
     var homes: [Home] = Home.savedHomes()
     
+    func saveHome(_ homeToSave: Home) {
+        var matchingHomeFound = false
+        for (index, home) in homes.enumerated() {
+            if home.id == homeToSave.id {
+                homes[index] = homeToSave
+                matchingHomeFound = true
+                break
+            }
+        }
+        
+        if matchingHomeFound == false {
+            homes.append(homeToSave)
+        }
+        saveHomes()
+        
+    }
+    
+    fileprivate func saveHomes() {
+//        let encoder = JSONEncoder()
+//        do {
+//            let data = try encoder.encode(categories)
+//            if FileManager.default.fileExists(atPath: CategoryStore.url.path) {
+//                try FileManager.default.removeItem(at: CategoryStore.url)
+//            }
+//            FileManager.default.createFile(atPath: CategoryStore.url.path, contents: data, attributes: nil)
+//        } catch {
+//            print("ERROR:", error.localizedDescription)
+//        }
+    }
+    
     fileprivate static func getHomes() -> [Home] {
         guard FileManager.default.fileExists(atPath: HomeStore.url.path) else {
             return []
@@ -34,6 +64,7 @@ class HomeStore {
 }
 
 class Home {
+    let id = UUID()
     var title: String
     var address: String
     var notes: String

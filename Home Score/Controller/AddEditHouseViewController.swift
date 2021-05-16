@@ -13,15 +13,7 @@ class AddEditHouseViewController: UIViewController {
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var tableView: UITableView!
     
-    @IBAction func saveButtonPressed(_ sender: Any) {
-        
-        
-        if addressTextField.hasText && titleTextField.hasText && alreadyHaveData == false {
-            HomeStore.shared.homes.append(home!)
-            let reportsOverviewVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(identifier: "ReportsOverviewViewController") as! ReportsOverviewViewController
-            navigationController?.pushViewController(reportsOverviewVC, animated: true)
-        }
-    }
+    var didUpdateHomesHandler: (() -> Void)?
     fileprivate static let categoryScorePickerHeight: CGFloat = 44.0
     fileprivate var categoryScorePickerTopConstraint: NSLayoutConstraint!
     fileprivate var customFooter: UIView!
@@ -40,23 +32,27 @@ class AddEditHouseViewController: UIViewController {
     
     fileprivate var selectedIndexPath: IndexPath?
     fileprivate var dataSource: CategoryScoresHouseDataSource?
-    fileprivate var alreadyHaveData = false
     var home: Home? { // Problem was home wasn't being set when was nil.
         didSet {
-            if let home = home {
-                /*
-                houseImageView.image = home.photos!
-                addressTextField.text = home.address
-                titleTextField.text = home.title
-                dataSource = CategoryScoresHouseDataSource(scoresDictionary: home.categoryScores)
- */
-            alreadyHaveData = true
-            }
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
         }
     }
+    
+    @IBAction func saveButtonPressed(_ sender: Any) {
+        
+        guard let addressText = addressTextField.text, addressText.count > 0,
+                let titleText = titleTextField.text, titleText.count > 0 else {
+            // Show error
+            return
+        }
+
+        let home = Home(title: titleText, address: addressText, notes: "Notes", photos: houseImageView.image, categoryScores: dataSource?.getAllScores())
+                navigationController?.popViewController(animated: true)
+        HomeStore.shared.saveHome(home)
+    }
+    
     fileprivate func setUpBlockerView() {
         view.addSubview(blockerView)
         
@@ -113,11 +109,11 @@ class AddEditHouseViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if alreadyHaveData {
-            houseImageView.image = home!.photos
-            addressTextField.text = home!.address
-            titleTextField.text = home!.title
-            dataSource = CategoryScoresHouseDataSource(scoresDictionary: home!.categoryScores)
+        if let home = home {
+            houseImageView.image = home.photos
+            addressTextField.text = home.address
+            titleTextField.text = home.title
+            dataSource = CategoryScoresHouseDataSource(scoresDictionary: home.categoryScores)
         } else {
             dataSource = CategoryScoresHouseDataSource(scoresDictionary: nil)
         }
