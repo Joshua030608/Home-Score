@@ -15,7 +15,20 @@ import UIKit
      categories: [category : Int]
  */
 
-class HomeStore {
+class HomeStore /*codable*/ {
+  /*
+    enum CodingKeys: CodingKey {
+        case id, title, address, notes, photos, categoryScores, score
+    }
+    
+    public required init(from decoder: Decoder) throws {
+        super.init()
+        
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        title = try container.decode(String.self, forKey: .title)
+        
+    }
+    */
     static let shared: HomeStore = HomeStore()
     
     fileprivate static let documentsDirectoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
@@ -63,8 +76,47 @@ class HomeStore {
     
 }
 
+class CodableHomeStore: HomeStore, Codable {
+    enum CodingKeys: CodingKey {
+        case id, title, address, notes, photos, categoryScores, score
+    }
+    
+    override init() {
+        super.init()
+    }
+    
+    public required init(from decoder: Decoder) throws {
+        super.init()
+        
+        for home in homes {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            home.id = try container.decode(UUID.self, forKey: .id)
+            home.title = try container.decode(String.self, forKey: .title)
+            home.address = try container.decode(String.self, forKey: .address)
+            home.notes = try container.decode(String.self, forKey: .notes)
+            /* home.photos = try container.decode(UIImage.self, forKey: .photos)
+            home.categoryScores = try container.decode([Category : Int].self, forKey: .categoryScores)
+             */
+            //home.score = try container.decode(Double.self, forKey: .score)
+        }
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        
+        for home in homes {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encode(home.id, forKey: .id)
+            try container.encode(home.title, forKey: .title)
+            try container.encode(home.address, forKey: .address)
+            try container.encode(home.notes, forKey: .notes)
+            /* try container.encode(home.photos, forKey: .photos)
+            try container.encode(home.categoryScores, forKey: .categoryScores) */
+            try container.encode(home.score, forKey: .score)
+       }
+    }
+}
 class Home {
-    let id = UUID()
+    var id = UUID()
     var title: String
     var address: String
     var notes: String

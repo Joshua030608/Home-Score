@@ -58,6 +58,37 @@ class CategoryStore {
     }
 }
 
+class CodableCategoryStore: CategoryStore, Codable {
+    enum CodingKeys: CodingKey {
+        case name, weight, photo
+    }
+    
+    override init() {
+        super.init()
+    }
+    
+    public required init(from decoder: Decoder) throws {
+        super.init()
+        
+        for category in categories {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            category.name = try container.decode(String.self, forKey: .name)
+            category.weight = try container.decode(Category.WeightOption.self, forKey: .weight)
+            category.photo = try container.decode(UIImage.self, forKey: .photo)
+        }
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        for category in categories {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encode(category.name, forKey: .name)
+            try container.encode(category.weight.rawValue, forKey: .weight)
+            try container.encode(category.photo, forKey: .photo)
+        }
+    }
+    
+}
+
 struct Category {
     //struct Category: Codable {
     var name: String

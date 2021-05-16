@@ -12,6 +12,15 @@ class ReportsOverviewViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     fileprivate var dataSource = HomeDataSource()
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+//        AddEditHouseViewController().didUpdateHomesHandler = { [weak self] () in
+//            self?.reloadTableView()
+//
+//        }
+        tableView.reloadData()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +30,10 @@ class ReportsOverviewViewController: UIViewController {
             self?.handleCategoryScoresScroll(index: index, offset: offset)
             
         }
-        
+    }
+    
+    func reloadTableView() {
+        tableView.reloadData()
     }
     
     func handleCategoryScoresScroll(index: Int, offset: CGFloat) {
