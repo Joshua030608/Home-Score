@@ -31,30 +31,19 @@ class CategoryStore {
             return []
         }
         return []
-//        if let data = FileManager.default.contents(atPath: CategoryStore.url.path) {
-//            let decoder = JSONDecoder()
-//            do {
-//                let categories = try decoder.decode([Category].self, from: data)
-//                return categories
-//            } catch {
-//                print("ERROR", error.localizedDescription)
-//            }
-//        } else {
-//            return []
-//        }
     }
     
     fileprivate func saveCategories() {
-//        let encoder = JSONEncoder()
-//        do {
-//            let data = try encoder.encode(categories)
-//            if FileManager.default.fileExists(atPath: CategoryStore.url.path) {
-//                try FileManager.default.removeItem(at: CategoryStore.url)
-//            }
-//            FileManager.default.createFile(atPath: CategoryStore.url.path, contents: data, attributes: nil)
-//        } catch {
-//            print("ERROR:", error.localizedDescription)
-//        }
+        let encoder = JSONEncoder()
+        do {
+            let data = try encoder.encode(categories)
+            if FileManager.default.fileExists(atPath: CategoryStore.url.path) {
+                try FileManager.default.removeItem(at: CategoryStore.url)
+            }
+            FileManager.default.createFile(atPath: CategoryStore.url.path, contents: data, attributes: nil)
+        } catch {
+            print("ERROR:", error.localizedDescription)
+        }
     }
 }
 
