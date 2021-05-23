@@ -47,8 +47,12 @@ class AddEditHouseViewController: UIViewController {
             // Show error
             return
         }
-
-        let home = Home(title: titleText, address: addressText, notes: "Notes", photos: houseImageView.image, categoryScores: dataSource?.getAllScores())
+        var photos: [UIImage] = []
+        if let houseImage = houseImageView.image {
+            photos.append(houseImage)
+        }
+        
+        let home = Home(title: titleText, address: addressText, notes: "Notes", photos: photos, categoryScores: dataSource?.getAllScores())
                 navigationController?.popViewController(animated: true)
         HomeStore.shared.saveHome(home)
     }
@@ -110,7 +114,7 @@ class AddEditHouseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         if let home = home {
-            houseImageView.image = home.photos
+            houseImageView.image = home.photos.first
             addressTextField.text = home.address
             titleTextField.text = home.title
             dataSource = CategoryScoresHouseDataSource(scoresDictionary: home.categoryScores)

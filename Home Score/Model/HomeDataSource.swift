@@ -49,7 +49,7 @@ class HomeDataSource: NSObject, UITableViewDataSource {
         
         attributedText.append(NSAttributedString(string: "$1,000,000", attributes: [.font: UIFont.systemFont(ofSize: 10)]))
         cell.label.attributedText = attributedText
-        cell.houseImageView.image = home.photos
+        cell.houseImageView.image = home.photos.first
         cell.collectionView.dataSource = self
         cell.collectionView.tag = indexPath.row
         cell.didScrollHandler = { [weak self] (index, offset) in

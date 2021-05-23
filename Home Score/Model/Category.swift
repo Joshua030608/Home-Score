@@ -58,44 +58,16 @@ class CategoryStore {
     }
 }
 
-class CodableCategoryStore: CategoryStore, Codable {
-    enum CodingKeys: CodingKey {
-        case name, weight, photo
-    }
-    
-    override init() {
-        super.init()
-    }
-    
-    public required init(from decoder: Decoder) throws {
-        super.init()
-        
-        for category in categories {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            category.name = try container.decode(String.self, forKey: .name)
-            category.weight = try container.decode(Category.WeightOption.self, forKey: .weight)
-            category.photo = try container.decode(UIImage.self, forKey: .photo)
-        }
-    }
-    
-    public func encode(to encoder: Encoder) throws {
-        for category in categories {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encode(category.name, forKey: .name)
-            try container.encode(category.weight.rawValue, forKey: .weight)
-            try container.encode(category.photo, forKey: .photo)
-        }
-    }
-    
-}
-
-struct Category {
-    //struct Category: Codable {
+struct Category: Codable {
     var name: String
     var weight: WeightOption
     var photo: UIImage?
     
-    enum WeightOption: Int {
+    enum CodingKeys: CodingKey {
+        case name, weight, photo
+    }
+    
+    enum WeightOption: Int, Codable {
         case veryLow = 1, low, medium, high, veryHigh
         
         static let maxWeight: WeightOption = .veryHigh
@@ -127,6 +99,22 @@ struct Category {
         self.name = name
         self.weight = weight
         self.photo = photo
+    }
+    
+    public init(from decoder: Decoder) throws {
+        
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        name = try container.decode(String.self, forKey: .name)
+        weight = try container.decode(Category.WeightOption.self, forKey: .weight)
+        let photoData = try container.decode(Data.self, forKey: .photo)
+        photo = UIImage(data: photoData)
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(name, forKey: .name)
+        try container.encode(weight, forKey: .weight)
+        try container.encode(photo?.pngData(), forKey: .photo)
     }
 }
 
