@@ -52,7 +52,10 @@ class AddEditHouseViewController: UIViewController {
             photos.append(houseImage)
         }
         
-        let home = Home(title: titleText, address: addressText, notes: "Notes", photos: photos, categoryScores: dataSource?.getAllScores())
+        
+            let home = Home(id: home?.id, title: titleText, address: addressText, notes: "Notes", photos: photos, categoryScores: dataSource?.getAllScores())
+        
+
                 navigationController?.popViewController(animated: true)
         HomeStore.shared.saveHome(home)
     }
