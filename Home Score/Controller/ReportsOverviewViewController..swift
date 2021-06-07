@@ -22,10 +22,15 @@ class ReportsOverviewViewController: UIViewController {
         tableView.reloadData()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        print(CategoryStore.shared.categories[CategoryStore.shared.categories.count - 1].name)
+        // Used this to figure out that category is saved but just not showing up after app is closed.
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = dataSource
-        
         dataSource.didScrollHandler = { [weak self] (index, offset) in
             self?.handleCategoryScoresScroll(index: index, offset: offset)
             
