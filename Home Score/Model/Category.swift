@@ -20,17 +20,29 @@ class CategoryStore {
     fileprivate static let fileName = "Categories.json"
     fileprivate static let url = CategoryStore.documentsDirectoryURL.appendingPathComponent(CategoryStore.fileName, isDirectory: false)
     
-    var categories: [Category] = Category.defaultCategories
+    var categories: [Category] = CategoryStore.getCategories()
     
     fileprivate init() {
        // self.categories = CategoryStore.getCategories()
     }
     
     fileprivate static func getCategories() -> [Category] {
+        
         guard FileManager.default.fileExists(atPath: CategoryStore.url.path) else {
+            return Category.defaultCategories
+        }
+        
+        
+        let decoder = JSONDecoder()
+        do {
+            let data = try Data(contentsOf: CategoryStore.url)
+            let categories = try decoder.decode([Category].self, from: data)
+            return categories
+        } catch {
+            print(error.localizedDescription)
+            debugPrint(error)
             return []
         }
-        return []
     }
     
     fileprivate func saveCategories() {
@@ -95,8 +107,10 @@ struct Category: Codable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         name = try container.decode(String.self, forKey: .name)
         weight = try container.decode(Category.WeightOption.self, forKey: .weight)
-        let photoData = try container.decode(Data.self, forKey: .photo)
-        photo = UIImage(data: photoData)
+        let photoData = try? container.decode(Data.self, forKey: .photo)
+        if let photoData = photoData {
+            photo = UIImage(data: photoData)
+        }
     }
     
     public func encode(to encoder: Encoder) throws {
