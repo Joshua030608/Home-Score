@@ -15,12 +15,10 @@ class CategoryViewController: UIViewController {
  
     func weightChanged(forIndex index: Int, weight: Category.WeightOption) {
         if index < CategoryStore.shared.categories.count {
-            CategoryStore.shared.categories[index].weight = weight
+            CategoryStore.shared.updateWeight(weight, forCategoryAtIndex: index)
         } else {
             addingCellWeight = weight
         }
-        
-        
     }
 }
 
@@ -65,12 +63,12 @@ extension CategoryViewController: UITextFieldDelegate {
             
         guard textField.hasText else { return }
 
-        let row = textField.tag
-        if row == CategoryStore.shared.categories.count {
+        let index = textField.tag
+        if index == CategoryStore.shared.categories.count {
             let newCategory = Category(name: textField.text!, weight: addingCellWeight, photo: nil)
-            CategoryStore.shared.categories.append(newCategory)
+            CategoryStore.shared.addCategory(newCategory)
         } else {
-            CategoryStore.shared.categories[row].name = textField.text!
+            CategoryStore.shared.updateName(textField.text!, forCategoryAtIndex: index)
         }
         tableView.reloadData()
     }

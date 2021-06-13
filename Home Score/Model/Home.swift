@@ -42,6 +42,13 @@ class HomeStore {
         
     }
     
+    func updateHomes(forNewCategory newCategory: Category) {
+        for home in homes {
+            home.categoryScores[newCategory] = Category.NAValue
+        }
+        saveHomes()
+    }
+    
     fileprivate func saveHomes() {
         let encoder = JSONEncoder()
         do {

@@ -22,6 +22,22 @@ class CategoryStore {
     
     var categories: [Category] = CategoryStore.getCategories()
     
+    func addCategory(_ category: Category) {
+        categories.append(category)
+        saveCategories()
+        HomeStore.shared.updateHomes(forNewCategory: category)
+    }
+    
+    func updateName(_ name: String, forCategoryAtIndex categoryIndex: Int) {
+        categories[categoryIndex].name = name // Struct (value)
+        saveCategories()
+    }
+    
+    func updateWeight(_ weight: Category.WeightOption, forCategoryAtIndex categoryIndex: Int) {
+        categories[categoryIndex].weight = weight // Struct (value)
+        saveCategories()
+    }
+    
     fileprivate init() {
        // self.categories = CategoryStore.getCategories()
     }
