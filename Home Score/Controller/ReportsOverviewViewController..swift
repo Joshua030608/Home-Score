@@ -37,7 +37,7 @@ class ReportsOverviewViewController: UIViewController {
         }
     }
     
-    func reloadTableView() {
+     func reloadTableView() {
         tableView.reloadData()
     }
     

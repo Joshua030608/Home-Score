@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Zyv-d6-idv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Zyv-d6-idv">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -41,7 +41,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="HouseCell" rowHeight="150" id="UCD-YG-CYM" customClass="HouseCell" customModule="Home_Score" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="150"/>
+                                        <rect key="frame" x="0.0" y="24.5" width="375" height="150"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="UCD-YG-CYM" id="sbY-5j-UcG">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
@@ -51,16 +51,17 @@
                                                     <rect key="frame" x="16" y="11" width="134" height="128"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="134" id="5R6-SA-TQy"/>
+                                                        <constraint firstAttribute="height" constant="128" id="Ti3-s7-dKS"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iy1-Bw-W9A">
-                                                    <rect key="frame" x="150" y="0.0" width="225" height="78"/>
+                                                    <rect key="frame" x="158" y="0.0" width="217" height="78"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ral-WI-I9Q">
-                                                    <rect key="frame" x="150" y="78" width="225" height="72"/>
+                                                    <rect key="frame" x="158" y="78" width="217" height="72"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="72" id="zJO-rl-Zhe"/>
@@ -122,11 +123,10 @@
                                                 <constraint firstAttribute="bottom" secondItem="ral-WI-I9Q" secondAttribute="bottom" id="TfG-4U-H4d"/>
                                                 <constraint firstAttribute="trailing" secondItem="ral-WI-I9Q" secondAttribute="trailing" id="WZa-S2-96L"/>
                                                 <constraint firstItem="TgM-ja-rIs" firstAttribute="leading" secondItem="sbY-5j-UcG" secondAttribute="leadingMargin" id="bxH-wG-fsm"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="TgM-ja-rIs" secondAttribute="bottom" id="eCG-fb-ZEb"/>
                                                 <constraint firstAttribute="trailing" secondItem="Iy1-Bw-W9A" secondAttribute="trailing" id="nI6-sn-2hE"/>
-                                                <constraint firstItem="Iy1-Bw-W9A" firstAttribute="leading" secondItem="TgM-ja-rIs" secondAttribute="trailing" id="sZv-Lb-XDs"/>
-                                                <constraint firstItem="ral-WI-I9Q" firstAttribute="leading" secondItem="TgM-ja-rIs" secondAttribute="trailing" id="wpg-PQ-1KW"/>
-                                                <constraint firstItem="TgM-ja-rIs" firstAttribute="top" secondItem="sbY-5j-UcG" secondAttribute="topMargin" id="xO0-wx-358"/>
+                                                <constraint firstItem="TgM-ja-rIs" firstAttribute="centerY" secondItem="sbY-5j-UcG" secondAttribute="centerY" id="oav-9o-TDQ"/>
+                                                <constraint firstItem="Iy1-Bw-W9A" firstAttribute="leading" secondItem="TgM-ja-rIs" secondAttribute="trailing" constant="8" id="sZv-Lb-XDs"/>
+                                                <constraint firstItem="ral-WI-I9Q" firstAttribute="leading" secondItem="TgM-ja-rIs" secondAttribute="trailing" constant="8" id="wpg-PQ-1KW"/>
                                                 <constraint firstItem="ral-WI-I9Q" firstAttribute="top" secondItem="Iy1-Bw-W9A" secondAttribute="bottom" id="yNL-Ws-214"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -180,7 +180,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CategoryCell" rowHeight="44" id="RiF-Wo-lOH" customClass="CategoryCell" customModule="Home_Score" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="24.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="RiF-Wo-lOH" id="eAn-pc-2rF">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -335,14 +335,14 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SettingsCell" textLabel="hGx-iQ-DaY" rowHeight="80" style="IBUITableViewCellStyleDefault" id="y44-1i-4gK">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="80"/>
+                                        <rect key="frame" x="0.0" y="24.5" width="375" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="y44-1i-4gK" id="gTd-yu-U5h">
-                                            <rect key="frame" x="0.0" y="0.0" width="348" height="80"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="349.5" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hGx-iQ-DaY">
-                                                    <rect key="frame" x="16" y="0.0" width="324" height="80"/>
+                                                    <rect key="frame" x="16" y="0.0" width="325.5" height="80"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                                     <nil key="textColor"/>
@@ -391,7 +391,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SettingsCategoryCell" rowHeight="70" id="NNB-yn-XNS" customClass="SettingsCategoryCell" customModule="Home_Score" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="70"/>
+                                        <rect key="frame" x="0.0" y="24.5" width="375" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NNB-yn-XNS" id="1df-7f-aJ1">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
