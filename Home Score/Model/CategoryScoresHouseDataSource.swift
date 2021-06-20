@@ -9,11 +9,11 @@ import UIKit
 
 class CategoryScoresHouseDataSource: NSObject, UITableViewDataSource {
     
-    fileprivate var scoresDictionary = [Category : Int]()
+    fileprivate var scoresDictionary = [UUID : Int]()
     fileprivate var keys = [Int]()
     fileprivate var newDict = [Int:Int]()
     
-     init(scoresDictionary: [Category : Int]?) {
+     init(scoresDictionary: [UUID : Int]?) {
         if let scoresDictionary = scoresDictionary {
             self.scoresDictionary = scoresDictionary
         } else {
@@ -22,16 +22,23 @@ class CategoryScoresHouseDataSource: NSObject, UITableViewDataSource {
          super.init()
      }
     
-    func getAllScores() -> [Category: Int] {
+    func getAllScores() -> [UUID: Int] {
         return scoresDictionary
     }
     
     func updateScore(forCategory category: Category, score: Int) {
-        scoresDictionary[category] = score
+        scoresDictionary[category.id] = score
     }
     
     func score(forCategory category: Category) -> Int {
-        return scoresDictionary[category]!
+        print(#function)
+        /*for  (index, score) in scoresDictionary.enumerated() {
+            print(index, score.0.name, score.0.weight, score.1)
+        }*/
+        for f in scoresDictionary.enumerated() {
+            
+        }
+        return scoresDictionary[category.id] ?? 1
     }
 
     func category(forIndexPath indexPath: IndexPath) -> Category {
@@ -46,7 +53,7 @@ class CategoryScoresHouseDataSource: NSObject, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: CategoryCell.id, for: indexPath) as! CategoryCell
         let category = self.category(forIndexPath: indexPath)
         cell.nameLabel.text = category.name
-        let score = scoresDictionary[category]
+        let score = scoresDictionary[category.id]
         let scoreString = (score == Category.NAValue) ? "N/A" : "\(score!)"
         cell.ratingLabel.text = scoreString
         return cell

@@ -65,7 +65,7 @@ extension CategoryViewController: UITextFieldDelegate {
 
         let index = textField.tag
         if index == CategoryStore.shared.categories.count {
-            let newCategory = Category(name: textField.text!, weight: addingCellWeight, photo: nil)
+            let newCategory = Category(id: UUID(), name: textField.text!, weight: addingCellWeight, photo: nil)
             CategoryStore.shared.addCategory(newCategory)
         } else {
             CategoryStore.shared.updateName(textField.text!, forCategoryAtIndex: index)

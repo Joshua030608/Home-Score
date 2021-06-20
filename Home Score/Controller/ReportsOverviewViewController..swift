@@ -19,6 +19,7 @@ class ReportsOverviewViewController: UIViewController {
 //            self?.reloadTableView()
 //
 //        }
+        print(#file, #function)
         tableView.reloadData()
     }
     

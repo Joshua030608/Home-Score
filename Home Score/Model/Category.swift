@@ -22,6 +22,15 @@ class CategoryStore {
     
     var categories: [Category] = CategoryStore.getCategories()
     
+    func category(forID id: UUID) -> Category? {
+        for category in categories {
+            if category.id == id {
+                return category
+            }
+        }
+        return nil
+    }
+    
     func addCategory(_ category: Category) {
         categories.append(category)
         saveCategories()
@@ -31,10 +40,13 @@ class CategoryStore {
     func updateName(_ name: String, forCategoryAtIndex categoryIndex: Int) {
         categories[categoryIndex].name = name // Struct (value)
         saveCategories()
+        
     }
     
     func updateWeight(_ weight: Category.WeightOption, forCategoryAtIndex categoryIndex: Int) {
+        print("Before", categories[categoryIndex].weight)
         categories[categoryIndex].weight = weight // Struct (value)
+        print("After", categories[categoryIndex].weight)
         saveCategories()
     }
     
@@ -65,6 +77,10 @@ class CategoryStore {
         let encoder = JSONEncoder()
         do {
             let data = try encoder.encode(categories)
+            print(#function)
+            for  (index, category) in categories.enumerated() {
+                print(index, category.name, category.weight)
+            }
             if FileManager.default.fileExists(atPath: CategoryStore.url.path) {
                 try FileManager.default.removeItem(at: CategoryStore.url)
             }
@@ -76,12 +92,13 @@ class CategoryStore {
 }
 
 struct Category: Codable {
+    let id: UUID
     var name: String
     var weight: WeightOption
     var photo: UIImage?
     
     enum CodingKeys: CodingKey {
-        case name, weight, photo
+        case id, name, weight, photo
     }
     
     enum WeightOption: Int, Codable {
@@ -93,26 +110,27 @@ struct Category: Codable {
     
     static let NAValue = -1
     static let defaultCategories = [
-        Category(name: "Kitchen", photo: nil),
-        Category(name: "Master Bedroom", photo: nil),
-        Category(name: "Master Bathroom", photo: nil),
-        Category(name: "Other Bedrooms", photo: nil),
-        Category(name: "Backyard", photo: nil),
-        Category(name: "Frontyard", photo: nil),
-        Category(name: "School District", photo: nil),
-        Category(name: "Neighborhood", photo: nil),
-        Category(name: "Living Room", photo: nil),
-        Category(name: "Basement", photo: nil),
-        Category(name: "Other Bathrooms", photo: nil),
-        Category(name: "Driveway", photo: nil),
-        Category(name: "Laundry Room", photo: nil),
-        Category(name: "Garage", photo: nil)
+        Category(id: UUID(), name: "Kitchen", photo: nil),
+        Category(id: UUID(), name: "Master Bedroom", photo: nil),
+        Category(id: UUID(), name: "Master Bathroom", photo: nil),
+        Category(id: UUID(), name: "Other Bedrooms", photo: nil),
+        Category(id: UUID(), name: "Backyard", photo: nil),
+        Category(id: UUID(), name: "Frontyard", photo: nil),
+        Category(id: UUID(), name: "School District", photo: nil),
+        Category(id: UUID(), name: "Neighborhood", photo: nil),
+        Category(id: UUID(), name: "Living Room", photo: nil),
+        Category(id: UUID(), name: "Basement", photo: nil),
+        Category(id: UUID(), name: "Other Bathrooms", photo: nil),
+        Category(id: UUID(), name: "Driveway", photo: nil),
+        Category(id: UUID(), name: "Laundry Room", photo: nil),
+        Category(id: UUID(), name: "Garage", photo: nil)
     ]
     
         
 
     
-    init(name: String, weight: WeightOption = WeightOption.defaultWeight, photo: UIImage?) {
+    init(id: UUID, name: String, weight: WeightOption = WeightOption.defaultWeight, photo: UIImage?) {
+        self.id = id
         self.name = name
         self.weight = weight
         self.photo = photo
@@ -121,6 +139,7 @@ struct Category: Codable {
     public init(from decoder: Decoder) throws {
         
         let container = try decoder.container(keyedBy: CodingKeys.self)
+        id = try container.decode(UUID.self, forKey: .id)
         name = try container.decode(String.self, forKey: .name)
         weight = try container.decode(Category.WeightOption.self, forKey: .weight)
         let photoData = try? container.decode(Data.self, forKey: .photo)
@@ -131,6 +150,7 @@ struct Category: Codable {
     
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(id, forKey: .id)
         try container.encode(name, forKey: .name)
         try container.encode(weight, forKey: .weight)
         try container.encode(photo?.pngData(), forKey: .photo)
@@ -139,6 +159,6 @@ struct Category: Codable {
 
 extension Category: Hashable {
     func hash(into hasher: inout Hasher) {
-        hasher.combine(name)
+        hasher.combine(id)
     }
 }

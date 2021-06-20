@@ -44,10 +44,11 @@ class HomeStore {
     
     func updateHomes(forNewCategory newCategory: Category) {
         for home in homes {
-            home.categoryScores[newCategory] = Category.NAValue
+            home.categoryScores[newCategory.id] = Category.NAValue
         }
         saveHomes()
     }
+    
     
     fileprivate func saveHomes() {
         let encoder = JSONEncoder()
@@ -92,15 +93,19 @@ class Home: Codable {
     var address: String
     var notes: String
     var photos: [UIImage]
-    var categoryScores: [Category : Int]
+    var categoryScores: [UUID : Int]
     var score: Double? {
         
         var scoreTotal = 0
         var scoreCount = 0
-        for (category, score) in self.categoryScores {
-            if score != Category.NAValue {
-                scoreTotal += score * category.weight.rawValue
-                scoreCount += 1
+        for (categoryID, score) in self.categoryScores {
+            for category in CategoryStore.shared.categories {
+                if category.id == categoryID {
+                    if score == Category.NAValue {
+                        scoreTotal += score * category.weight.rawValue
+                        scoreCount += 1
+                    }
+                }
             }
         }
         
@@ -127,7 +132,7 @@ class Home: Codable {
         ]
     } */
     
-    init (id: UUID? = nil, title: String, address: String, notes: String, photos: [UIImage], categoryScores: [Category : Int]? = nil) {
+    init (id: UUID? = nil, title: String, address: String, notes: String, photos: [UIImage], categoryScores: [UUID : Int]? = nil) {
         self.id = (id == nil) ? UUID() : id!
         self.title = title
         self.address = address
@@ -151,7 +156,7 @@ class Home: Codable {
         notes = try container.decode(String.self, forKey: .notes)
         let photoDatas = try container.decode([Data].self, forKey: .photos)
         photos = photoDatas.map{ UIImage(data: $0)! }
-        categoryScores = try container.decode([Category : Int].self, forKey: .categoryScores)
+        categoryScores = try container.decode([UUID : Int].self, forKey: .categoryScores)
       
         
     }
@@ -169,13 +174,13 @@ class Home: Codable {
         try container.encode(categoryScores, forKey: .categoryScores)
     }
     
-    static func defaultCategoryScores() -> [Category : Int]{
-        var newCategoryScores = [Category : Int]()
+    static func defaultCategoryScores() -> [UUID : Int]{
+        var newCategoryScores = [UUID : Int]()
         for category in CategoryStore.shared.categories {
             if category.name == "Kitchen" {
-                newCategoryScores[category] = 8
+                newCategoryScores[category.id] = 8
             } else {
-                newCategoryScores[category] = Category.NAValue
+                newCategoryScores[category.id] = Category.NAValue
             }
         }
         return newCategoryScores
