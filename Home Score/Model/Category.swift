@@ -33,31 +33,28 @@ class CategoryStore {
     
     func addCategory(_ category: Category) {
         categories.append(category)
-        saveCategories()
+        CategoryStore.saveCategories(categories)
         HomeStore.shared.updateHomes(forNewCategory: category)
     }
     
     func updateName(_ name: String, forCategoryAtIndex categoryIndex: Int) {
         categories[categoryIndex].name = name // Struct (value)
-        saveCategories()
-        
+        CategoryStore.saveCategories(categories)
     }
     
     func updateWeight(_ weight: Category.WeightOption, forCategoryAtIndex categoryIndex: Int) {
         print("Before", categories[categoryIndex].weight)
         categories[categoryIndex].weight = weight // Struct (value)
         print("After", categories[categoryIndex].weight)
-        saveCategories()
-    }
-    
-    fileprivate init() {
-       // self.categories = CategoryStore.getCategories()
+        CategoryStore.saveCategories(categories)
     }
     
     fileprivate static func getCategories() -> [Category] {
         
         guard FileManager.default.fileExists(atPath: CategoryStore.url.path) else {
-            return Category.defaultCategories
+            let defaultCategories = Category.defaultCategories
+            CategoryStore.saveCategories(defaultCategories)
+            return defaultCategories
         }
         
         
@@ -65,6 +62,7 @@ class CategoryStore {
         do {
             let data = try Data(contentsOf: CategoryStore.url)
             let categories = try decoder.decode([Category].self, from: data)
+            print(categories)
             return categories
         } catch {
             print(error.localizedDescription)
@@ -73,7 +71,7 @@ class CategoryStore {
         }
     }
     
-    fileprivate func saveCategories() {
+    fileprivate static func saveCategories(_ categories: [Category]) {
         let encoder = JSONEncoder()
         do {
             let data = try encoder.encode(categories)

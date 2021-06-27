@@ -35,9 +35,11 @@ class CategoryScoresHouseDataSource: NSObject, UITableViewDataSource {
         /*for  (index, score) in scoresDictionary.enumerated() {
             print(index, score.0.name, score.0.weight, score.1)
         }*/
-        for f in scoresDictionary.enumerated() {
-            
-        }
+        
+        
+        
+        print(scoresDictionary)
+        
         return scoresDictionary[category.id] ?? 1
     }
 
@@ -54,7 +56,13 @@ class CategoryScoresHouseDataSource: NSObject, UITableViewDataSource {
         let category = self.category(forIndexPath: indexPath)
         cell.nameLabel.text = category.name
         let score = scoresDictionary[category.id]
+        print(category.id)
+        
+        for (id, scoreValue) in scoresDictionary {
+            print("(\(id))score \(scoreValue)")
+        }
         let scoreString = (score == Category.NAValue) ? "N/A" : "\(score!)"
+        
         cell.ratingLabel.text = scoreString
         return cell
     }
