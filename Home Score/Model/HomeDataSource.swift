@@ -9,23 +9,21 @@ import UIKit
 
 class HomeDataSource: NSObject, UITableViewDataSource {
     
-    var homes: [Home]
     var didScrollHandler: ((Int, CGFloat) -> Void)?
     
     override init() {
-        homes = HomeStore.shared.homes
         super.init()
     }
     
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(homes.count)
-        return homes.count
+        print(HomeStore.shared.homes.count)
+        return HomeStore.shared.homes.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: HouseCell.id, for: indexPath) as! HouseCell
-        let home = homes[indexPath.row]
+        let home = HomeStore.shared.homes[indexPath.row]
 //        cell.titleLabel.text = home.title
 //        cell.homeScoreLabel.text = String(home.score)
         var scoreString = "N/A"
@@ -70,7 +68,7 @@ extension HomeDataSource: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CompareCell.id, for: indexPath) as! CompareCell
-        let home = homes[collectionView.tag]
+        let home = HomeStore.shared.homes[collectionView.tag]
         let CategoryDataSource = CategoryScoresHouseDataSource(scoresDictionary: home.categoryScores)
         let category = CategoryDataSource.category(forIndexPath: indexPath)
         let score = CategoryDataSource.score(forCategory: category)

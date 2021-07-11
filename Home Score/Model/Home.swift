@@ -98,14 +98,13 @@ class Home: Codable {
         
         var scoreTotal = 0
         var scoreCount = 0
+        var weightTotal = 0
         for (categoryID, score) in self.categoryScores {
-            for category in CategoryStore.shared.categories {
-                if category.id == categoryID {
-                    if score == Category.NAValue {
-                        scoreTotal += score * category.weight.rawValue
-                        scoreCount += 1
-                    }
-                }
+            if score != Category.NAValue {
+                let weight = CategoryStore.shared.category(forID: categoryID)!.weight.rawValue
+                weightTotal += weight
+                scoreTotal += score * weight
+                scoreCount += 1
             }
         }
         
@@ -113,12 +112,7 @@ class Home: Codable {
             return nil
         }
         
-        let average = (scoreTotal / scoreCount)
-        let factor = 1.0 / Double(Category.WeightOption.maxWeight.rawValue)
-        let finalScore = factor * Double(average)
-        return finalScore
-        
-        // |    |    |    |    |    |    |    |    |    |    |
+        return Double(scoreTotal) / Double(weightTotal)
     }
 
     
