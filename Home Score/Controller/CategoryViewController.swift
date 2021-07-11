@@ -55,6 +55,28 @@ extension CategoryViewController: UITableViewDataSource {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        print(indexPath.row)
+        if indexPath.row < Category.defaultCategories.count || indexPath.row == CategoryStore.shared.categories.count {
+            print("false")
+            return false
+        } else {
+            print("true")
+            return true
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            CategoryStore.shared.categories.remove(at: indexPath.row)
+            /* for home in HomeStore.shared.homes {
+                home.categoryScores.removeValue(forKey: CategoryStore.shared.categories[indexPath.row].id)
+            } */
+            
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            
+        }
+    }
     
 }
 
