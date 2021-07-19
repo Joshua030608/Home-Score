@@ -196,8 +196,8 @@
 		0350E4D02548E962003369B6 /* Other */ = {
 			isa = PBXGroup;
 			children = (
-				033DEBAF253FA9A5008104D8 /* SceneDelegate.swift */,
 				033DEBAD253FA9A5008104D8 /* AppDelegate.swift */,
+				033DEBAF253FA9A5008104D8 /* SceneDelegate.swift */,
 				033DEBB3253FA9A5008104D8 /* Main.storyboard */,
 				033DEBB6253FA9AB008104D8 /* Assets.xcassets */,
 				033DEBB8253FA9AB008104D8 /* LaunchScreen.storyboard */,

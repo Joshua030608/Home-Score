@@ -56,6 +56,7 @@ class HomeDataSource: NSObject, UITableViewDataSource {
         
         // ARC - Automatic Reference Counting
         
+        cell.collectionView.reloadData()
         
         return cell
     }

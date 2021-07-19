@@ -68,13 +68,8 @@ extension CategoryViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            CategoryStore.shared.categories.remove(at: indexPath.row)
-            /* for home in HomeStore.shared.homes {
-                home.categoryScores.removeValue(forKey: CategoryStore.shared.categories[indexPath.row].id)
-            } */
-            
+            CategoryStore.shared.removeCategory(atIndex: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
-            
         }
     }
     

@@ -37,6 +37,13 @@ class CategoryStore {
         HomeStore.shared.updateHomes(forNewCategory: category)
     }
     
+    func removeCategory(atIndex index: Int) {
+        HomeStore.shared.updateHomes(forRemovedCategoryID: CategoryStore.shared.categories[index].id)
+        categories.remove(at: index)
+        CategoryStore.saveCategories(categories)
+        
+    }
+    
     func updateName(_ name: String, forCategoryAtIndex categoryIndex: Int) {
         categories[categoryIndex].name = name // Struct (value)
         CategoryStore.saveCategories(categories)

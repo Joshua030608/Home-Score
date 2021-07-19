@@ -49,6 +49,12 @@ class HomeStore {
         saveHomes()
     }
     
+    func updateHomes(forRemovedCategoryID removedCategoryID: UUID) {
+         for home in HomeStore.shared.homes {
+            home.categoryScores.removeValue(forKey: removedCategoryID)
+        }
+        saveHomes()
+    }
     
     fileprivate func saveHomes() {
         let encoder = JSONEncoder()

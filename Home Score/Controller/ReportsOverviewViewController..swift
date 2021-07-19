@@ -38,9 +38,6 @@ class ReportsOverviewViewController: UIViewController {
         }
     }
     
-     func reloadTableView() {
-        tableView.reloadData()
-    }
     
     func handleCategoryScoresScroll(index: Int, offset: CGFloat) {
         for (cellIndex, visibleCell) in tableView.visibleCells.enumerated() {
