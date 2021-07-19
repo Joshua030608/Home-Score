@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import PhotosUI
 class AddEditHouseViewController: UIViewController {
     
     @IBOutlet weak var houseImageView: UIImageView!
@@ -105,10 +106,12 @@ class AddEditHouseViewController: UIViewController {
     }
     
     @objc fileprivate func houseImageViewPressed() {
-        let imagePickerController = UIImagePickerController()
-        imagePickerController.delegate = self
-        imagePickerController.allowsEditing = true
-        present(imagePickerController, animated: true, completion: nil)
+        var configuration = PHPickerConfiguration()
+        configuration.selectionLimit = 10
+        configuration.filter = .images
+        let phPicker = PHPickerViewController(configuration: configuration)
+        phPicker.delegate = self
+        present(phPicker, animated: true, completion: nil)
     }
     
     override func viewDidLoad() {
@@ -208,7 +211,24 @@ extension AddEditHouseViewController: CategoryScorePickerViewParentDelegate {
     }
 }
 
-extension AddEditHouseViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension AddEditHouseViewController: PHPickerViewControllerDelegate {
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        dismiss(animated: true, completion: nil)
+        guard !results.isEmpty else { return }
+        
+        for result in results {
+              result.itemProvider.loadObject(ofClass: UIImage.self, completionHandler: { (object, error) in
+                 if let image = object as? UIImage {
+                    DispatchQueue.main.async {
+                        self.houseImageView.animationImages?.append(image)
+                        self.houseImageView.animationDuration = 10
+                    }
+                }
+            })
+        }
+    }
+}
+/* extension AddEditHouseViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
     }
@@ -220,4 +240,4 @@ extension AddEditHouseViewController: UIImagePickerControllerDelegate, UINavigat
         }
         dismiss(animated: true, completion: nil)
     }
-}
+} */
