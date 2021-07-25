@@ -8,8 +8,7 @@
 import UIKit
 import PhotosUI
 class AddEditHouseViewController: UIViewController {
-    
-    @IBOutlet weak var houseImageView: UIImageView!
+    @IBOutlet weak var houseImageViewContainerView: HouseImageViewContainerView!
     @IBOutlet weak var addressTextField: UITextField!
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var tableView: UITableView!
@@ -48,12 +47,8 @@ class AddEditHouseViewController: UIViewController {
             // Show error
             return
         }
-        var photos: [UIImage] = []
-        if let houseImage = houseImageView.image {
-            photos.append(houseImage)
-        }
         
-        let home = Home(id: home?.id, title: titleText, address: addressText, notes: "Notes", photos: photos, categoryScores: dataSource?.getAllScores())
+        let home = Home(id: home?.id, title: titleText, address: addressText, notes: "Notes", photos: houseImageViewContainerView.images, categoryScores: dataSource?.getAllScores())
         HomeStore.shared.saveHome(home)
         navigationController?.popViewController(animated: true)
     }
@@ -101,7 +96,7 @@ class AddEditHouseViewController: UIViewController {
         view.bringSubviewToFront(blockerView)
         view.bringSubviewToFront(addressTextField)
         view.bringSubviewToFront(titleTextField)
-        view.bringSubviewToFront(houseImageView)
+        view.bringSubviewToFront(houseImageViewContainerView)
         
     }
     
@@ -116,17 +111,18 @@ class AddEditHouseViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        houseImageViewContainerView.backgroundColor = .red
         if let home = home {
-            houseImageView.image = home.photos.first
+            houseImageViewContainerView.images = home.photos
             addressTextField.text = home.address
             titleTextField.text = home.title
             dataSource = CategoryScoresHouseDataSource(scoresDictionary: home.categoryScores)
         } else {
             dataSource = CategoryScoresHouseDataSource(scoresDictionary: nil)
         }
-        houseImageView.isUserInteractionEnabled = true
+        houseImageViewContainerView.isUserInteractionEnabled = true
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(houseImageViewPressed))
-        houseImageView.addGestureRecognizer(tapGestureRecognizer)
+        houseImageViewContainerView.addGestureRecognizer(tapGestureRecognizer)
         //setUpCategoryScorePicker()
         setUpCustomFooter()
         setUpBlockerView()
@@ -220,8 +216,7 @@ extension AddEditHouseViewController: PHPickerViewControllerDelegate {
               result.itemProvider.loadObject(ofClass: UIImage.self, completionHandler: { (object, error) in
                  if let image = object as? UIImage {
                     DispatchQueue.main.async {
-                        self.houseImageView.animationImages?.append(image)
-                        self.houseImageView.animationDuration = 10
+                        self.houseImageViewContainerView.images.append(image)
                     }
                 }
             })

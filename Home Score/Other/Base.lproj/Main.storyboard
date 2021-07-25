@@ -152,7 +152,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Ul4-5N-MhQ">
-                        <barButtonItem key="rightBarButtonItem" title="Add House" image="house.circle.fill" catalog="system" id="fKL-Mt-cVc">
+                        <barButtonItem key="rightBarButtonItem" title="Add House" image="plus.circle.fill" catalog="system" id="fKL-Mt-cVc">
                             <connections>
                                 <action selector="addHomeButtonPressed:" destination="ZmU-57-ccO" id="zan-Cb-pUq"/>
                             </connections>
@@ -238,29 +238,30 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="download" translatesAutoresizingMaskIntoConstraints="NO" id="akc-HL-vHY">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9vu-nO-cV8" customClass="HouseImageViewContainerView" customModule="Home_Score" customModuleProvider="target">
                                 <rect key="frame" x="47" y="59" width="281" height="194"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="194" id="R1i-Hw-1qm"/>
+                                    <constraint firstAttribute="height" constant="194" id="Wlw-od-gKd"/>
                                 </constraints>
-                            </imageView>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="g61-Bz-mJO"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="akc-HL-vHY" firstAttribute="leading" secondItem="g61-Bz-mJO" secondAttribute="leading" constant="47" id="0UJ-rc-Ssp"/>
+                            <constraint firstItem="9vu-nO-cV8" firstAttribute="leading" secondItem="g61-Bz-mJO" secondAttribute="leading" constant="47" id="0oU-H1-B70"/>
                             <constraint firstItem="utw-fO-Tyb" firstAttribute="trailing" secondItem="g61-Bz-mJO" secondAttribute="trailing" id="2bZ-sh-DYD"/>
+                            <constraint firstItem="9vu-nO-cV8" firstAttribute="top" secondItem="g61-Bz-mJO" secondAttribute="top" constant="15" id="59X-dP-ebF"/>
                             <constraint firstItem="utw-fO-Tyb" firstAttribute="top" secondItem="jmK-mB-QrS" secondAttribute="bottom" constant="15" id="D1c-sR-6E8"/>
                             <constraint firstItem="g61-Bz-mJO" firstAttribute="trailing" secondItem="jmK-mB-QrS" secondAttribute="trailing" constant="20" id="Fxc-IT-7GS"/>
                             <constraint firstItem="utw-fO-Tyb" firstAttribute="leading" secondItem="g61-Bz-mJO" secondAttribute="leading" id="NnV-Eg-3h4"/>
-                            <constraint firstItem="g61-Bz-mJO" firstAttribute="trailing" secondItem="akc-HL-vHY" secondAttribute="trailing" constant="47" id="Tr7-hA-ouQ"/>
                             <constraint firstItem="utw-fO-Tyb" firstAttribute="bottom" secondItem="g61-Bz-mJO" secondAttribute="bottom" id="Trh-PI-a1P"/>
-                            <constraint firstItem="akc-HL-vHY" firstAttribute="top" secondItem="g61-Bz-mJO" secondAttribute="top" constant="15" id="Zlr-Ol-o5O"/>
+                            <constraint firstItem="3yt-Vv-WsS" firstAttribute="top" secondItem="9vu-nO-cV8" secondAttribute="bottom" constant="1" id="efS-gc-DyJ"/>
                             <constraint firstItem="3yt-Vv-WsS" firstAttribute="leading" secondItem="g61-Bz-mJO" secondAttribute="leading" constant="20" id="hWX-jm-pUA"/>
                             <constraint firstItem="jmK-mB-QrS" firstAttribute="top" secondItem="3yt-Vv-WsS" secondAttribute="bottom" constant="1" id="jFN-FD-QFr"/>
                             <constraint firstItem="g61-Bz-mJO" firstAttribute="trailing" secondItem="3yt-Vv-WsS" secondAttribute="trailing" constant="20" id="jeM-cW-I4C"/>
-                            <constraint firstItem="3yt-Vv-WsS" firstAttribute="top" secondItem="akc-HL-vHY" secondAttribute="bottom" constant="1" id="pdI-m3-geC"/>
                             <constraint firstItem="jmK-mB-QrS" firstAttribute="leading" secondItem="g61-Bz-mJO" secondAttribute="leading" constant="20" id="tvf-s1-gi3"/>
+                            <constraint firstItem="g61-Bz-mJO" firstAttribute="trailing" secondItem="9vu-nO-cV8" secondAttribute="trailing" constant="47" id="znC-hi-GGB"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
@@ -275,7 +276,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="addressTextField" destination="jmK-mB-QrS" id="GM6-f5-vjK"/>
-                        <outlet property="houseImageView" destination="akc-HL-vHY" id="XBp-Ki-gWE"/>
+                        <outlet property="houseImageViewContainerView" destination="9vu-nO-cV8" id="yBX-6x-JUk"/>
                         <outlet property="tableView" destination="utw-fO-Tyb" id="LvZ-hb-nuY"/>
                         <outlet property="titleTextField" destination="3yt-Vv-WsS" id="os8-Zh-h7k"/>
                     </connections>
@@ -501,8 +502,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="download" width="259" height="194"/>
-        <image name="house.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="plus.circle.fill" catalog="system" width="128" height="121"/>
         <image name="square.and.arrow.up.fill" catalog="system" width="115" height="128"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

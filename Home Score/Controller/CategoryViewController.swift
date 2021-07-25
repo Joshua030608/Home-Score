@@ -57,7 +57,7 @@ extension CategoryViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         print(indexPath.row)
-        if indexPath.row < Category.defaultCategories.count || indexPath.row == CategoryStore.shared.categories.count {
+        if indexPath.row == CategoryStore.shared.categories.count {
             print("false")
             return false
         } else {

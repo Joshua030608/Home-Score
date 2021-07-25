@@ -26,6 +26,7 @@
 		03721950255229A000C507C2 /* HouseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0372194F2552299F00C507C2 /* HouseCell.swift */; };
 		0372195B2552309500C507C2 /* HomeDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0372195A2552309500C507C2 /* HomeDataSource.swift */; };
 		038366792610EED300B7B354 /* TextViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038366782610EED300B7B354 /* TextViewViewController.swift */; };
+		03AD368E26A7922400A47108 /* HouseImageViewContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AD368D26A7922300A47108 /* HouseImageViewContainerView.swift */; };
 		03B16D2825F5381A007A8684 /* CompareCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B16D2725F5381A007A8684 /* CompareCell.swift */; };
 		03C58652257448EC00718E8A /* CategoryScoresHouseDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C58651257448EC00718E8A /* CategoryScoresHouseDataSource.swift */; };
 		03E414ED2613EC7F001F549F /* LegalSettingsOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E414EC2613EC7F001F549F /* LegalSettingsOption.swift */; };
@@ -76,6 +77,7 @@
 		0372194F2552299F00C507C2 /* HouseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HouseCell.swift; path = "Home Score/Other/HouseCell.swift"; sourceTree = SOURCE_ROOT; };
 		0372195A2552309500C507C2 /* HomeDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDataSource.swift; sourceTree = "<group>"; };
 		038366782610EED300B7B354 /* TextViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewViewController.swift; sourceTree = "<group>"; };
+		03AD368D26A7922300A47108 /* HouseImageViewContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseImageViewContainerView.swift; sourceTree = "<group>"; };
 		03B16D2725F5381A007A8684 /* CompareCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompareCell.swift; sourceTree = "<group>"; };
 		03C58651257448EC00718E8A /* CategoryScoresHouseDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryScoresHouseDataSource.swift; sourceTree = "<group>"; };
 		03E414EC2613EC7F001F549F /* LegalSettingsOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalSettingsOption.swift; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 			isa = PBXGroup;
 			children = (
 				036588BC25C0EC06008CC8E1 /* CategoryScorePickerViewParent.swift */,
+				03AD368D26A7922300A47108 /* HouseImageViewContainerView.swift */,
 				0372194F2552299F00C507C2 /* HouseCell.swift */,
 				03FAF5882564A70F0013B51A /* CategoryCell.swift */,
 				03B16D2725F5381A007A8684 /* CompareCell.swift */,
@@ -348,6 +351,7 @@
 				0372195B2552309500C507C2 /* HomeDataSource.swift in Sources */,
 				0333B36A2626605E0037B50C /* SettingsCategoryCell.swift in Sources */,
 				038366792610EED300B7B354 /* TextViewViewController.swift in Sources */,
+				03AD368E26A7922400A47108 /* HouseImageViewContainerView.swift in Sources */,
 				033DEBB0253FA9A5008104D8 /* SceneDelegate.swift in Sources */,
 				03FAF5892564A70F0013B51A /* CategoryCell.swift in Sources */,
 				0350E4C62548E6E1003369B6 /* Home.swift in Sources */,
@@ -536,6 +540,7 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = KTP2C8ZWM3;
 				INFOPLIST_FILE = "Home Score/Other/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -557,6 +562,7 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = KTP2C8ZWM3;
 				INFOPLIST_FILE = "Home Score/Other/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
