@@ -23,19 +23,26 @@ class HouseImageViewContainerView: UIView {
     
     fileprivate var swipeGestureRecognizer: UISwipeGestureRecognizer!
     
+    fileprivate var numberOfSwipes: Int
+    
     var images: [UIImage] = [] {
         didSet {
             firstImageView.image = images.first
+            if images.count > 1 {
+                secondImageView.image = images[1]
+            }
         }
     }
-    
     init() {
+        self.numberOfSwipes = 0
         super.init(frame: .zero)
         setUpView()
+        self.numberOfSwipes = 0
         swipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(houseImageViewSwiped))
     }
     
     required init?(coder: NSCoder) {
+        self.numberOfSwipes = 0
         super.init(coder: coder)
         setUpView()
         swipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(houseImageViewSwiped))
@@ -56,6 +63,24 @@ class HouseImageViewContainerView: UIView {
     }
     
     @objc fileprivate func houseImageViewSwiped() {
-        // something
+        print("Has Swiped. Number of Images: \(images.count)")
+        if images.count > 1 {
+            self.numberOfSwipes += 1
+            
+            self.firstImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = false
+            
+            UIView.animate(withDuration: 1.0, delay: 0.0, options: .curveEaseOut, animations: {
+                self.firstImageView.trailingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+                self.secondImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+                self.layoutIfNeeded()
+            }) { (_) in
+                // "Completion Block"
+                self.firstImageView.image = self.secondImageView.image
+                self.secondImageView.image = self.images[self.numberOfSwipes]
+                self.setUpView()
+                self.layoutIfNeeded()
+                print("animation done")
+            }
+        }
     }
 }
