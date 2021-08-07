@@ -9,75 +9,88 @@ import UIKit
 
 class HouseImageViewContainerView: UIView {
     
-    private let firstImageView: UIImageView = {
+    private var primaryImageViewLeadingConstraint: NSLayoutConstraint!
+    private var primaryImageViewTrailingConstraint: NSLayoutConstraint!
+    private let primaryImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.isUserInteractionEnabled = true
         return imageView
     }()
     
-    private let secondImageView: UIImageView = {
+    private var secondaryImageViewLeadingConstraint: NSLayoutConstraint!
+    private var secondaryImageViewTrailingConstraint: NSLayoutConstraint!
+    private let secondaryImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.isUserInteractionEnabled = true
         return imageView
     }()
     
     fileprivate var swipeGestureRecognizer: UISwipeGestureRecognizer!
     
-    fileprivate var numberOfSwipes: Int
+    fileprivate var numberOfSwipes = 0
     
     var images: [UIImage] = [] {
         didSet {
-            firstImageView.image = images.first
+            primaryImageView.image = images.first
             if images.count > 1 {
-                secondImageView.image = images[1]
+                secondaryImageView.image = images[1]
             }
         }
     }
     init() {
-        self.numberOfSwipes = 0
         super.init(frame: .zero)
         setUpView()
-        self.numberOfSwipes = 0
         swipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(houseImageViewSwiped))
     }
     
     required init?(coder: NSCoder) {
-        self.numberOfSwipes = 0
         super.init(coder: coder)
         setUpView()
         swipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(houseImageViewSwiped))
+        addGestureRecognizer(swipeGestureRecognizer)
+        layer.borderColor = UIColor.red.cgColor
+        layer.borderWidth = 3.0
     }
     
     fileprivate func setUpView() {
-        addSubview(firstImageView)
-        firstImageView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-        firstImageView.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
-        firstImageView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        firstImageView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        addSubview(primaryImageView)
+        primaryImageViewLeadingConstraint = primaryImageView.leadingAnchor.constraint(equalTo: leadingAnchor)
+        primaryImageViewLeadingConstraint.isActive = true
+        primaryImageViewTrailingConstraint = primaryImageView.trailingAnchor.constraint(equalTo: trailingAnchor)
+        primaryImageViewTrailingConstraint.isActive = true
+        primaryImageView.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
+        primaryImageView.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        primaryImageView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         
-        addSubview(secondImageView)
-        secondImageView.leadingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-        secondImageView.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
-        secondImageView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        secondImageView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        addSubview(secondaryImageView)
+        secondaryImageViewLeadingConstraint = primaryImageView.leadingAnchor.constraint(equalTo: leadingAnchor)
+        secondaryImageViewLeadingConstraint.isActive = true
+        secondaryImageViewTrailingConstraint = primaryImageView.trailingAnchor.constraint(equalTo: trailingAnchor)
+        secondaryImageViewTrailingConstraint.isActive = true
+        secondaryImageView.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
+        secondaryImageView.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        secondaryImageView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
     }
     
     @objc fileprivate func houseImageViewSwiped() {
         print("Has Swiped. Number of Images: \(images.count)")
         if images.count > 1 {
             self.numberOfSwipes += 1
-            
-            self.firstImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = false
-            
+    
+             
             UIView.animate(withDuration: 1.0, delay: 0.0, options: .curveEaseOut, animations: {
-                self.firstImageView.trailingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
-                self.secondImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+                self.primaryImageViewLeadingConstraint.constant = -self.frame.size.width
+                self.primaryImageViewTrailingConstraint.constant = self.frame.size.width
+                self.secondaryImageViewLeadingConstraint.constant = 0
+                self.secondaryImageViewTrailingConstraint.constant = self.frame.size.width
                 self.layoutIfNeeded()
             }) { (_) in
                 // "Completion Block"
-                self.firstImageView.image = self.secondImageView.image
-                self.secondImageView.image = self.images[self.numberOfSwipes]
-                self.setUpView()
+                self.primaryImageView.image = self.secondaryImageView.image
+                self.secondaryImageView.image = self.images[self.numberOfSwipes + 1]
+//                self.setUpView()
                 self.layoutIfNeeded()
                 print("animation done")
             }

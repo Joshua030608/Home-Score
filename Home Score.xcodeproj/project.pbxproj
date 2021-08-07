@@ -136,7 +136,6 @@
 				0350E4CD2548E947003369B6 /* Model */,
 				0350E4CE2548E94D003369B6 /* View */,
 				0350E4CF2548E95A003369B6 /* Controller */,
-				033DEBB3253FA9A5008104D8 /* Main.storyboard */,
 				0350E4D02548E962003369B6 /* Other */,
 			);
 			path = "Home Score";
@@ -202,6 +201,7 @@
 			children = (
 				033DEBAD253FA9A5008104D8 /* AppDelegate.swift */,
 				033DEBAF253FA9A5008104D8 /* SceneDelegate.swift */,
+				033DEBB3253FA9A5008104D8 /* Main.storyboard */,
 				033DEBB6253FA9AB008104D8 /* Assets.xcassets */,
 				033DEBB8253FA9AB008104D8 /* LaunchScreen.storyboard */,
 				033DEBBB253FA9AB008104D8 /* Info.plist */,
