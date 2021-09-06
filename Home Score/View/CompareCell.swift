@@ -8,7 +8,7 @@
 import UIKit
 
 class CompareCell: UICollectionViewCell {
-    static let id = "CompareCell"
+    static let id = NSStringFromClass(CompareCell.self)
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var scoreLabel: UILabel!
 }

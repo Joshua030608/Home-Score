@@ -9,91 +9,62 @@ import UIKit
 
 class HouseImageViewContainerView: UIView {
     
-    private var primaryImageViewLeadingConstraint: NSLayoutConstraint!
-    private var primaryImageViewTrailingConstraint: NSLayoutConstraint!
-    private let primaryImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.isUserInteractionEnabled = true
-        return imageView
+    fileprivate var collectionView: UICollectionView = {
+        let cvLayout = UICollectionViewFlowLayout()
+        cvLayout.scrollDirection = .horizontal
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: cvLayout)
+        cv.translatesAutoresizingMaskIntoConstraints = false
+        return cv
     }()
     
-    private var secondaryImageViewLeadingConstraint: NSLayoutConstraint!
-    private var secondaryImageViewTrailingConstraint: NSLayoutConstraint!
-    private let secondaryImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.isUserInteractionEnabled = true
-        return imageView
-    }()
     
-    fileprivate var swipeGestureRecognizer: UISwipeGestureRecognizer!
+    var images: [UIImage] = []
     
-    fileprivate var numberOfSwipes = 0
-    
-    var images: [UIImage] = [] {
-        didSet {
-            primaryImageView.image = images.first
-            if images.count > 1 {
-                secondaryImageView.image = images[1]
-            }
-        }
-    }
     init() {
         super.init(frame: .zero)
         setUpView()
-        swipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(houseImageViewSwiped))
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setUpView()
-        swipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(houseImageViewSwiped))
-        addGestureRecognizer(swipeGestureRecognizer)
-        layer.borderColor = UIColor.red.cgColor
-        layer.borderWidth = 3.0
     }
     
-    fileprivate func setUpView() {
-        addSubview(primaryImageView)
-        primaryImageViewLeadingConstraint = primaryImageView.leadingAnchor.constraint(equalTo: leadingAnchor)
-        primaryImageViewLeadingConstraint.isActive = true
-        primaryImageViewTrailingConstraint = primaryImageView.trailingAnchor.constraint(equalTo: trailingAnchor)
-        primaryImageViewTrailingConstraint.isActive = true
-        primaryImageView.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
-        primaryImageView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        primaryImageView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-        
-        addSubview(secondaryImageView)
-        secondaryImageViewLeadingConstraint = primaryImageView.leadingAnchor.constraint(equalTo: leadingAnchor)
-        secondaryImageViewLeadingConstraint.isActive = true
-        secondaryImageViewTrailingConstraint = primaryImageView.trailingAnchor.constraint(equalTo: trailingAnchor)
-        secondaryImageViewTrailingConstraint.isActive = true
-        secondaryImageView.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
-        secondaryImageView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        secondaryImageView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+    fileprivate func setUpLayout() {
+        addSubview(collectionView)
+        collectionView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        collectionView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        collectionView.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        collectionView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
     }
     
-    @objc fileprivate func houseImageViewSwiped() {
-        print("Has Swiped. Number of Images: \(images.count)")
-        if images.count > 1 {
-            self.numberOfSwipes += 1
-    
-             
-            UIView.animate(withDuration: 1.0, delay: 0.0, options: .curveEaseOut, animations: {
-                self.primaryImageViewLeadingConstraint.constant = -self.frame.size.width
-                self.primaryImageViewTrailingConstraint.constant = self.frame.size.width
-                self.secondaryImageViewLeadingConstraint.constant = 0
-                self.secondaryImageViewTrailingConstraint.constant = self.frame.size.width
-                self.layoutIfNeeded()
-            }) { (_) in
-                // "Completion Block"
-                self.primaryImageView.image = self.secondaryImageView.image
-                self.secondaryImageView.image = self.images[self.numberOfSwipes + 1]
-//                self.setUpView()
-                self.layoutIfNeeded()
-                print("animation done")
-            }
-        }
+   fileprivate func setUpView() {
+        setUpLayout()
+        collectionView.dataSource = self
+        collectionView.delegate = self
     }
+    
+}
+
+extension HouseImageViewContainerView: UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return images.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = UICollectionViewCell()
+        cell.tag = indexPath.row
+        return cell
+    }
+    
+    
+}
+
+extension HouseImageViewContainerView: UICollectionViewDelegate {
+    
+}
+
+extension HouseImageViewContainerView: UICollectionViewDelegateFlowLayout {
+    
 }

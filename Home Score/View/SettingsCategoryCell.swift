@@ -9,7 +9,7 @@ import UIKit
 
 class SettingsCategoryCell: UITableViewCell {
  
-    static let id = "SettingsCategoryCell"
+    static let id = NSStringFromClass(SettingsCategoryCell.self)
  
     var weightChangedHandler: ((Category.WeightOption) -> Void)?
     

@@ -8,7 +8,7 @@
 import UIKit
 
 class HouseCell: UITableViewCell {
-    static let id = "HouseCell"
+    static let id = NSStringFromClass(HouseCell.self)
     @IBOutlet weak var houseImageView: UIImageView!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var label: UILabel!
