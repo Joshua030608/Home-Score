@@ -8,9 +8,11 @@
 import UIKit
 
 class HouseImageViewCell: UICollectionViewCell {
+    var didPressDeleteButtonHandler: ((Int) -> Void)?
+    
     static let id = NSStringFromClass(HouseImageViewCell.self)
     
-    fileprivate let imageView: UIImageView = {
+     let imageView: UIImageView = {
         let iv = UIImageView()
         iv.translatesAutoresizingMaskIntoConstraints = false
         return iv
@@ -41,7 +43,7 @@ class HouseImageViewCell: UICollectionViewCell {
     }
     
     @objc fileprivate func deleteButtonPressed() {
-         
+        didPressDeleteButtonHandler?(tag)
     }
     
     override init(frame: CGRect) {

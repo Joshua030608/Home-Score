@@ -22,11 +22,13 @@ class HouseImageViewContainerView: UIView {
     
     init() {
         super.init(frame: .zero)
+        self.collectionView.register(HouseImageViewCell.self, forCellWithReuseIdentifier: HouseImageViewCell.id)
         setUpView()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+        self.collectionView.register(HouseImageViewCell.self, forCellWithReuseIdentifier: HouseImageViewCell.id)
         setUpView()
     }
     
@@ -44,6 +46,11 @@ class HouseImageViewContainerView: UIView {
         collectionView.delegate = self
     }
     
+    fileprivate func deleteImageAt(index: Int) {
+        images.remove(at: index)
+        collectionView.reloadData()
+    }
+    
 }
 
 extension HouseImageViewContainerView: UICollectionViewDataSource {
@@ -53,12 +60,14 @@ extension HouseImageViewContainerView: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = UICollectionViewCell()
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HouseImageViewCell.id, for: indexPath) as! HouseImageViewCell
         cell.tag = indexPath.row
+        cell.imageView.image = images[indexPath.row]
+        cell.didPressDeleteButtonHandler = { [weak self] (index) in
+            self?.deleteImageAt(index: index)
+        }
         return cell
     }
-    
-    
 }
 
 extension HouseImageViewContainerView: UICollectionViewDelegate {
