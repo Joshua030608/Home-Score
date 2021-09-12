@@ -111,7 +111,6 @@ class AddEditHouseViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        houseImageViewContainerView.backgroundColor = .red
         if let home = home {
             houseImageViewContainerView.images = home.photos
             addressTextField.text = home.address
@@ -208,17 +207,25 @@ extension AddEditHouseViewController: CategoryScorePickerViewParentDelegate {
 }
 
 extension AddEditHouseViewController: PHPickerViewControllerDelegate {
+    
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        
         dismiss(animated: true, completion: nil)
+        
         guard !results.isEmpty else { return }
         
-        for result in results {
-              result.itemProvider.loadObject(ofClass: UIImage.self, completionHandler: { (object, error) in
+        for (index ,result) in results.enumerated() {
+            result.itemProvider.loadObject(ofClass: UIImage.self, completionHandler: { (object, error) in
+                
                  if let image = object as? UIImage {
                     DispatchQueue.main.async {
                         self.houseImageViewContainerView.images.append(image)
+                        self.houseImageViewContainerView.reloadImages()
+                        print(index)
                     }
-                }
+                 } else {
+                    print("Failed to load image at index:", index)
+                 }
             })
         }
     }

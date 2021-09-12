@@ -21,7 +21,9 @@ class HouseImageViewCell: UICollectionViewCell {
     fileprivate let deleteButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(UIImage(systemName: "xmark.circle.fill"), for: .normal)
+        let config = UIImage.SymbolConfiguration(pointSize: 35.0)
+        let image = UIImage.init(systemName: "xmark.circle.fill", withConfiguration: config)
+        button.setImage(image, for: .normal)
         return button
     }()
     

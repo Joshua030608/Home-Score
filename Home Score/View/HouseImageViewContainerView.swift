@@ -14,6 +14,8 @@ class HouseImageViewContainerView: UIView {
         cvLayout.scrollDirection = .horizontal
         let cv = UICollectionView(frame: .zero, collectionViewLayout: cvLayout)
         cv.translatesAutoresizingMaskIntoConstraints = false
+        cv.isPagingEnabled = true
+        cv.backgroundColor = .clear
         return cv
     }()
     
@@ -51,6 +53,10 @@ class HouseImageViewContainerView: UIView {
         collectionView.reloadData()
     }
     
+    func reloadImages() {
+        collectionView.reloadData()
+    }
+    
 }
 
 extension HouseImageViewContainerView: UICollectionViewDataSource {
@@ -75,5 +81,13 @@ extension HouseImageViewContainerView: UICollectionViewDelegate {
 }
 
 extension HouseImageViewContainerView: UICollectionViewDelegateFlowLayout {
-    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
 }
