@@ -23,9 +23,9 @@ class HomeDataSource: NSObject, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: HouseCell.id, for: indexPath) as! HouseCell
+        let tapGestureRecognizer = UITapGestureRecognizer(target: HouseCell.self, action: #selector(imageViewPressed(sender: )))
+        cell.addGestureRecognizer(tapGestureRecognizer)
         let home = HomeStore.shared.homes[indexPath.row]
-//        cell.titleLabel.text = home.title
-//        cell.homeScoreLabel.text = String(home.score)
         var scoreString = "N/A"
         if let homeScore = home.score {
             let formatter = NumberFormatter()
@@ -60,6 +60,11 @@ class HomeDataSource: NSObject, UITableViewDataSource {
         
         return cell
     }
+    
+    @objc fileprivate func imageViewPressed(sender: Any) {
+        
+    }
+    
 }
 
 extension HomeDataSource: UICollectionViewDataSource {
