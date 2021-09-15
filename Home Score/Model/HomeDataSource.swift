@@ -9,9 +9,20 @@ import UIKit
 
 class HomeDataSource: NSObject, UITableViewDataSource {
     
+ 
+    var imageIndices: [Int?]
+    
     var didScrollHandler: ((Int, CGFloat) -> Void)?
     
     override init() {
+        
+        var indices: [Int?] = []
+        for home in HomeStore.shared.homes {
+            let index = (home.photos.isEmpty) ? nil : 0
+            indices.append(index)
+        }
+        self.imageIndices = indices
+        
         super.init()
     }
     
@@ -23,8 +34,10 @@ class HomeDataSource: NSObject, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: HouseCell.id, for: indexPath) as! HouseCell
-        let tapGestureRecognizer = UITapGestureRecognizer(target: HouseCell.self, action: #selector(imageViewPressed(sender: )))
-        cell.addGestureRecognizer(tapGestureRecognizer)
+//        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageViewPressed))
+//        cell.imageView!.isUserInteractionEnabled = true
+//        cell.imageView!.addGestureRecognizer(tapGestureRecognizer)
+//        cell.imageView!.tag = indexPath.row
         let home = HomeStore.shared.homes[indexPath.row]
         var scoreString = "N/A"
         if let homeScore = home.score {
@@ -47,8 +60,17 @@ class HomeDataSource: NSObject, UITableViewDataSource {
         
         attributedText.append(NSAttributedString(string: "$1,000,000", attributes: [.font: UIFont.systemFont(ofSize: 10)]))
         cell.label.attributedText = attributedText
-        cell.houseImageView.image = home.photos.first
+        
+        
         cell.collectionView.dataSource = self
+//        if let imageIndex = imageIndices[indexPath.row] {
+//            cell.imageView!.image = home.photos[imageIndex]
+//        } else {
+//            cell.imageView!.image = nil
+//        }
+        cell.imageView?.layer.borderWidth = 6.0
+        cell.imageView?.layer.borderColor = UIColor.red.cgColor
+         
         cell.collectionView.tag = indexPath.row
         cell.didScrollHandler = { [weak self] (index, offset) in
             self?.didScrollHandler?(index, offset)
@@ -61,10 +83,16 @@ class HomeDataSource: NSObject, UITableViewDataSource {
         return cell
     }
     
-    @objc fileprivate func imageViewPressed(sender: Any) {
-        
+    @objc fileprivate func imageViewPressed(gestureRecognizer: UITapGestureRecognizer) {
+        let index = gestureRecognizer.view!.tag
+        let imageView = gestureRecognizer.view as! UIImageView
+        if let imageIndex = imageIndices[index] {
+            let homePhotos = HomeStore.shared.homes[index].photos
+            let imageIndex = (imageIndex + 1) % homePhotos.count
+            imageIndices[index] = imageIndex
+            imageView.image = homePhotos[imageIndex]
+        }
     }
-    
 }
 
 extension HomeDataSource: UICollectionViewDataSource {
