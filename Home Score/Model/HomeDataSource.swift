@@ -68,9 +68,9 @@ class HomeDataSource: NSObject, UITableViewDataSource {
 //        } else {
 //            cell.imageView!.image = nil
 //        }
-        cell.imageView?.layer.borderWidth = 6.0
-        cell.imageView?.layer.borderColor = UIColor.red.cgColor
-         
+        //cell.imageView?.layer.borderWidth = 6.0
+        //cell.imageView?.layer.borderColor = UIColor.red.cgColor
+        cell.houseImageView?.image = home.photos.first
         cell.collectionView.tag = indexPath.row
         cell.didScrollHandler = { [weak self] (index, offset) in
             self?.didScrollHandler?(index, offset)
