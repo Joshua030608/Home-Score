@@ -33,51 +33,21 @@ class HomeDataSource: NSObject, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: HouseCell.id, for: indexPath) as! HouseCell
-//        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageViewPressed))
-//        cell.imageView!.isUserInteractionEnabled = true
-//        cell.imageView!.addGestureRecognizer(tapGestureRecognizer)
-//        cell.imageView!.tag = indexPath.row
+        
         let home = HomeStore.shared.homes[indexPath.row]
-        var scoreString = "N/A"
-        if let homeScore = home.score {
-            let formatter = NumberFormatter()
-            formatter.numberStyle = .decimal
-            formatter.roundingMode = .halfUp
-            formatter.maximumFractionDigits = 1
-            if let formattedString = formatter.string(from: NSNumber(value: homeScore)) {
-                scoreString = formattedString
-            }
-        }
         
-//        // 4.8500000001 -> 4.8
-//        let multipliedScoreDouble = 4.8 * 10.0 // 48.500001
-//        let multipliedScoreInt = Int(multipliedScoreDouble) // 48
-        
-        let attributedText = NSMutableAttributedString(string: "\(home.title) Score: \(scoreString)" + "\n", attributes: [.font : UIFont.systemFont(ofSize: 18)])
-        // 4.8000000000001 -> 4.8
-        
-        
-        attributedText.append(NSAttributedString(string: "$1,000,000", attributes: [.font: UIFont.systemFont(ofSize: 10)]))
-        cell.label.attributedText = attributedText
-        
-        
-        cell.collectionView.dataSource = self
-//        if let imageIndex = imageIndices[indexPath.row] {
-//            cell.imageView!.image = home.photos[imageIndex]
-//        } else {
-//            cell.imageView!.image = nil
-//        }
-        //cell.imageView?.layer.borderWidth = 6.0
-        //cell.imageView?.layer.borderColor = UIColor.red.cgColor
-        cell.houseImageView?.image = home.photos.first
-        cell.collectionView.tag = indexPath.row
         cell.didScrollHandler = { [weak self] (index, offset) in
             self?.didScrollHandler?(index, offset)
         }
         
-        // ARC - Automatic Reference Counting
+        cell.setLabelText(score: home.score, title: home.title)
         
+        cell.images = home.photos
+        cell.imageIndex = imageIndices[indexPath.row]
+        
+        cell.collectionView.dataSource = self
         cell.collectionView.reloadData()
         
         return cell
