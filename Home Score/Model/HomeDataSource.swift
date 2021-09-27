@@ -15,7 +15,6 @@ class HomeDataSource: NSObject, UITableViewDataSource {
     var didScrollHandler: ((Int, CGFloat) -> Void)?
     
     override init() {
-        
         var indices: [Int?] = []
         for home in HomeStore.shared.homes {
             let index = (home.photos.isEmpty) ? nil : 0
@@ -26,6 +25,14 @@ class HomeDataSource: NSObject, UITableViewDataSource {
         super.init()
     }
     
+    func setImageIndices() {
+        var indices: [Int?] = []
+        for home in HomeStore.shared.homes {
+            let index = (home.photos.isEmpty) ? nil : 0
+            indices.append(index)
+        }
+        self.imageIndices = indices
+    }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         print(HomeStore.shared.homes.count)
@@ -33,6 +40,8 @@ class HomeDataSource: NSObject, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        setImageIndices()
         
         let cell = tableView.dequeueReusableCell(withIdentifier: HouseCell.id, for: indexPath) as! HouseCell
         

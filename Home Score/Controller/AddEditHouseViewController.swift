@@ -45,6 +45,7 @@ class AddEditHouseViewController: UIViewController {
         guard let addressText = addressTextField.text, addressText.count > 0,
                 let titleText = titleTextField.text, titleText.count > 0 else {
             // Show error
+            
             return
         }
         

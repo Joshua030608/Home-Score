@@ -20,12 +20,12 @@ class HouseCell: UITableViewCell {
     var images: [UIImage] = []
     var imageIndex: Int? {
         didSet {
-            // rewrite if below to use if let
-            if imageIndex == nil {
-                houseImageView.image = nil
+            if let imageIndex2 = imageIndex {
+                houseImageView.image = images[imageIndex2]
             } else {
-                houseImageView.image = images[imageIndex!]
+                houseImageView.image = nil
             }
+            
         }
     }
     
@@ -33,11 +33,19 @@ class HouseCell: UITableViewCell {
     
     @objc func imageViewPressed() {
         print(#function)
-        if let imageIndex = imageIndex {
-            self.imageIndex! += 1
+//        if let imageIndex = imageIndex {
+//            self.imageIndex! += 1
+//        } OLD IF STATEMENT || WHY IS IT AN IF LEFT
+        
+        if imageIndex != nil {
+            if imageIndex == images.count - 1 {
+                imageIndex = 0
+            } else {
+                imageIndex! += 1
+            }
         }
         
-        // bug to be fixed
+        // bug is pressing imageView too many times causes fatal error index out of range because no more images.
     }
     
     func setLabelText(score: Double?, title: String) {
