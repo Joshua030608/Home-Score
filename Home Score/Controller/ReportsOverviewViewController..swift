@@ -14,7 +14,9 @@ class ReportsOverviewViewController: UIViewController {
     fileprivate var dataSource = HomeDataSource()
 
     override func viewWillAppear(_ animated: Bool) {
+        
         super.viewWillAppear(animated)
+        
 //        AddEditHouseViewController().didUpdateHomesHandler = { [weak self] () in
 //            self?.reloadTableView()
 //
