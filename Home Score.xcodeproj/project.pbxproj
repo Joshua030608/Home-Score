@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		02B378EC2708CA6B00EFE979 /* HouseImageViewFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B378EB2708CA6B00EFE979 /* HouseImageViewFooter.swift */; };
 		02DE85EE26E03DCC00AEA485 /* HouseImageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DE85ED26E03DCC00AEA485 /* HouseImageViewCell.swift */; };
 		031ABD6C260BFB8200987A51 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031ABD6B260BFB8200987A51 /* SettingsViewController.swift */; };
 		031ABD71260C050E00987A51 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031ABD70260C050E00987A51 /* CategoryViewController.swift */; };
@@ -53,6 +54,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		02B378EB2708CA6B00EFE979 /* HouseImageViewFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseImageViewFooter.swift; sourceTree = "<group>"; };
 		02DE85ED26E03DCC00AEA485 /* HouseImageViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseImageViewCell.swift; sourceTree = "<group>"; };
 		031ABD6B260BFB8200987A51 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		031ABD70260C050E00987A51 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 			children = (
 				036588BC25C0EC06008CC8E1 /* CategoryScorePickerViewParent.swift */,
 				03AD368D26A7922300A47108 /* HouseImageViewContainerView.swift */,
+				02B378EB2708CA6B00EFE979 /* HouseImageViewFooter.swift */,
 				02DE85ED26E03DCC00AEA485 /* HouseImageViewCell.swift */,
 				0372194F2552299F00C507C2 /* HouseCell.swift */,
 				03FAF5882564A70F0013B51A /* CategoryCell.swift */,
@@ -356,6 +359,7 @@
 				038366792610EED300B7B354 /* TextViewViewController.swift in Sources */,
 				03AD368E26A7922400A47108 /* HouseImageViewContainerView.swift in Sources */,
 				033DEBB0253FA9A5008104D8 /* SceneDelegate.swift in Sources */,
+				02B378EC2708CA6B00EFE979 /* HouseImageViewFooter.swift in Sources */,
 				03FAF5892564A70F0013B51A /* CategoryCell.swift in Sources */,
 				0350E4C62548E6E1003369B6 /* Home.swift in Sources */,
 				03B16D2825F5381A007A8684 /* CompareCell.swift in Sources */,

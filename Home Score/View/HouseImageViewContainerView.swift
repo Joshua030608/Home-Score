@@ -9,7 +9,7 @@ import UIKit
 
 class HouseImageViewContainerView: UIView {
     
-    fileprivate var collectionView: UICollectionView = {
+    var collectionView: UICollectionView = {
         let cvLayout = UICollectionViewFlowLayout()
         cvLayout.scrollDirection = .horizontal
         let cv = UICollectionView(frame: .zero, collectionViewLayout: cvLayout)
@@ -19,18 +19,20 @@ class HouseImageViewContainerView: UIView {
         return cv
     }()
     
-    
     var images: [UIImage] = []
     
     init() {
         super.init(frame: .zero)
         self.collectionView.register(HouseImageViewCell.self, forCellWithReuseIdentifier: HouseImageViewCell.id)
+        self.collectionView.register(HouseImageViewFooter.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: HouseImageViewFooter.id)
         setUpView()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         self.collectionView.register(HouseImageViewCell.self, forCellWithReuseIdentifier: HouseImageViewCell.id)
+        self.collectionView.register(HouseImageViewFooter.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: HouseImageViewFooter.id)
+        setUpView()
         setUpView()
     }
     
@@ -74,6 +76,13 @@ extension HouseImageViewContainerView: UICollectionViewDataSource {
         }
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        if kind == UICollectionView.elementKindSectionFooter {
+            return collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HouseImageViewFooter.id, for: indexPath) as! HouseImageViewFooter
+        }
+        return UICollectionReusableView()
+    }
 }
 
 extension HouseImageViewContainerView: UICollectionViewDelegate {
@@ -90,4 +99,9 @@ extension HouseImageViewContainerView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
+    }
+    
 }

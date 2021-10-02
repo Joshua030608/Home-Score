@@ -120,10 +120,14 @@ class AddEditHouseViewController: UIViewController {
         } else {
             dataSource = CategoryScoresHouseDataSource(scoresDictionary: nil)
         }
+        
+        //houseImageViewContainerView.collectionView.
+        
         houseImageViewContainerView.isUserInteractionEnabled = true
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(houseImageViewPressed))
         houseImageViewContainerView.addGestureRecognizer(tapGestureRecognizer)
-        //setUpCategoryScorePicker()
+
+        
         setUpCustomFooter()
         setUpBlockerView()
         setUpPickerViewParent()
