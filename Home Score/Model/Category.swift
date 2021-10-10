@@ -69,7 +69,6 @@ class CategoryStore {
         do {
             let data = try Data(contentsOf: CategoryStore.url)
             let categories = try decoder.decode([Category].self, from: data)
-            print(categories)
             return categories
         } catch {
             print(error.localizedDescription)

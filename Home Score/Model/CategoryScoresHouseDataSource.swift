@@ -36,10 +36,6 @@ class CategoryScoresHouseDataSource: NSObject, UITableViewDataSource {
             print(index, score.0.name, score.0.weight, score.1)
         }*/
         
-        
-        
-        print(scoresDictionary)
-        
         return scoresDictionary[category.id] ?? 1
     }
 

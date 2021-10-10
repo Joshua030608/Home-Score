@@ -128,6 +128,8 @@ class AddEditHouseViewController: UIViewController {
         houseImageViewContainerView.addGestureRecognizer(tapGestureRecognizer)
 
         
+        houseImageViewContainerView.addImageHandler = houseImageViewPressed
+        
         setUpCustomFooter()
         setUpBlockerView()
         setUpPickerViewParent()

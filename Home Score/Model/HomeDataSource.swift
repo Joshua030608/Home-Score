@@ -7,9 +7,13 @@
 
 import UIKit
 
+protocol HomeHomeDataSourceImageHandlerDelegate {
+    func addImage(atIndex index: Int)
+    func deleteImage(atIndex imageIndex: Int, forHomeAtIndex homeIndex: Int)
+}
+
 class HomeDataSource: NSObject, UITableViewDataSource {
-    
- 
+     
     var imageIndices: [Int?] = []
     
     var didScrollHandler: ((Int, CGFloat) -> Void)?
@@ -46,6 +50,7 @@ class HomeDataSource: NSObject, UITableViewDataSource {
         cell.setLabelText(score: home.score, title: home.title)
         
         cell.images = home.photos
+        print(HomeStore.shared.homes.count, imageIndices.count)
         cell.imageIndex = imageIndices[indexPath.row]
         
         cell.collectionView.dataSource = self
@@ -82,6 +87,20 @@ extension HomeDataSource: UICollectionViewDataSource {
         // TODO: This
         cell.scoreLabel.text = (score == Category.NAValue) ? "N/A" : "\(score)"
         return cell
+    }
+}
+
+
+extension HomeDataSource: HomeHomeDataSourceImageHandlerDelegate {
+    
+    func addImage(atIndex index: Int) {
+        if imageIndices[index] == nil {
+            imageIndices[index] = 0
+        }
+    }
+    
+    func deleteImage(atIndex imageIndex: Int, forHomeAtIndex homeIndex: Int) {
+        
     }
 }
 

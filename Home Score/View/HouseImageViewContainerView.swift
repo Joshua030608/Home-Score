@@ -9,6 +9,8 @@ import UIKit
 
 class HouseImageViewContainerView: UIView {
     
+    var addImageHandler: (() -> Void)?
+    
     var collectionView: UICollectionView = {
         let cvLayout = UICollectionViewFlowLayout()
         cvLayout.scrollDirection = .horizontal
@@ -79,7 +81,9 @@ extension HouseImageViewContainerView: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionView.elementKindSectionFooter {
-            return collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HouseImageViewFooter.id, for: indexPath) as! HouseImageViewFooter
+            let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HouseImageViewFooter.id, for: indexPath) as! HouseImageViewFooter
+            footer.buttonPressedHandler = addImageHandler
+            return footer
         }
         return UICollectionReusableView()
     }

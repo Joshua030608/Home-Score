@@ -7,6 +7,8 @@
 
 import UIKit
 
+
+
 class ReportsOverviewViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
@@ -27,7 +29,6 @@ class ReportsOverviewViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        print(CategoryStore.shared.categories[CategoryStore.shared.categories.count - 1].name)
         // Used this to figure out that category is saved but just not showing up after app is closed.
     }
     
