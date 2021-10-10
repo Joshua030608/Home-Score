@@ -100,7 +100,10 @@ extension HomeDataSource: HomeHomeDataSourceImageHandlerDelegate {
     }
     
     func deleteImage(atIndex imageIndex: Int, forHomeAtIndex homeIndex: Int) {
-        
+        let numberOfPhotosMinus1 = HomeStore.shared.homes[homeIndex].photos.count - 1
+        if imageIndex == numberOfPhotosMinus1 {
+            imageIndices[imageIndex] = numberOfPhotosMinus1
+        }
     }
 }
 
