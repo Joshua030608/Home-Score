@@ -7,11 +7,6 @@
 
 import UIKit
 
-protocol HomeHomeDataSourceImageHandlerDelegate {
-    func addImage(atIndex index: Int)
-    func deleteImage(atIndex imageIndex: Int, forHomeAtIndex homeIndex: Int)
-}
-
 class HomeDataSource: NSObject, UITableViewDataSource {
      
     var imageIndices: [Int?] = []
@@ -91,18 +86,29 @@ extension HomeDataSource: UICollectionViewDataSource {
 }
 
 
-extension HomeDataSource: HomeHomeDataSourceImageHandlerDelegate {
+extension HomeDataSource {
     
-    func addImage(atIndex index: Int) {
-        if imageIndices[index] == nil {
-            imageIndices[index] = 0
+    func addImage(forHomeAtIndex homeIndex: Int) {
+        if imageIndices[homeIndex] == nil {
+            imageIndices[homeIndex] = 0
         }
     }
     
     func deleteImage(atIndex imageIndex: Int, forHomeAtIndex homeIndex: Int) {
-        let numberOfPhotosMinus1 = HomeStore.shared.homes[homeIndex].photos.count - 1
-        if imageIndex == numberOfPhotosMinus1 {
-            imageIndices[imageIndex] = numberOfPhotosMinus1
+        
+        guard let shownImageIndex = imageIndices[homeIndex] else {
+            print(#function, "trying to delete image that does not exist")
+            return
+        }
+        
+        if HomeStore.shared.homes[homeIndex].photos.count == 1 {
+            imageIndices[homeIndex] = nil
+            return
+        }
+        
+        if imageIndex <= shownImageIndex {
+            imageIndices[homeIndex]! -= 1
+            return
         }
     }
 }

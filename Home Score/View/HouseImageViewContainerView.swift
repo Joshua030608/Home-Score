@@ -9,6 +9,8 @@ import UIKit
 
 class HouseImageViewContainerView: UIView {
     
+    var imageDeletedHandler: ((Int) -> Void)?
+    
     var addImageHandler: (() -> Void)?
     
     var collectionView: UICollectionView = {
@@ -54,6 +56,7 @@ class HouseImageViewContainerView: UIView {
     
     fileprivate func deleteImageAt(index: Int) {
         images.remove(at: index)
+        imageDeletedHandler?(index)
         collectionView.reloadData()
     }
     

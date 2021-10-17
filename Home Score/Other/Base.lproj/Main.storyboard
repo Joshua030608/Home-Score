@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Zyv-d6-idv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Zyv-d6-idv">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -41,7 +42,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Home_Score.HouseCell" rowHeight="150" id="UCD-YG-CYM" customClass="HouseCell" customModule="Home_Score" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="24.5" width="375" height="150"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="375" height="150"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="UCD-YG-CYM" id="sbY-5j-UcG">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
@@ -180,7 +181,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Home_Score.CategoryCell" rowHeight="44" id="RiF-Wo-lOH" customClass="CategoryCell" customModule="Home_Score" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="24.5" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="RiF-Wo-lOH" id="eAn-pc-2rF">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -304,11 +305,11 @@
             </objects>
             <point key="canvasLocation" x="-366" y="431"/>
         </scene>
-        <!--Item-->
+        <!--Settings-->
         <scene sceneID="vds-DP-jhD">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="aXZ-vh-acR" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="IGE-56-GFg"/>
+                    <tabBarItem key="tabBarItem" title="Settings" id="IGE-56-GFg"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="RWQ-uo-MJf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -336,7 +337,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Home_Score.SettingsCell" textLabel="hGx-iQ-DaY" rowHeight="80" style="IBUITableViewCellStyleDefault" id="y44-1i-4gK">
-                                        <rect key="frame" x="0.0" y="24.5" width="375" height="80"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="375" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="y44-1i-4gK" id="gTd-yu-U5h">
                                             <rect key="frame" x="0.0" y="0.0" width="349.5" height="80"/>
@@ -392,7 +393,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Home_Score.SettingsCategoryCell" rowHeight="80" id="NNB-yn-XNS" customClass="SettingsCategoryCell" customModule="Home_Score" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="24.5" width="375" height="80"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="375" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NNB-yn-XNS" id="1df-7f-aJ1">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>

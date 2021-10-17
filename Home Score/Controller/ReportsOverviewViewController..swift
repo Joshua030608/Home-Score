@@ -18,6 +18,8 @@ class ReportsOverviewViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         
         super.viewWillAppear(animated)
+    
+        
         
 //        AddEditHouseViewController().didUpdateHomesHandler = { [weak self] () in
 //            self?.reloadTableView()
@@ -59,9 +61,18 @@ class ReportsOverviewViewController: UIViewController {
     @IBAction func addHomeButtonPressed(_ sender: Any) {
         let addEditHouseVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AddEditHouseViewController") as! AddEditHouseViewController
                 navigationController?.pushViewController(addEditHouseVC, animated: true)
+//        addEditHouseVC.imageAddedHandler = imageAdded
+//        addEditHouseVC.imageDeletedHandler = imageDeleted
     }
     
-
+    fileprivate func imageAdded() {
+        //dataSource.addImage(forHomeAtIndex: <#T##Int#>)
+    }
+    
+    fileprivate func imageDeleted(index: Int) {
+        //dataSource.deleteImage(atIndex: <#T##Int#>, forHomeAtIndex: <#T##Int#>)
+    }
+            
 }
 
 extension ReportsOverviewViewController: UITableViewDelegate {
@@ -69,6 +80,8 @@ extension ReportsOverviewViewController: UITableViewDelegate {
         let addEditHouseVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(identifier: "AddEditHouseViewController") as! AddEditHouseViewController
         let home1 = HomeStore.shared.homes[indexPath.row]
         addEditHouseVC.home = home1
+       // addEditHouseVC.imageAddedHandler = //imageAdded
+       // addEditHouseVC.imageDeletedHandler = //imageDeleted
         navigationController?.pushViewController(addEditHouseVC, animated: true)
     }
 }

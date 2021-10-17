@@ -13,6 +13,8 @@ class AddEditHouseViewController: UIViewController {
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var tableView: UITableView!
     
+    var imageDeletedHandler: ((Int) -> Void)?
+    var imageAddedHandler: (() -> Void)?
     var didUpdateHomesHandler: (() -> Void)?
     fileprivate static let categoryScorePickerHeight: CGFloat = 44.0
     fileprivate var categoryScorePickerTopConstraint: NSLayoutConstraint!
@@ -127,7 +129,7 @@ class AddEditHouseViewController: UIViewController {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(houseImageViewPressed))
         houseImageViewContainerView.addGestureRecognizer(tapGestureRecognizer)
 
-        
+        houseImageViewContainerView.imageDeletedHandler = imageDeletedHandler
         houseImageViewContainerView.addImageHandler = houseImageViewPressed
         
         setUpCustomFooter()
@@ -228,6 +230,7 @@ extension AddEditHouseViewController: PHPickerViewControllerDelegate {
                     DispatchQueue.main.async {
                         self.houseImageViewContainerView.images.append(image)
                         self.houseImageViewContainerView.reloadImages()
+                        self.imageAddedHandler?()
                         print(index)
                     }
                  } else {
