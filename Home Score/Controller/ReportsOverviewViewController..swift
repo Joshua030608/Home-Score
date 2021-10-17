@@ -65,12 +65,12 @@ class ReportsOverviewViewController: UIViewController {
 //        addEditHouseVC.imageDeletedHandler = imageDeleted
     }
     
-    fileprivate func imageAdded() {
-        //dataSource.addImage(forHomeAtIndex: <#T##Int#>)
+    fileprivate func imageAdded(homeIndex: Int) {
+        dataSource.addImage(forHomeAtIndex: homeIndex)
     }
     
-    fileprivate func imageDeleted(index: Int) {
-        //dataSource.deleteImage(atIndex: <#T##Int#>, forHomeAtIndex: <#T##Int#>)
+    fileprivate func imageDeleted(indexOfImage: Int, homeIndex: Int) {
+        dataSource.deleteImage(atIndex: indexOfImage, forHomeAtIndex: homeIndex)
     }
             
 }
@@ -80,8 +80,8 @@ extension ReportsOverviewViewController: UITableViewDelegate {
         let addEditHouseVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(identifier: "AddEditHouseViewController") as! AddEditHouseViewController
         let home1 = HomeStore.shared.homes[indexPath.row]
         addEditHouseVC.home = home1
-       // addEditHouseVC.imageAddedHandler = //imageAdded
-       // addEditHouseVC.imageDeletedHandler = //imageDeleted
+        addEditHouseVC.imageAddedHandler = imageAdded(homeIndex:)
+        addEditHouseVC.imageDeletedHandler = imageDeleted
         navigationController?.pushViewController(addEditHouseVC, animated: true)
     }
 }

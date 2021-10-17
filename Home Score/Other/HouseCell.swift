@@ -38,7 +38,7 @@ class HouseCell: UITableViewCell {
         // bug is pressing imageView too many times causes fatal error index out of range because no more images.
     }
     
-    func setLabelText(score: Double?, title: String) {
+    func setLabelText(score: Double?, price: String, address: String) {
         var scoreString = "N/A"
         
         if let homeScore = score {
@@ -51,9 +51,9 @@ class HouseCell: UITableViewCell {
             }
         }
         
-        let attributedText = NSMutableAttributedString(string: "\(title) Score: \(scoreString)" + "\n", attributes: [.font : UIFont.systemFont(ofSize: 18)])
+        let attributedText = NSMutableAttributedString(string: "\(address) Score: \(scoreString)" + "\n", attributes: [.font : UIFont.systemFont(ofSize: 18)])
         
-        attributedText.append(NSAttributedString(string: "$1,000,000", attributes: [.font: UIFont.systemFont(ofSize: 10)]))
+        attributedText.append(NSAttributedString(string: "$\(price)", attributes: [.font: UIFont.systemFont(ofSize: 10)]))
         
         label.attributedText = attributedText
     }

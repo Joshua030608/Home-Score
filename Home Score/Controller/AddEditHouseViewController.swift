@@ -13,8 +13,8 @@ class AddEditHouseViewController: UIViewController {
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var tableView: UITableView!
     
-    var imageDeletedHandler: ((Int) -> Void)?
-    var imageAddedHandler: (() -> Void)?
+    var imageDeletedHandler: ((Int, Int) -> Void)?
+    var imageAddedHandler: ((Int) -> Void)?
     var didUpdateHomesHandler: (() -> Void)?
     fileprivate static let categoryScorePickerHeight: CGFloat = 44.0
     fileprivate var categoryScorePickerTopConstraint: NSLayoutConstraint!
@@ -51,7 +51,7 @@ class AddEditHouseViewController: UIViewController {
             return
         }
         
-        let home = Home(id: home?.id, title: titleText, address: addressText, notes: "Notes", photos: houseImageViewContainerView.images, categoryScores: dataSource?.getAllScores())
+        let home = Home(id: home?.id, title: titleText, price: titleText, address: addressText, notes: "Notes", photos: houseImageViewContainerView.images, categoryScores: dataSource?.getAllScores())
         HomeStore.shared.saveHome(home)
         navigationController?.popViewController(animated: true)
     }
@@ -78,7 +78,8 @@ class AddEditHouseViewController: UIViewController {
   */
     fileprivate func setUpPickerViewParent() {
         view.addSubview(pickerViewParent)
-        pickerViewParent.backgroundColor = .systemPink
+        pickerViewParent.backgroundColor = .white
+        //pickerViewParent.layer.opacity = 0.5
         pickerViewParent.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         pickerViewParent.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         pickerViewParent.heightAnchor.constraint(equalToConstant: AddEditHouseViewController.categoryScorePickerHeight).isActive = true
@@ -117,7 +118,7 @@ class AddEditHouseViewController: UIViewController {
         if let home = home {
             houseImageViewContainerView.images = home.photos
             addressTextField.text = home.address
-            titleTextField.text = home.title
+            titleTextField.text = home.price
             dataSource = CategoryScoresHouseDataSource(scoresDictionary: home.categoryScores)
         } else {
             dataSource = CategoryScoresHouseDataSource(scoresDictionary: nil)
@@ -128,8 +129,10 @@ class AddEditHouseViewController: UIViewController {
         houseImageViewContainerView.isUserInteractionEnabled = true
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(houseImageViewPressed))
         houseImageViewContainerView.addGestureRecognizer(tapGestureRecognizer)
-
-        houseImageViewContainerView.imageDeletedHandler = imageDeletedHandler
+        
+        houseImageViewContainerView.imageDeletedHandler = image
+        // Problem here!!! idk what to do because the house or houseIndex is needed. However, houseImageViewContainerView has no way of getting the houseIndex.
+        //ReportsOverviewViewController needs both an index (already have) and an houseIndex (Don't have and can't get)
         houseImageViewContainerView.addImageHandler = houseImageViewPressed
         
         setUpCustomFooter()
@@ -230,7 +233,16 @@ extension AddEditHouseViewController: PHPickerViewControllerDelegate {
                     DispatchQueue.main.async {
                         self.houseImageViewContainerView.images.append(image)
                         self.houseImageViewContainerView.reloadImages()
-                        self.imageAddedHandler?()
+                        if let homeNotOptional = self.home {
+                            for (index, home) in HomeStore.shared.homes.enumerated() {
+                                if homeNotOptional.id == home.id {
+                                    self.imageAddedHandler?(index)
+                                    break
+                                }
+                            }
+                        } else {
+                            // nothing because house isn't made yet so doesnt matter??? LOOK AT THIS!!!!
+                        }
                         print(index)
                     }
                  } else {

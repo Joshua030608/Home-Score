@@ -42,7 +42,7 @@ class HomeDataSource: NSObject, UITableViewDataSource {
             self?.didScrollHandler?(index, offset)
         }
         
-        cell.setLabelText(score: home.score, title: home.title)
+        cell.setLabelText(score: home.score, price: home.price, address: home.address)
         
         cell.images = home.photos
         print(HomeStore.shared.homes.count, imageIndices.count)

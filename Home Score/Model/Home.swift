@@ -92,9 +92,10 @@ class HomeStore {
 
 class Home: Codable {
     enum CodingKeys: CodingKey {
-        case id, title, address, notes, photos, categoryScores
+        case id, price, title, address, notes, photos, categoryScores
     }
     var id: UUID
+    var price: String
     var title: String
     var address: String
     var notes: String
@@ -132,8 +133,9 @@ class Home: Codable {
         ]
     } */
     
-    init (id: UUID? = nil, title: String, address: String, notes: String, photos: [UIImage], categoryScores: [UUID : Int]? = nil) {
+    init (id: UUID? = nil, title: String, price: String, address: String, notes: String, photos: [UIImage], categoryScores: [UUID : Int]? = nil) {
         self.id = (id == nil) ? UUID() : id!
+        self.price = price
         self.title = title
         self.address = address
         self.notes = notes
@@ -151,6 +153,7 @@ class Home: Codable {
         
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(UUID.self, forKey: .id)
+        price = try container.decode(String.self, forKey: .price)
         title = try container.decode(String.self, forKey: .title)
         address = try container.decode(String.self, forKey: .address)
         notes = try container.decode(String.self, forKey: .notes)
@@ -167,6 +170,7 @@ class Home: Codable {
         
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(id, forKey: .id)
+        try container.encode(price, forKey: .price)
         try container.encode(title, forKey: .title)
         try container.encode(address, forKey: .address)
         try container.encode(notes, forKey: .notes)

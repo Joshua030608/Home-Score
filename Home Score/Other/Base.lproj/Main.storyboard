@@ -10,11 +10,11 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Hello-->
+        <!--Reports-->
         <scene sceneID="2ct-V9-Xnq">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="MbZ-Ds-elK" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Hello" image="square.and.arrow.up.fill" catalog="system" id="egO-IJ-B4g"/>
+                    <tabBarItem key="tabBarItem" title="Reports" image="doc.fill" catalog="system" id="egO-IJ-B4g"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="vem-cx-Ah0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -223,7 +223,7 @@
                                     <outlet property="delegate" destination="aWn-Je-2Fk" id="FJQ-Y0-MeU"/>
                                 </connections>
                             </tableView>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3yt-Vv-WsS">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Price" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3yt-Vv-WsS">
                                 <rect key="frame" x="20" y="254" width="335" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="ljU-Uh-B65"/>
@@ -309,7 +309,7 @@
         <scene sceneID="vds-DP-jhD">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="aXZ-vh-acR" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Settings" id="IGE-56-GFg"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="gearshape.fill" catalog="system" id="IGE-56-GFg"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="RWQ-uo-MJf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -503,8 +503,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="doc.fill" catalog="system" width="115" height="128"/>
+        <image name="gearshape.fill" catalog="system" width="128" height="121"/>
         <image name="plus.circle.fill" catalog="system" width="128" height="121"/>
-        <image name="square.and.arrow.up.fill" catalog="system" width="115" height="128"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
