@@ -12,9 +12,9 @@ class AddEditHouseViewController: UIViewController {
     @IBOutlet weak var addressTextField: UITextField!
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var tableView: UITableView!
-    
-    var imageDeletedHandler: ((Int, Int) -> Void)?
-    var imageAddedHandler: ((Int) -> Void)?
+    var newHouseAddedHandler: ((Bool) -> Void)?
+    var imageDeletedHandler: ((Int) -> Void)?
+    var imageAddedHandler: (() -> Void)?
     var didUpdateHomesHandler: (() -> Void)?
     fileprivate static let categoryScorePickerHeight: CGFloat = 44.0
     fileprivate var categoryScorePickerTopConstraint: NSLayoutConstraint!
@@ -53,6 +53,10 @@ class AddEditHouseViewController: UIViewController {
         
         let home = Home(id: home?.id, title: titleText, price: titleText, address: addressText, notes: "Notes", photos: houseImageViewContainerView.images, categoryScores: dataSource?.getAllScores())
         HomeStore.shared.saveHome(home)
+        
+        if self.home == nil {
+            newHouseAddedHandler!(home.photos.isEmpty == false)
+        }
         navigationController?.popViewController(animated: true)
     }
     
@@ -130,7 +134,7 @@ class AddEditHouseViewController: UIViewController {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(houseImageViewPressed))
         houseImageViewContainerView.addGestureRecognizer(tapGestureRecognizer)
         
-        houseImageViewContainerView.imageDeletedHandler = image
+        houseImageViewContainerView.imageDeletedHandler = imageDeletedHandler
         // Problem here!!! idk what to do because the house or houseIndex is needed. However, houseImageViewContainerView has no way of getting the houseIndex.
         //ReportsOverviewViewController needs both an index (already have) and an houseIndex (Don't have and can't get)
         houseImageViewContainerView.addImageHandler = houseImageViewPressed
@@ -236,12 +240,10 @@ extension AddEditHouseViewController: PHPickerViewControllerDelegate {
                         if let homeNotOptional = self.home {
                             for (index, home) in HomeStore.shared.homes.enumerated() {
                                 if homeNotOptional.id == home.id {
-                                    self.imageAddedHandler?(index)
+                                    self.imageAddedHandler?()
                                     break
                                 }
                             }
-                        } else {
-                            // nothing because house isn't made yet so doesnt matter??? LOOK AT THIS!!!!
                         }
                         print(index)
                     }

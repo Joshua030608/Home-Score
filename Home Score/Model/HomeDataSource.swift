@@ -47,7 +47,6 @@ class HomeDataSource: NSObject, UITableViewDataSource {
         cell.images = home.photos
         print(HomeStore.shared.homes.count, imageIndices.count)
         cell.imageIndex = imageIndices[indexPath.row]
-        
         cell.collectionView.dataSource = self
         cell.collectionView.reloadData()
         
@@ -105,9 +104,9 @@ extension HomeDataSource {
             imageIndices[homeIndex] = nil
             return
         }
-        
+        // homework here
         if imageIndex <= shownImageIndex {
-            imageIndices[homeIndex]! -= 1
+            imageIndices[homeIndex]! = max(0, imageIndices[homeIndex]! - 1)
             return
         }
     }

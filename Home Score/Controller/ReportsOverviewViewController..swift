@@ -13,6 +13,7 @@ class ReportsOverviewViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
+    
     fileprivate var dataSource = HomeDataSource()
 
     override func viewWillAppear(_ animated: Bool) {
@@ -60,9 +61,12 @@ class ReportsOverviewViewController: UIViewController {
     
     @IBAction func addHomeButtonPressed(_ sender: Any) {
         let addEditHouseVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AddEditHouseViewController") as! AddEditHouseViewController
+        addEditHouseVC.newHouseAddedHandler = houseAdded(doesHaveAImage:)
                 navigationController?.pushViewController(addEditHouseVC, animated: true)
-//        addEditHouseVC.imageAddedHandler = imageAdded
-//        addEditHouseVC.imageDeletedHandler = imageDeleted
+    }
+    
+    fileprivate func houseAdded(doesHaveAImage: Bool) {
+        dataSource.imageIndices.append(doesHaveAImage ? 0 : nil)
     }
     
     fileprivate func imageAdded(homeIndex: Int) {
@@ -77,11 +81,17 @@ class ReportsOverviewViewController: UIViewController {
 
 extension ReportsOverviewViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         let addEditHouseVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(identifier: "AddEditHouseViewController") as! AddEditHouseViewController
         let home1 = HomeStore.shared.homes[indexPath.row]
         addEditHouseVC.home = home1
-        addEditHouseVC.imageAddedHandler = imageAdded(homeIndex:)
-        addEditHouseVC.imageDeletedHandler = imageDeleted
+        addEditHouseVC.imageAddedHandler = { [weak self] in
+            self?.imageAdded(homeIndex: indexPath.row)
+        }
+        addEditHouseVC.imageDeletedHandler = { [weak self] indexOfImage in
+            self?.imageDeleted(indexOfImage: indexOfImage, homeIndex: indexPath.row)
+        }
+        
         navigationController?.pushViewController(addEditHouseVC, animated: true)
     }
 }
