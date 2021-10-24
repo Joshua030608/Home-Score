@@ -21,7 +21,9 @@ class HouseCell: UITableViewCell {
     var imageIndex: Int? {
         didSet {
             if let imageIndex = imageIndex {
-                houseImageView.image = images[imageIndex]
+                if images.count != 0 {
+                    houseImageView.image = images[imageIndex]
+                }
             } else {
                 houseImageView.image = nil
             }
