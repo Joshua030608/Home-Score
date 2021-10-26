@@ -32,6 +32,7 @@ class AddEditHouseViewController: UIViewController {
         return view
     }()
     
+    fileprivate var oldPhotos: [UIImage] = []
     fileprivate var selectedIndexPath: IndexPath?
     fileprivate var dataSource: CategoryScoresHouseDataSource?
     var home: Home? { // Problem was home wasn't being set when was nil.

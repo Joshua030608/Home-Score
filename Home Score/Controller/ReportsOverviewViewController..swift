@@ -27,6 +27,7 @@ class ReportsOverviewViewController: UIViewController {
 //
 //        }
         print(#file, #function)
+        dataSource.updateImageIndices()
         tableView.reloadData()
     }
     

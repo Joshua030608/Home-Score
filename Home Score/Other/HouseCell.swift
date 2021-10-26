@@ -31,8 +31,6 @@ class HouseCell: UITableViewCell {
         }
     }
     
-    
-    
     @objc func imageViewPressed() {
         if let imageIndex = imageIndex {
             self.imageIndex = (imageIndex + 1) % images.count

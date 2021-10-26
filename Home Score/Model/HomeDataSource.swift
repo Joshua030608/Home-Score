@@ -27,6 +27,20 @@ class HomeDataSource: NSObject, UITableViewDataSource {
         self.imageIndices = indices
     }
     
+    func updateImageIndices() {
+        
+        for (houseIndex, imageIndex) in imageIndices.enumerated() {
+            let photosCount = HomeStore.shared.homes[houseIndex].photos.count
+            if let imageIndex = imageIndex {
+                if photosCount <= imageIndex {
+                    imageIndices[houseIndex] = (photosCount > 0) ? photosCount - 1 : nil
+                }
+            } else {
+                imageIndices[houseIndex] = (photosCount > 0) ? 0 : nil
+            }
+        }
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         print(HomeStore.shared.homes.count)
         return HomeStore.shared.homes.count
