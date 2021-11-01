@@ -13,7 +13,6 @@ class AddEditHouseViewController: UIViewController {
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var tableView: UITableView!
     var newHouseAddedHandler: ((Bool) -> Void)?
-    var imageDeletedHandler: ((Int) -> Void)?
     var imageAddedHandler: (() -> Void)?
     var didUpdateHomesHandler: (() -> Void)?
     fileprivate static let categoryScorePickerHeight: CGFloat = 44.0
@@ -135,7 +134,6 @@ class AddEditHouseViewController: UIViewController {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(houseImageViewPressed))
         houseImageViewContainerView.addGestureRecognizer(tapGestureRecognizer)
         
-        houseImageViewContainerView.imageDeletedHandler = imageDeletedHandler
         // Problem here!!! idk what to do because the house or houseIndex is needed. However, houseImageViewContainerView has no way of getting the houseIndex.
         //ReportsOverviewViewController needs both an index (already have) and an houseIndex (Don't have and can't get)
         houseImageViewContainerView.addImageHandler = houseImageViewPressed

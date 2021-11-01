@@ -73,10 +73,6 @@ class ReportsOverviewViewController: UIViewController {
     fileprivate func imageAdded(homeIndex: Int) {
         dataSource.addImage(forHomeAtIndex: homeIndex)
     }
-    
-    fileprivate func imageDeleted(indexOfImage: Int, homeIndex: Int) {
-        dataSource.deleteImage(atIndex: indexOfImage, forHomeAtIndex: homeIndex)
-    }
             
 }
 
@@ -88,9 +84,6 @@ extension ReportsOverviewViewController: UITableViewDelegate {
         addEditHouseVC.home = home1
         addEditHouseVC.imageAddedHandler = { [weak self] in
             self?.imageAdded(homeIndex: indexPath.row)
-        }
-        addEditHouseVC.imageDeletedHandler = { [weak self] indexOfImage in
-            self?.imageDeleted(indexOfImage: indexOfImage, homeIndex: indexPath.row)
         }
         
         navigationController?.pushViewController(addEditHouseVC, animated: true)
