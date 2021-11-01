@@ -13,7 +13,6 @@ class AddEditHouseViewController: UIViewController {
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var tableView: UITableView!
     var newHouseAddedHandler: ((Bool) -> Void)?
-    var imageAddedHandler: (() -> Void)?
     var didUpdateHomesHandler: (() -> Void)?
     fileprivate static let categoryScorePickerHeight: CGFloat = 44.0
     fileprivate var categoryScorePickerTopConstraint: NSLayoutConstraint!
@@ -239,7 +238,6 @@ extension AddEditHouseViewController: PHPickerViewControllerDelegate {
                         if let homeNotOptional = self.home {
                             for (index, home) in HomeStore.shared.homes.enumerated() {
                                 if homeNotOptional.id == home.id {
-                                    self.imageAddedHandler?()
                                     break
                                 }
                             }

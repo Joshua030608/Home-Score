@@ -69,10 +69,6 @@ class ReportsOverviewViewController: UIViewController {
     fileprivate func houseAdded(doesHaveAImage: Bool) {
         dataSource.imageIndices.append(doesHaveAImage ? 0 : nil)
     }
-    
-    fileprivate func imageAdded(homeIndex: Int) {
-        dataSource.addImage(forHomeAtIndex: homeIndex)
-    }
             
 }
 
@@ -82,9 +78,6 @@ extension ReportsOverviewViewController: UITableViewDelegate {
         let addEditHouseVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(identifier: "AddEditHouseViewController") as! AddEditHouseViewController
         let home1 = HomeStore.shared.homes[indexPath.row]
         addEditHouseVC.home = home1
-        addEditHouseVC.imageAddedHandler = { [weak self] in
-            self?.imageAdded(homeIndex: indexPath.row)
-        }
         
         navigationController?.pushViewController(addEditHouseVC, animated: true)
     }
