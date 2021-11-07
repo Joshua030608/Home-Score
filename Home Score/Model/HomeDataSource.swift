@@ -28,7 +28,6 @@ class HomeDataSource: NSObject, UITableViewDataSource {
     }
     
     func updateImageIndices() {
-        
         for (houseIndex, imageIndex) in imageIndices.enumerated() {
             let photosCount = HomeStore.shared.homes[houseIndex].photos.count
             if let imageIndex = imageIndex {
@@ -58,7 +57,7 @@ class HomeDataSource: NSObject, UITableViewDataSource {
         
         cell.setLabelText(score: home.score, price: home.price, address: home.address)
         
-        cell.images = home.photos
+        cell.images = Array(home.photos.values)
         print(HomeStore.shared.homes.count, imageIndices.count)
         cell.imageIndex = imageIndices[indexPath.row]
         cell.collectionView.dataSource = self
@@ -71,7 +70,7 @@ class HomeDataSource: NSObject, UITableViewDataSource {
         let index = gestureRecognizer.view!.tag
         let imageView = gestureRecognizer.view as! UIImageView
         if let imageIndex = imageIndices[index] {
-            let homePhotos = HomeStore.shared.homes[index].photos
+            let homePhotos = Array(HomeStore.shared.homes[index].photos.values)
             let imageIndex = (imageIndex + 1) % homePhotos.count
             imageIndices[index] = imageIndex
             imageView.image = homePhotos[imageIndex]

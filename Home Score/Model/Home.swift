@@ -92,14 +92,15 @@ class HomeStore {
 
 class Home: Codable {
     enum CodingKeys: CodingKey {
-        case id, price, title, address, notes, photos, categoryScores
+        case id, price, title, address, notes, photoIDs, categoryScores
     }
     var id: UUID
     var price: String
     var title: String
     var address: String
     var notes: String
-    var photos: [UIImage]
+    var photoIDs: [UUID]
+    var photos: [UUID : UIImage]
     var categoryScores: [UUID : Int]
     var score: Double? {
         
@@ -139,7 +140,11 @@ class Home: Codable {
         self.title = title
         self.address = address
         self.notes = notes
-        self.photos = photos
+        self.photos = [:]
+        self.photoIDs = []
+        //        for image in photos {
+//            self.photos[UUID()] = image
+//        }
         if let categoryScores = categoryScores {
             self.categoryScores = categoryScores
         } else {
@@ -149,32 +154,39 @@ class Home: Codable {
     }
     
     public required init(from decoder: Decoder) throws {
-        
-        
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(UUID.self, forKey: .id)
         price = try container.decode(String.self, forKey: .price)
         title = try container.decode(String.self, forKey: .title)
         address = try container.decode(String.self, forKey: .address)
         notes = try container.decode(String.self, forKey: .notes)
-        let photoDatas = try container.decode([Data].self, forKey: .photos)
-        photos = photoDatas.map{ UIImage(data: $0)! }
+        photoIDs = try container.decode([UUID].self, forKey: .photoIDs)
         categoryScores = try container.decode([UUID : Int].self, forKey: .categoryScores)
-      
+        photos = [:]
         
+        for photoID in photoIDs {
+            
+            let documentsDirectoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+            let url = documentsDirectoryURL.appendingPathComponent(photoID.uuidString, isDirectory: false)
+            
+            do {
+                let data = try Data(contentsOf: url)
+                let image = UIImage(data: data)
+                photos[photoID] = image
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
     }
     
     public func encode(to encoder: Encoder) throws {
-        print(photos.count)
-        print(categoryScores.count)
-        
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(id, forKey: .id)
         try container.encode(price, forKey: .price)
         try container.encode(title, forKey: .title)
         try container.encode(address, forKey: .address)
         try container.encode(notes, forKey: .notes)
-        try container.encode(photos.map { $0.pngData()! }, forKey: .photos)
+        try container.encode(photoIDs, forKey: .photoIDs)
         try container.encode(categoryScores, forKey: .categoryScores)
     }
     

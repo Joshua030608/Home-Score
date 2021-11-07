@@ -119,7 +119,7 @@ class AddEditHouseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         if let home = home {
-            houseImageViewContainerView.images = home.photos
+            houseImageViewContainerView.images = Array(home.photos.values)
             addressTextField.text = home.address
             titleTextField.text = home.price
             dataSource = CategoryScoresHouseDataSource(scoresDictionary: home.categoryScores)
