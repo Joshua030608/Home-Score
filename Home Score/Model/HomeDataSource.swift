@@ -13,10 +13,13 @@ class HomeDataSource: NSObject, UITableViewDataSource {
     
     var didScrollHandler: ((Int, CGFloat) -> Void)?
     
+    
     override init() {
         super.init()
         createImageIndices()
+
     }
+    
     
     func createImageIndices() {
         var indices: [Int?] = []
@@ -42,6 +45,7 @@ class HomeDataSource: NSObject, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         print(HomeStore.shared.homes.count)
+        
         return HomeStore.shared.homes.count
     }
     
