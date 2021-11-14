@@ -61,7 +61,7 @@ class HomeDataSource: NSObject, UITableViewDataSource {
         
         cell.setLabelText(score: home.score, price: home.price, address: home.address)
         
-        cell.images = Array(home.photos.values)
+        cell.images = home.orderedPhotos
         print(HomeStore.shared.homes.count, imageIndices.count)
         cell.imageIndex = imageIndices[indexPath.row]
         cell.collectionView.dataSource = self

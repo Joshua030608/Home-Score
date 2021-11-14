@@ -121,6 +121,7 @@ class Home: Codable {
     var notes: String
     var photoIDs: [UUID]
     var photos: [UUID : UIImage]
+    var orderedPhotos: [UIImage]
     var categoryScores: [UUID : Int]
     var score: Double? {
         
@@ -160,12 +161,14 @@ class Home: Codable {
         self.title = title
         self.address = address
         self.notes = notes
+        self.orderedPhotos = []
         self.photos = [:]
         self.photoIDs = []
         for image in photos {
             let id = UUID()
             self.photos[id] = image
             self.photoIDs.append(id)
+            self.orderedPhotos.append(image)
         }
         if let categoryScores = categoryScores {
             self.categoryScores = categoryScores
@@ -184,6 +187,7 @@ class Home: Codable {
         notes = try container.decode(String.self, forKey: .notes)
         photoIDs = try container.decode([UUID].self, forKey: .photoIDs)
         categoryScores = try container.decode([UUID : Int].self, forKey: .categoryScores)
+        orderedPhotos = []
         photos = [:]
         
         for photoID in photoIDs {
@@ -193,6 +197,7 @@ class Home: Codable {
                 let data = try Data(contentsOf: url)
                 let image = UIImage(data: data)
                 photos[photoID] = image
+                orderedPhotos.append(image!)
             } catch {
                 print(error.localizedDescription)
             }
