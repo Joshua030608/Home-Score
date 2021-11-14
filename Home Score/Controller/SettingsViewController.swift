@@ -66,6 +66,7 @@ extension SettingsViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Home_Score.SettingsCell")!
         cell.textLabel?.text = SettingsOption(rawValue: indexPath.row)!.name
         cell.textLabel?.textAlignment = .center
+        cell.selectionStyle = .none
         return cell
     }
     
