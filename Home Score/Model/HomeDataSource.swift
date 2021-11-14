@@ -94,8 +94,7 @@ extension HomeDataSource: UICollectionViewDataSource {
         let category = CategoryDataSource.category(forIndexPath: indexPath)
         let score = CategoryDataSource.score(forCategory: category)
         cell.titleLabel.text = category.name
-        
-        // TODO: This
+    
         cell.scoreLabel.text = (score == Category.NAValue) ? "N/A" : "\(score)"
         return cell
     }

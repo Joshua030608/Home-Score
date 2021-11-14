@@ -21,7 +21,7 @@ class HomeStore {
     
     fileprivate static let documentsDirectoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
     fileprivate static let fileName = "Homes.json"
-    fileprivate static let url = HomeStore.documentsDirectoryURL.appendingPathComponent(HomeStore.fileName, isDirectory: false)
+    fileprivate static let jsonURL = HomeStore.documentsDirectoryURL.appendingPathComponent(HomeStore.fileName, isDirectory: false)
     
     var homes: [Home] = HomeStore.getHomes()
     
@@ -40,6 +40,26 @@ class HomeStore {
         }
         saveHomes()
         
+        for id in homeToSave.photoIDs {
+            if saveImage(homeToSave.photos[id]!, forID: id) {
+                print("Be Happy!")
+            } else {
+                fatalError("be thankful it crashed and u know why")
+            }
+        }
+    }
+    
+    func saveImage(_ image: UIImage, forID id: UUID) -> Bool {
+        
+        guard let data = image.pngData() else { return false }
+        
+        do {
+            try data.write(to: HomeStore.documentsDirectoryURL.appendingPathComponent("\(id.uuidString).png"))
+            return true
+        } catch {
+            print(error.localizedDescription)
+            return false
+        }
     }
     
     func updateHomes(forNewCategory newCategory: Category) {
@@ -60,10 +80,10 @@ class HomeStore {
         let encoder = JSONEncoder()
         do {
             let data = try encoder.encode(homes)
-            if FileManager.default.fileExists(atPath: HomeStore.url.path) {
-                try FileManager.default.removeItem(at: HomeStore.url)
+            if FileManager.default.fileExists(atPath: HomeStore.jsonURL.path) {
+                try FileManager.default.removeItem(at: HomeStore.jsonURL)
             }
-            let wasSuccesful = FileManager.default.createFile(atPath: HomeStore.url.path, contents: data, attributes: nil)
+            let wasSuccesful = FileManager.default.createFile(atPath: HomeStore.jsonURL.path, contents: data, attributes: nil)
             print(wasSuccesful)
         } catch {
             print("ERROR:", error.localizedDescription)
@@ -72,14 +92,14 @@ class HomeStore {
     
     fileprivate static func getHomes() -> [Home] {
         
-        guard FileManager.default.fileExists(atPath: HomeStore.url.path) else {
+        guard FileManager.default.fileExists(atPath: HomeStore.jsonURL.path) else {
             return []
         }
         
         
         let decoder = JSONDecoder()
         do {
-            let data = try Data(contentsOf: HomeStore.url)
+            let data = try Data(contentsOf: HomeStore.jsonURL)
             let homes = try decoder.decode([Home].self, from: data)
             return homes
         } catch {
@@ -142,15 +162,17 @@ class Home: Codable {
         self.notes = notes
         self.photos = [:]
         self.photoIDs = []
-        //        for image in photos {
-//            self.photos[UUID()] = image
-//        }
+        for image in photos {
+            let id = UUID()
+            self.photos[id] = image
+            self.photoIDs.append(id)
+        }
         if let categoryScores = categoryScores {
             self.categoryScores = categoryScores
         } else {
             self.categoryScores = Home.defaultCategoryScores()
         }
-
+        
     }
     
     public required init(from decoder: Decoder) throws {
@@ -165,10 +187,8 @@ class Home: Codable {
         photos = [:]
         
         for photoID in photoIDs {
-            
             let documentsDirectoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-            let url = documentsDirectoryURL.appendingPathComponent(photoID.uuidString, isDirectory: false)
-            
+            let url = documentsDirectoryURL.appendingPathComponent("\(photoID.uuidString).png", isDirectory: false)
             do {
                 let data = try Data(contentsOf: url)
                 let image = UIImage(data: data)
@@ -189,6 +209,8 @@ class Home: Codable {
         try container.encode(photoIDs, forKey: .photoIDs)
         try container.encode(categoryScores, forKey: .categoryScores)
     }
+    
+    
     
     static func defaultCategoryScores() -> [UUID : Int]{
         var newCategoryScores = [UUID : Int]()

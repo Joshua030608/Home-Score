@@ -13,7 +13,6 @@ class ReportsOverviewViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
-    
     fileprivate var dataSource = HomeDataSource()
     
     fileprivate let emptyButton: UIButton = {
@@ -41,6 +40,7 @@ class ReportsOverviewViewController: UIViewController {
     
      fileprivate var emptyView: UIView = {
         let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
@@ -54,14 +54,11 @@ class ReportsOverviewViewController: UIViewController {
 //            self?.reloadTableView()
 //
 //        }
-        print(#file, #function)
         dataSource.updateImageIndices()
-        setUpEmptyButton()
         if HomeStore.shared.homes.isEmpty {
-            emptyView.removeFromSuperview()
-            tableView.backgroundView = emptyView
+            emptyView.isHidden = false
         } else {
-            tableView.backgroundView = nil
+            emptyView.isHidden = true
         }
         tableView.reloadData()
     }
@@ -76,8 +73,8 @@ class ReportsOverviewViewController: UIViewController {
         tableView.dataSource = dataSource
         dataSource.didScrollHandler = { [weak self] (index, offset) in
             self?.handleCategoryScoresScroll(index: index, offset: offset)
-        
         }
+        setUpEmptyButton()
     }
     
     
@@ -95,14 +92,15 @@ class ReportsOverviewViewController: UIViewController {
     }
     
     func setUpEmptyButton() {
-        emptyView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height))
+        
+        view.addSubview(emptyView)
         emptyView.addSubview(emptyButton)
         emptyView.addSubview(emptyLabel)
-        view.addSubview(emptyView)
         
         emptyView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
         emptyView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor).isActive = true
-        emptyView.removeFromSuperview()
+        emptyView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor).isActive = true
+        emptyView.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor).isActive = true
         
         emptyButton.widthAnchor.constraint(equalToConstant: 200).isActive = true
         emptyButton.heightAnchor.constraint(equalToConstant: 200).isActive = true
@@ -114,7 +112,6 @@ class ReportsOverviewViewController: UIViewController {
         emptyLabel.centerXAnchor.constraint(equalTo: emptyView.centerXAnchor).isActive = true
         emptyLabel.heightAnchor.constraint(equalToConstant: 200).isActive = true
     }
-    
     
     @objc fileprivate func addHomeButtonPressedC() {
         let addEditHouseVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AddEditHouseViewController") as! AddEditHouseViewController
