@@ -75,6 +75,7 @@ class ReportsOverviewViewController: UIViewController {
             self?.handleCategoryScoresScroll(index: index, offset: offset)
         }
         setUpEmptyButton()
+        self.navigationItem.title = "myHomeScore"
     }
     
     

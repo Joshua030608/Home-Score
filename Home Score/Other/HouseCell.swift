@@ -58,9 +58,29 @@ class HouseCell: UITableViewCell {
         label.attributedText = attributedText
     }
     
+    func getCorrectBorderColor() -> CGColor {
+        switch UITraitCollection.current.userInterfaceStyle {
+        case .dark:
+            return UIColor.white.cgColor
+        case .light, .unspecified:
+            return UIColor.black.cgColor
+        @unknown default:
+            return UIColor.black.cgColor
+        }
+    }
+    
+    func addTopBorder() {
+       let topBorder = CALayer()
+        let correctBorderColor = getCorrectBorderColor()
+        topBorder.frame = CGRect(x: 0.0, y: 0.0, width: frame.size.width + 100.0, height: 1.0)
+        topBorder.backgroundColor = correctBorderColor
+       layer.addSublayer(topBorder)
+    }
+    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageViewPressed))
+        addTopBorder()
     }
     
     override func layoutSubviews() {
