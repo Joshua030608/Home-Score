@@ -456,8 +456,15 @@
                             <constraint firstItem="WCB-kK-LxX" firstAttribute="leading" secondItem="Rkp-e5-s3x" secondAttribute="leading" id="uhH-pi-mqT"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="5zp-1V-NB8"/>
+                    <navigationItem key="navigationItem" id="5zp-1V-NB8">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="Hho-6i-bpz">
+                            <connections>
+                                <action selector="saveButtonPressed:" destination="Qwz-Z7-Qtg" id="Euw-Hm-ko7"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="saveButton" destination="Hho-6i-bpz" id="X7I-RC-3HB"/>
                         <outlet property="tableView" destination="WCB-kK-LxX" id="EMr-kE-eWz"/>
                     </connections>
                 </viewController>

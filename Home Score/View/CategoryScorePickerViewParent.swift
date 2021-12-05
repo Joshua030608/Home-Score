@@ -33,7 +33,7 @@ class CategoryScorePickerViewParent: UIView {
     weak var delegate: CategoryScorePickerViewParentDelegate?
     
     fileprivate func setUpLayout() {
-        categoryScorePicker.widthAnchor.constraint(equalToConstant: 70).isActive = true
+        categoryScorePicker.widthAnchor.constraint(equalToConstant: 100).isActive = true
         categoryScorePicker.topAnchor.constraint(equalTo: topAnchor).isActive = true
         categoryScorePicker.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         categoryScorePicker.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
