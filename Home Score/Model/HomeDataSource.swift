@@ -13,6 +13,7 @@ class HomeDataSource: NSObject, UITableViewDataSource {
     
     var didScrollHandler: ((Int, CGFloat) -> Void)?
     
+    var myCreator: UIViewController = UIViewController()
     
     override init() {
         super.init()
@@ -67,6 +68,10 @@ class HomeDataSource: NSObject, UITableViewDataSource {
         cell.collectionView.dataSource = self
         cell.collectionView.reloadData()
         
+        cell.editButton.tag = indexPath.row
+        cell.deleteButton.tag = indexPath.row
+        cell.controller = myCreator
+
         return cell
     }
     

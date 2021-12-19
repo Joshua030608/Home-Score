@@ -41,15 +41,15 @@
                                 <rect key="frame" x="0.0" y="44" width="375" height="623"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Home_Score.HouseCell" rowHeight="150" id="UCD-YG-CYM" customClass="HouseCell" customModule="Home_Score" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.5" width="375" height="150"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Home_Score.HouseCell" rowHeight="225" id="UCD-YG-CYM" customClass="HouseCell" customModule="Home_Score" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="44.5" width="375" height="225"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="UCD-YG-CYM" id="sbY-5j-UcG">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="225"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TgM-ja-rIs">
-                                                    <rect key="frame" x="16" y="11" width="134" height="128"/>
+                                                    <rect key="frame" x="16" y="23.5" width="134" height="128"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="134" id="5R6-SA-TQy"/>
                                                         <constraint firstAttribute="height" constant="128" id="Ti3-s7-dKS"/>
@@ -118,14 +118,46 @@
                                                         <outlet property="delegate" destination="UCD-YG-CYM" id="5Qs-4g-5eP"/>
                                                     </connections>
                                                 </collectionView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lJJ-x2-kcP">
+                                                    <rect key="frame" x="201" y="175" width="150" height="31"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="31" id="7kr-jn-Cvh"/>
+                                                        <constraint firstAttribute="width" constant="150" id="rLX-WI-wtg"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Button"/>
+                                                    <buttonConfiguration key="configuration" style="filled" title="Delete">
+                                                        <color key="baseBackgroundColor" red="0.47843140360000003" green="0.59215688710000003" blue="0.72156864399999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    </buttonConfiguration>
+                                                    <connections>
+                                                        <action selector="deleteButtonPressed:" destination="UCD-YG-CYM" eventType="touchUpInside" id="eIw-Y9-3U2"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u03-SL-aQ5">
+                                                    <rect key="frame" x="24" y="175" width="150" height="31"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="31" id="6NR-eR-O5Z"/>
+                                                        <constraint firstAttribute="width" constant="150" id="ZGi-2x-uha"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Button"/>
+                                                    <buttonConfiguration key="configuration" style="filled" title="Edit">
+                                                        <color key="baseBackgroundColor" red="0.47843140360000003" green="0.59215688710000003" blue="0.72156864399999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    </buttonConfiguration>
+                                                    <connections>
+                                                        <action selector="editButtonPressed:" destination="UCD-YG-CYM" eventType="touchUpInside" id="BfU-0K-Fog"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="lJJ-x2-kcP" secondAttribute="trailing" constant="8" id="3Q1-md-fyF"/>
                                                 <constraint firstItem="Iy1-Bw-W9A" firstAttribute="top" secondItem="sbY-5j-UcG" secondAttribute="top" id="4i7-Fc-xpK"/>
-                                                <constraint firstAttribute="bottom" secondItem="ral-WI-I9Q" secondAttribute="bottom" id="TfG-4U-H4d"/>
+                                                <constraint firstItem="u03-SL-aQ5" firstAttribute="leading" secondItem="sbY-5j-UcG" secondAttribute="leadingMargin" constant="8" id="COU-Dw-e01"/>
+                                                <constraint firstAttribute="bottom" secondItem="ral-WI-I9Q" secondAttribute="bottom" constant="75" id="TfG-4U-H4d"/>
                                                 <constraint firstAttribute="trailing" secondItem="ral-WI-I9Q" secondAttribute="trailing" id="WZa-S2-96L"/>
                                                 <constraint firstItem="TgM-ja-rIs" firstAttribute="leading" secondItem="sbY-5j-UcG" secondAttribute="leadingMargin" id="bxH-wG-fsm"/>
+                                                <constraint firstItem="lJJ-x2-kcP" firstAttribute="bottom" secondItem="sbY-5j-UcG" secondAttribute="bottomMargin" constant="-8" id="djC-qe-YTB"/>
                                                 <constraint firstAttribute="trailing" secondItem="Iy1-Bw-W9A" secondAttribute="trailing" id="nI6-sn-2hE"/>
-                                                <constraint firstItem="TgM-ja-rIs" firstAttribute="centerY" secondItem="sbY-5j-UcG" secondAttribute="centerY" id="oav-9o-TDQ"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="u03-SL-aQ5" secondAttribute="bottom" constant="8" id="nSb-RX-okd"/>
+                                                <constraint firstItem="TgM-ja-rIs" firstAttribute="centerY" secondItem="sbY-5j-UcG" secondAttribute="centerY" constant="-25" id="oav-9o-TDQ"/>
                                                 <constraint firstItem="Iy1-Bw-W9A" firstAttribute="leading" secondItem="TgM-ja-rIs" secondAttribute="trailing" constant="8" id="sZv-Lb-XDs"/>
                                                 <constraint firstItem="ral-WI-I9Q" firstAttribute="leading" secondItem="TgM-ja-rIs" secondAttribute="trailing" constant="8" id="wpg-PQ-1KW"/>
                                                 <constraint firstItem="ral-WI-I9Q" firstAttribute="top" secondItem="Iy1-Bw-W9A" secondAttribute="bottom" id="yNL-Ws-214"/>
@@ -133,6 +165,8 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="collectionView" destination="ral-WI-I9Q" id="7AB-F7-lfs"/>
+                                            <outlet property="deleteButton" destination="lJJ-x2-kcP" id="C8Q-Nw-51C"/>
+                                            <outlet property="editButton" destination="u03-SL-aQ5" id="H6Z-Ue-Vti"/>
                                             <outlet property="houseImageView" destination="TgM-ja-rIs" id="WBp-Ty-fA1"/>
                                             <outlet property="label" destination="Iy1-Bw-W9A" id="Wkg-Iu-BNl"/>
                                         </connections>

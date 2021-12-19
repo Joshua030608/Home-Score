@@ -13,6 +13,10 @@ class HouseCell: UITableViewCell {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var label: UILabel!
     
+    @IBOutlet weak var editButton: UIButton!
+    @IBOutlet weak var deleteButton: UIButton!
+    
+    var controller: UIViewController = UIViewController()
     var didScrollHandler: ((Int, CGFloat) -> Void)?
     
     fileprivate var tapGestureRecognizer: UITapGestureRecognizer!
@@ -29,6 +33,19 @@ class HouseCell: UITableViewCell {
             }
             
         }
+    }
+    
+    
+    
+    
+    
+    @IBAction func editButtonPressed(_ sender: UIButton) {
+        let goodController = controller as! ReportsOverviewViewController
+        goodController.editButtonPressedForHouseAt(sender.tag)
+    }
+    
+    @IBAction func deleteButtonPressed(_ sender: UIButton) {
+        
     }
     
     @objc func imageViewPressed() {
@@ -94,10 +111,13 @@ class HouseCell: UITableViewCell {
         addTopBorder()
     }
     
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         houseImageView.isUserInteractionEnabled = true
         houseImageView.addGestureRecognizer(tapGestureRecognizer)
+        editButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+        deleteButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
     }
     
 //    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {

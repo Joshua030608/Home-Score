@@ -76,6 +76,8 @@ class ReportsOverviewViewController: UIViewController {
         }
         setUpEmptyButton()
         self.navigationItem.title = "myHomeScore"
+        dataSource.myCreator = self
+        
     }
     
     
@@ -127,17 +129,19 @@ class ReportsOverviewViewController: UIViewController {
     fileprivate func houseAdded(doesHaveAImage: Bool) {
         dataSource.imageIndices.append(doesHaveAImage ? 0 : nil)
     }
-            
+    
+    func editButtonPressedForHouseAt(_ houseIndex: Int) {
+        let addEditHouseVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AddEditHouseViewController") as! AddEditHouseViewController
+        let home1 = HomeStore.shared.homes[houseIndex]
+        addEditHouseVC.home = home1
+        navigationController?.pushViewController(addEditHouseVC, animated: true)
+    }
+    
 }
 
 extension ReportsOverviewViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        let addEditHouseVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(identifier: "AddEditHouseViewController") as! AddEditHouseViewController
-        let home1 = HomeStore.shared.homes[indexPath.row]
-        addEditHouseVC.home = home1
-        
-        navigationController?.pushViewController(addEditHouseVC, animated: true)
+        editButtonPressedForHouseAt(indexPath.row)
     }
 }
 
