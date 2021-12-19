@@ -127,6 +127,9 @@ class AddEditHouseViewController: UIViewController {
             dataSource = CategoryScoresHouseDataSource(scoresDictionary: nil)
         }
         
+        titleTextField.delegate = self
+        addressTextField.delegate = self
+        
         //houseImageViewContainerView.collectionView.
         
         houseImageViewContainerView.isUserInteractionEnabled = true
@@ -264,3 +267,21 @@ extension AddEditHouseViewController: PHPickerViewControllerDelegate {
         dismiss(animated: true, completion: nil)
     }
 } */
+
+extension AddEditHouseViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        print(string)
+        var formattedPriceString = "N/A"
+        if let intPrice = Int(string) {
+            let formatter = NumberFormatter()
+            formatter.numberStyle = .currency
+            formatter.maximumFractionDigits = 0
+            if let formattedString = formatter.string(from: NSNumber(value: intPrice)) {
+                formattedPriceString = formattedString
+            }
+        }
+        textField.text = formattedPriceString
+        
+        return false
+    }
+}

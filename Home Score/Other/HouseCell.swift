@@ -39,6 +39,7 @@ class HouseCell: UITableViewCell {
     }
     
     func setLabelText(score: Double?, price: String, address: String) {
+        
         var scoreString = "N/A"
         
         if let homeScore = score {
@@ -51,9 +52,19 @@ class HouseCell: UITableViewCell {
             }
         }
         
+        var formattedPriceString = "N/A"
+        if let intPrice = Int(price) {
+            let formatter = NumberFormatter()
+            formatter.numberStyle = .currency
+            formatter.maximumFractionDigits = 0
+            if let formattedString = formatter.string(from: NSNumber(value: intPrice)) {
+                formattedPriceString = formattedString
+            }
+        }
+        
         let attributedText = NSMutableAttributedString(string: "\(address) Score: \(scoreString)" + "\n", attributes: [.font : UIFont.systemFont(ofSize: 18)])
         
-        attributedText.append(NSAttributedString(string: "$\(price)", attributes: [.font: UIFont.systemFont(ofSize: 10)]))
+        attributedText.append(NSAttributedString(string: formattedPriceString, attributes: [.font: UIFont.systemFont(ofSize: 10)]))
         
         label.attributedText = attributedText
     }
@@ -88,6 +99,16 @@ class HouseCell: UITableViewCell {
         houseImageView.isUserInteractionEnabled = true
         houseImageView.addGestureRecognizer(tapGestureRecognizer)
     }
+    
+//    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+//        if self.traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
+//            if traitCollection.userInterfaceStyle == .dark {
+//                //Dark
+//            } else {
+//                //Light
+//            }
+//        }
+//    }
 }
 
 extension HouseCell: UIScrollViewDelegate {
