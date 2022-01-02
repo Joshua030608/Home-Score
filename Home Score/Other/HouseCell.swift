@@ -16,9 +16,10 @@ class HouseCell: UITableViewCell {
     @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var deleteButton: UIButton!
     
-    var controller: UIViewController = UIViewController()
-    var didScrollHandler: ((Int, CGFloat) -> Void)?
     
+    //var controller: UIViewController = UIViewController()
+    var didScrollHandler: ((Int, CGFloat) -> Void)?
+    var didSelectHomeHandler: (() -> Void)?
     fileprivate var tapGestureRecognizer: UITapGestureRecognizer!
     
     var images: [UIImage] = []
@@ -35,13 +36,8 @@ class HouseCell: UITableViewCell {
         }
     }
     
-    
-    
-    
-    
     @IBAction func editButtonPressed(_ sender: UIButton) {
-        let goodController = controller as! ReportsOverviewViewController
-        goodController.editButtonPressedForHouseAt(sender.tag)
+        didSelectHomeHandler?()
     }
     
     @IBAction func deleteButtonPressed(_ sender: UIButton) {

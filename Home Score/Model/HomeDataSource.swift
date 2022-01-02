@@ -12,13 +12,13 @@ class HomeDataSource: NSObject, UITableViewDataSource {
     var imageIndices: [Int?] = []
     
     var didScrollHandler: ((Int, CGFloat) -> Void)?
+    var didSelectHome: ((Int) -> Void)?
     
-    var myCreator: UIViewController = UIViewController()
+    //weak var myCreator: UIViewController!
     
     override init() {
         super.init()
         createImageIndices()
-
     }
     
     
@@ -68,10 +68,15 @@ class HomeDataSource: NSObject, UITableViewDataSource {
         cell.collectionView.dataSource = self
         cell.collectionView.reloadData()
         
-        cell.editButton.tag = indexPath.row
+//        cell.editButton.tag = indexPath.row
+        cell.didSelectHomeHandler = { [weak self] in
+            self?.didSelectHome?(indexPath.row)
+        }
         cell.deleteButton.tag = indexPath.row
-        cell.controller = myCreator
+        //cell.controller = myCreator
 
+        cell.selectionStyle = .none
+        
         return cell
     }
     

@@ -76,8 +76,10 @@ class ReportsOverviewViewController: UIViewController {
         }
         setUpEmptyButton()
         self.navigationItem.title = "myHomeScore"
-        dataSource.myCreator = self
-        
+        //dataSource.myCreator = self
+        dataSource.didSelectHome = { [weak self] index in
+            self?.editButtonPressedForHouseAt(index)
+        }
     }
     
     
@@ -135,13 +137,6 @@ class ReportsOverviewViewController: UIViewController {
         let home1 = HomeStore.shared.homes[houseIndex]
         addEditHouseVC.home = home1
         navigationController?.pushViewController(addEditHouseVC, animated: true)
-    }
-    
-}
-
-extension ReportsOverviewViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        editButtonPressedForHouseAt(indexPath.row)
     }
 }
 

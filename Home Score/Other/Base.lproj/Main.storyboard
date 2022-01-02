@@ -172,9 +172,6 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
-                                <connections>
-                                    <outlet property="delegate" destination="ZmU-57-ccO" id="oo0-iC-5pJ"/>
-                                </connections>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="BZD-jJ-c7M"/>

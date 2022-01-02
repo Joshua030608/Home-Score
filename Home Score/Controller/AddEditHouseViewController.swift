@@ -8,12 +8,15 @@
 import UIKit
 import PhotosUI
 class AddEditHouseViewController: UIViewController {
+    
     @IBOutlet weak var houseImageViewContainerView: HouseImageViewContainerView!
     @IBOutlet weak var addressTextField: UITextField!
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var tableView: UITableView!
+    
     var newHouseAddedHandler: ((Bool) -> Void)?
     var didUpdateHomesHandler: (() -> Void)?
+    
     fileprivate static let categoryScorePickerHeight: CGFloat = 44.0
     fileprivate var categoryScorePickerTopConstraint: NSLayoutConstraint!
     fileprivate var customFooter: UIView!
@@ -36,10 +39,14 @@ class AddEditHouseViewController: UIViewController {
     var home: Home? { // Problem was home wasn't being set when was nil.
         didSet {
             DispatchQueue.main.async {
-                self.tableView.reloadData()
+                if self.tableView != nil {
+                    self.tableView.reloadData()
+                }
             }
         }
     }
+    
+    private let formatter = NumberFormatter()
     
     @IBAction func saveButtonPressed(_ sender: Any) {
         
@@ -128,7 +135,6 @@ class AddEditHouseViewController: UIViewController {
         }
         
         titleTextField.delegate = self
-        addressTextField.delegate = self
         
         //houseImageViewContainerView.collectionView.
         
@@ -148,6 +154,9 @@ class AddEditHouseViewController: UIViewController {
         tableView.delegate = self
         pickerViewParent.isHidden = true
         pickerViewParent.delegate = self
+        
+        formatter.numberStyle = .currency
+        formatter.maximumFractionDigits = 0
     }
 }
 
@@ -269,13 +278,36 @@ extension AddEditHouseViewController: PHPickerViewControllerDelegate {
 } */
 
 extension AddEditHouseViewController: UITextFieldDelegate {
+    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        print(string)
+        
+        print("replacementString:", string)
+        print("textField.text:", textField.text)
+        
+        if let intValue = formatter.number(from: textField.text ?? "")?.intValue {
+            
+            if string == "" {
+                if textField.text == "" {
+                    
+                    return true
+                } else {
+                    textField.text = String(textField.text!.prefix(textField.text!.count - 1))
+                    return false
+                }
+                
+            } else if let newDigit = Int(string) {
+                let newValue = (intValue * 10) + newDigit
+                if let formattedString = formatter.string(from: NSNumber(value: newValue)) {
+                    textField.text = formattedString
+                    return false
+                }
+            }
+        }
+        
+        
         var formattedPriceString = "N/A"
         if let intPrice = Int(string) {
-            let formatter = NumberFormatter()
-            formatter.numberStyle = .currency
-            formatter.maximumFractionDigits = 0
+            
             if let formattedString = formatter.string(from: NSNumber(value: intPrice)) {
                 formattedPriceString = formattedString
             }
