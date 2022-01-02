@@ -13,6 +13,7 @@ class HomeDataSource: NSObject, UITableViewDataSource {
     
     var didScrollHandler: ((Int, CGFloat) -> Void)?
     var didSelectHome: ((Int) -> Void)?
+    var didDeleteHome: ((Int) -> Void)?
     
     //weak var myCreator: UIViewController!
     
@@ -33,6 +34,9 @@ class HomeDataSource: NSObject, UITableViewDataSource {
     
     func updateImageIndices() {
         for (houseIndex, imageIndex) in imageIndices.enumerated() {
+            print(houseIndex)
+            print("THIS IS WHERE THE PROBLEM IS. THIS FOR LOOP IS RUNNING TOO MANY TIMES")
+            print(HomeStore.shared.homes.count)
             let photosCount = HomeStore.shared.homes[houseIndex].photos.count
             if let imageIndex = imageIndex {
                 if photosCount <= imageIndex {
@@ -71,6 +75,10 @@ class HomeDataSource: NSObject, UITableViewDataSource {
 //        cell.editButton.tag = indexPath.row
         cell.didSelectHomeHandler = { [weak self] in
             self?.didSelectHome?(indexPath.row)
+        }
+        
+        cell.didDeleteHomeHandler = { [weak self] in
+            self?.didDeleteHome?(indexPath.row)
         }
         cell.deleteButton.tag = indexPath.row
         //cell.controller = myCreator

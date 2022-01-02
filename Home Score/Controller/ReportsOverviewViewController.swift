@@ -55,11 +55,7 @@ class ReportsOverviewViewController: UIViewController {
 //
 //        }
         dataSource.updateImageIndices()
-        if HomeStore.shared.homes.isEmpty {
-            emptyView.isHidden = false
-        } else {
-            emptyView.isHidden = true
-        }
+        handleEmptyView()
         tableView.reloadData()
     }
     
@@ -80,8 +76,19 @@ class ReportsOverviewViewController: UIViewController {
         dataSource.didSelectHome = { [weak self] index in
             self?.editButtonPressedForHouseAt(index)
         }
+        
+        dataSource.didDeleteHome = { [weak self] index in
+            self?.deleteButtonPressedForHouseAt(index)
+        }
     }
     
+    fileprivate func handleEmptyView() {
+        if HomeStore.shared.homes.isEmpty {
+            emptyView.isHidden = false
+        } else {
+            emptyView.isHidden = true
+        }
+    }
     
     func handleCategoryScoresScroll(index: Int, offset: CGFloat) {
         for (cellIndex, visibleCell) in tableView.visibleCells.enumerated() {
@@ -137,6 +144,13 @@ class ReportsOverviewViewController: UIViewController {
         let home1 = HomeStore.shared.homes[houseIndex]
         addEditHouseVC.home = home1
         navigationController?.pushViewController(addEditHouseVC, animated: true)
+    }
+    
+    func deleteButtonPressedForHouseAt(_ houseIndex: Int) {
+        HomeStore.shared.homes.remove(at: houseIndex)
+        HomeStore.shared.saveHomes()
+        tableView.reloadData()
+        handleEmptyView()
     }
 }
 

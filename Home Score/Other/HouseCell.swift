@@ -20,6 +20,7 @@ class HouseCell: UITableViewCell {
     //var controller: UIViewController = UIViewController()
     var didScrollHandler: ((Int, CGFloat) -> Void)?
     var didSelectHomeHandler: (() -> Void)?
+    var didDeleteHomeHandler: (() -> Void)?
     fileprivate var tapGestureRecognizer: UITapGestureRecognizer!
     
     var images: [UIImage] = []
@@ -41,7 +42,7 @@ class HouseCell: UITableViewCell {
     }
     
     @IBAction func deleteButtonPressed(_ sender: UIButton) {
-        
+        didDeleteHomeHandler?()
     }
     
     @objc func imageViewPressed() {

@@ -76,7 +76,7 @@ class HomeStore {
         saveHomes()
     }
     
-    fileprivate func saveHomes() {
+    func saveHomes() {
         let encoder = JSONEncoder()
         do {
             let data = try encoder.encode(homes)
