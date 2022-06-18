@@ -54,7 +54,7 @@ class ReportsOverviewViewController: UIViewController {
 //            self?.reloadTableView()
 //
 //        }
-        dataSource.updateImageIndices()
+        dataSource.updateForImagesUpdate()
         handleEmptyView()
         tableView.reloadData()
     }
@@ -136,7 +136,7 @@ class ReportsOverviewViewController: UIViewController {
     }
     
     fileprivate func houseAdded(doesHaveAImage: Bool) {
-        dataSource.imageIndices.append(doesHaveAImage ? 0 : nil)
+        dataSource.addHouse(withImage: doesHaveAImage)
     }
     
     func editButtonPressedForHouseAt(_ houseIndex: Int) {
@@ -149,6 +149,7 @@ class ReportsOverviewViewController: UIViewController {
     func deleteButtonPressedForHouseAt(_ houseIndex: Int) {
         HomeStore.shared.homes.remove(at: houseIndex)
         HomeStore.shared.saveHomes()
+        dataSource.updateForHousesUpdate(atHouseIndex: houseIndex)
         tableView.reloadData()
         handleEmptyView()
     }

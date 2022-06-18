@@ -9,7 +9,7 @@ import UIKit
 
 class HomeDataSource: NSObject, UITableViewDataSource {
      
-    var imageIndices: [Int?] = []
+    fileprivate var imageIndices: [Int?] = []
     
     var didScrollHandler: ((Int, CGFloat) -> Void)?
     var didSelectHome: ((Int) -> Void)?
@@ -23,16 +23,21 @@ class HomeDataSource: NSObject, UITableViewDataSource {
     }
     
     
-    func createImageIndices() {
+    fileprivate func createImageIndices() {
         var indices: [Int?] = []
         for home in HomeStore.shared.homes {
             let index = (home.photos.isEmpty) ? nil : 0
             indices.append(index)
         }
+        
         self.imageIndices = indices
     }
     
-    func updateImageIndices() {
+    func updateForHousesUpdate(atHouseIndex houseIndex: Int) {
+        imageIndices.remove(at: houseIndex)
+    }
+    
+    func updateForImagesUpdate() {
         for (houseIndex, imageIndex) in imageIndices.enumerated() {
             print(houseIndex)
             print("THIS IS WHERE THE PROBLEM IS. THIS FOR LOOP IS RUNNING TOO MANY TIMES")
@@ -46,6 +51,10 @@ class HomeDataSource: NSObject, UITableViewDataSource {
                 imageIndices[houseIndex] = (photosCount > 0) ? 0 : nil
             }
         }
+    }
+    
+    func addHouse(withImage: Bool) {
+        imageIndices.append(withImage ? 0 : nil)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -67,7 +76,7 @@ class HomeDataSource: NSObject, UITableViewDataSource {
         cell.setLabelText(score: home.score, price: home.price, address: home.address)
         
         cell.images = home.orderedPhotos
-        print(HomeStore.shared.homes.count, imageIndices.count)
+        print(#file, #function, HomeStore.shared.homes.count, imageIndices.count)
         cell.imageIndex = imageIndices[indexPath.row]
         cell.collectionView.dataSource = self
         cell.collectionView.reloadData()
@@ -94,6 +103,7 @@ class HomeDataSource: NSObject, UITableViewDataSource {
         if let imageIndex = imageIndices[index] {
             let homePhotos = Array(HomeStore.shared.homes[index].photos.values)
             let imageIndex = (imageIndex + 1) % homePhotos.count
+            print("imageIndex:", imageIndex)
             imageIndices[index] = imageIndex
             imageView.image = homePhotos[imageIndex]
         }
