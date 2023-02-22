@@ -78,6 +78,7 @@ class HomeDataSource: NSObject, UITableViewDataSource {
         cell.images = home.orderedPhotos
         print(#file, #function, HomeStore.shared.homes.count, imageIndices.count)
         cell.imageIndex = imageIndices[indexPath.row]
+        print("setting image index to \(imageIndices[indexPath.row])")
         cell.collectionView.dataSource = self
         cell.collectionView.reloadData()
         
@@ -145,14 +146,18 @@ extension HomeDataSource {
         }
         
         if HomeStore.shared.homes[homeIndex].photos.count == 1 {
+            print(#function,"before:",imageIndices)
             imageIndices[homeIndex] = nil
             return
         }
+        print(#function,"after:",imageIndices)
         // homework here
+        print(#function,"before:",imageIndices)
         if imageIndex <= shownImageIndex {
             imageIndices[homeIndex]! = max(0, imageIndices[homeIndex]! - 1)
             return
         }
+        print(#function,"after:",imageIndices)
     }
 }
 

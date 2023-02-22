@@ -27,6 +27,7 @@ class HouseCell: UITableViewCell {
     var imageIndex: Int? {
         didSet {
             if let imageIndex = imageIndex {
+                print("imageIndexOfCell:",imageIndex)
                 if images.count != 0 {
                     houseImageView.image = images[imageIndex]
                 }
@@ -49,6 +50,7 @@ class HouseCell: UITableViewCell {
         if let imageIndex = imageIndex {
             self.imageIndex = (imageIndex + 1) % images.count
         }
+        
         // bug is pressing imageView too many times causes fatal error index out of range because no more images.
     }
     
