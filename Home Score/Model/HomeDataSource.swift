@@ -90,12 +90,21 @@ class HomeDataSource: NSObject, UITableViewDataSource {
         cell.didDeleteHomeHandler = { [weak self] in
             self?.didDeleteHome?(indexPath.row)
         }
+        
+        cell.imageViewPressedHandler = { [weak self] in
+            self?.imageViewPressedCorrectForCellAt(index: indexPath.row, imageIndex: cell.imageIndex)
+        }
         cell.deleteButton.tag = indexPath.row
         //cell.controller = myCreator
 
         cell.selectionStyle = .none
         
         return cell
+    }
+    
+    fileprivate func imageViewPressedCorrectForCellAt(index: Int, imageIndex: Int?) {
+        imageIndices[index] = imageIndex
+        print(#function,imageIndices[index])
     }
     
     @objc fileprivate func imageViewPressed(gestureRecognizer: UITapGestureRecognizer) {

@@ -21,6 +21,7 @@ class HouseCell: UITableViewCell {
     var didScrollHandler: ((Int, CGFloat) -> Void)?
     var didSelectHomeHandler: (() -> Void)?
     var didDeleteHomeHandler: (() -> Void)?
+    var imageViewPressedHandler: (() -> Void)?
     fileprivate var tapGestureRecognizer: UITapGestureRecognizer!
     
     var images: [UIImage] = []
@@ -50,7 +51,7 @@ class HouseCell: UITableViewCell {
         if let imageIndex = imageIndex {
             self.imageIndex = (imageIndex + 1) % images.count
         }
-        
+        imageViewPressedHandler?()
         // bug is pressing imageView too many times causes fatal error index out of range because no more images.
     }
     
