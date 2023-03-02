@@ -17,6 +17,8 @@ class CategoryScorePickerViewParent: UIView {
     fileprivate let categoryScorePicker: UIPickerView = {
         let picker = UIPickerView()
         picker.translatesAutoresizingMaskIntoConstraints = false
+        picker.setValue(UIColor.red, forKeyPath: "textColor")
+        picker.backgroundColor = .systemBackground
         return picker
     }()
     
@@ -86,12 +88,16 @@ extension CategoryScorePickerViewParent: UIPickerViewDelegate {
         delegate!.updateScore(newScore)
     }
     
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        if row == 0 {
-            return "N/A"
-        } else {
-            let correctNumber = row - 1
-            return String(correctNumber)
-        }
+    //    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    //        if row == 0 {
+    //            return "N/A"
+    //        } else {
+    //            let correctNumber = row - 1
+    //            return String(correctNumber)
+    //        }
+    //    }
+    
+    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+        return NSAttributedString(string: "ABC", attributes: [NSAttributedString.Key.foregroundColor: UIColor.label])
     }
 }

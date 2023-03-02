@@ -92,7 +92,7 @@ class HomeDataSource: NSObject, UITableViewDataSource {
         }
         
         cell.imageViewPressedHandler = { [weak self] in
-            self?.imageViewPressedCorrectForCellAt(index: indexPath.row, imageIndex: cell.imageIndex)
+            self?.imageViewPressed(forCellAtIndex: indexPath.row, imageIndex: cell.imageIndex)
         }
         cell.deleteButton.tag = indexPath.row
         //cell.controller = myCreator
@@ -102,9 +102,10 @@ class HomeDataSource: NSObject, UITableViewDataSource {
         return cell
     }
     
-    fileprivate func imageViewPressedCorrectForCellAt(index: Int, imageIndex: Int?) {
+    fileprivate func imageViewPressed(forCellAtIndex index: Int, imageIndex: Int?) {
         imageIndices[index] = imageIndex
         print(#function,imageIndices[index])
+        //this func is called the correct version because there is a func under it with the same name. I don't think it is ever called but i didn't want to remove just in case.
     }
     
     @objc fileprivate func imageViewPressed(gestureRecognizer: UITapGestureRecognizer) {
