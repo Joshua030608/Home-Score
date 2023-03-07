@@ -170,6 +170,8 @@ extension AddEditHouseViewController: UITableViewDelegate {
         let rowNumber = (currentScore == Category.NAValue) ? 0 : currentScore! + 1
         pickerViewParent.tag = indexPath.row
         pickerViewParent.selectPickerViewRow(for: rowNumber)
+        pickerViewParent.backgroundColor = .systemBackground
+        //This finally worked 2.28.23
         pickerViewParent.reloadPickerView()
         pickerViewParent.isHidden = false
     
